@@ -10,7 +10,7 @@ from .about.do_about import About
 from qgis.core import *
 from login import Login
 import urllib.request, urllib.error, urllib.parse, base64
-import math,  os
+import math,  os,  tempfile
 
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
@@ -34,6 +34,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.username = None
         self.password = None
         self.success = False
+        self.dir = tempfile.gettempdir()
 
     @pyqtSlot()
     def on_button_box_rejected(self):
@@ -137,13 +138,14 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
     
                     except urllib.error.HTTPError as err:
                         if err.code == 401:
-                            QMessageBox.information(None, self.tr('Error'),  self.tr('Authentication Error'))
+                            QMessageBox.critical(None, self.tr('Error'),  self.tr('Earth Data Authentication Error!'))
                             QApplication.restoreOverrideCursor()
                             return False
                         elif err.code == 404:
                             tile_counter += 1
                         else:
-                            QMessageBox.information(None, self.tr('Error'),  self.tr("HTTP-Error: %s") % err.reason)
+                            QMessageBox.critical(None, self.tr('Error'),  self.tr("HTTP-Error: %s") % err.reason)
+                            QApplication.restoreOverrideCursor()
                             return False
     
             QApplication.restoreOverrideCursor()
