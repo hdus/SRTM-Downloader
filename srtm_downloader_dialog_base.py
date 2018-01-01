@@ -32,6 +32,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.iface = iface
         self.username = None
         self.password = None
+        self.success = False
 
     @pyqtSlot()
     def on_button_box_rejected(self):
@@ -58,9 +59,12 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
 
 
     def get_tiles(self,  username,  password):
-        try:
             QApplication.setOverrideCursor(Qt.WaitCursor)
-    
+            username = b'%s' % username
+            password = b'%s' % password
+            
+            print ("User: %s,  Password: %s" % (username,  password))
+            
             for lat in range(int(self.lne_south.text()), int(self.lne_north.text())):
                 for lon in range(int(self.lne_west.text()), int(self.lne_east.text())):
                     try:
@@ -118,35 +122,40 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                             self.progressBar.setValue(file_size_dl * 100. / file_size)
     
                         f.close()
-                        f.close()
     
                         if self.chk_load_image.checkState() == Qt.Checked:
                             out_image = self.unzip(file_name)
                             (dir, file) = os.path.split(out_image)
                             self.iface.addRasterLayer(out_image, file)
     
-                    except:
-                        print("URL not found: %s" % url)
+                    except urllib.error.HTTPError as err:
+                        if err.code == 401:
+                            QMessageBox.information(None, self.tr('Error'),  self.tr('Authentication Error'))
+                            QApplication.restoreOverrideCursor()
+                            return False
+                        elif err.code == 404:
+                            pass
+                        else:
+                            QMessageBox.information(None, self.tr('Error'),  self.tr("HTTP-Error: %s") % err.reason)
+                            return False
     
             QApplication.restoreOverrideCursor()
             QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
-        except:
-            pass
+            return True
             
-        QApplication.restoreOverrideCursor()
 
     @pyqtSlot()
     def on_btn_download_clicked(self):
         """
         Slot documentation goes here.
         """
-        result = 1
         if self.username==None or self.password==None:
             self.login = Login(self)
-            result = self.login.exec_()
-            print ("Result: %s" % result)
-            if result:       
+            self.login.exec_()
+            if self.success:       
                 self.get_tiles(self.username, self.password)
+            else:
+                pass
         else:
             self.get_tiles(self.username, self.password)
 

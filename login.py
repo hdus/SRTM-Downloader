@@ -35,8 +35,9 @@ class Login(QDialog, FORM_CLASS):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        self.opener.username = self.lne_username
-        self.opener.password = self.lne_password
+        self.opener.username = self.lne_username.text()
+        self.opener.password = self.lne_password.text()
+        self.opener.success = True
         self.close()
     
     @pyqtSlot()
@@ -45,6 +46,7 @@ class Login(QDialog, FORM_CLASS):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
+        self.opener.success = False
         self.close()
     
     @pyqtSlot("QString")
@@ -57,5 +59,5 @@ class Login(QDialog, FORM_CLASS):
         """
         # TODO: not implemented yet
         self.registration = RegistrationView(link)
-        result = self.registration.exec_()
+        self.registration.exec_()
 
