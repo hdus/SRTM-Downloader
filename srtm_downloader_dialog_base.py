@@ -140,6 +140,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
+        result = 1
         if self.username==None or self.password==None:
             self.login = Login(self)
             result = self.login.exec_()

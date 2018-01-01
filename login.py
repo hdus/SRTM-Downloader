@@ -6,6 +6,7 @@ Module implementing Login.
 from qgis.PyQt import uic
 from qgis.PyQt.QtCore import pyqtSlot
 from qgis.PyQt.QtWidgets import QDialog
+from registration_view import RegistrationView
 import os
 
     
@@ -45,3 +46,16 @@ class Login(QDialog, FORM_CLASS):
         """
         # TODO: not implemented yet
         self.close()
+    
+    @pyqtSlot("QString")
+    def on_lbl_registration_linkActivated(self, link):
+        """
+        Slot documentation goes here.
+        
+        @param link DESCRIPTION
+        @type QString
+        """
+        # TODO: not implemented yet
+        self.registration = RegistrationView(link)
+        result = self.registration.exec_()
+

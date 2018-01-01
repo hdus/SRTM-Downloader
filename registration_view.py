@@ -4,7 +4,7 @@
 Module implementing RegistrationView.
 """
 from qgis.PyQt import uic
-from qgis.PyQt.QtCore import pyqtSlot
+from qgis.PyQt.QtCore import pyqtSlot,  QUrl
 from qgis.PyQt.QtWidgets import QDialog
 import os
 
@@ -27,14 +27,8 @@ class RegistrationView(QDialog, FORM_CLASS):
         super(RegistrationView, self).__init__(parent)
         self.setupUi(self)
         self.link = link
-    
-    @pyqtSlot()
-    def on_buttonBox_accepted(self):
-        """
-        Slot documentation goes here.
-        """
-        # TODO: not implemented yet
-        raise NotImplementedError
+        self.webView.setUrl(QUrl(link))
+        
     
     @pyqtSlot()
     def on_buttonBox_rejected(self):
@@ -42,4 +36,4 @@ class RegistrationView(QDialog, FORM_CLASS):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        self.close()
