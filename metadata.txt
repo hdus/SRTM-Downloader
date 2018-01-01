@@ -3,12 +3,12 @@
 # information about a plugin. The old method of 
 # embedding metadata in __init__.py will 
 # is no longer supported since version 2.0.
-
 # This file should be included when you package your plugin.# Mandatory items:
 
 [general]
 name=SRTM Downloader
-qgisMinimumVersion=2.14
+qgisMinimumVersion=2.00
+qgisMaximumVersion=2.99
 description=Downloads SRTM Tiles from NASA Server
 version=1.0.0
 author=Dr. Horst Duester / Sourcepole AG
