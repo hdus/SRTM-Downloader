@@ -6,6 +6,7 @@ Module implementing SrtmDownloaderDialogBase.
 from qgis.PyQt import uic
 from qgis.PyQt.QtCore import pyqtSlot,  Qt
 from qgis.PyQt.QtWidgets import QDialog,  QFileDialog, QApplication, QMessageBox
+from .about.do_about import About
 from qgis.core import *
 from login import Login
 import urllib.request, urllib.error, urllib.parse, base64
@@ -217,3 +218,12 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
 
         dirs.sort()
         return dirs           
+    
+    @pyqtSlot()
+    def on_btn_about_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        self.about = About()
+        self.about.exec_()

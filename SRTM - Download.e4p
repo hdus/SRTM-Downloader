@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.0.dtd">
 <!-- eric project file for project SRTM - Download -->
-<!-- Saved: 2018-01-01, 13:17:09 -->
+<!-- Saved: 2018-01-01, 13:39:40 -->
 <!-- Copyright (C) 2018 ,  -->
 <Project version="6.0">
   <Language>en_US</Language>
@@ -15,6 +15,9 @@
   <Eol index="0"/>
   <Sources>
     <Source>__init__.py</Source>
+    <Source>about/__init__.py</Source>
+    <Source>about/do_about.py</Source>
+    <Source>about/metadata.py</Source>
     <Source>login.py</Source>
     <Source>registration_view.py</Source>
     <Source>resources_rc.py</Source>

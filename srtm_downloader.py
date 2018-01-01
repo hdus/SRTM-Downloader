@@ -23,12 +23,12 @@
 from qgis.PyQt.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
-
 from qgis.core import *
 # Initialize Qt resources from file resources.py
 from .resources_rc import *
 # Import the code for the dialog
 from .srtm_downloader_dialog_base import SrtmDownloaderDialogBase
+
 import os.path
 
 
