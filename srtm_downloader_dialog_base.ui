@@ -14,7 +14,7 @@
    <string>SRTM Downloader</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="17" column="0" colspan="4">
+   <item row="18" column="0" colspan="4">
     <widget class="QProgressBar" name="image_progressBar">
      <property name="value">
       <number>0</number>
@@ -82,7 +82,7 @@
      </property>
     </spacer>
    </item>
-   <item row="18" column="3">
+   <item row="19" column="3">
     <widget class="QDialogButtonBox" name="button_box">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -92,21 +92,34 @@
      </property>
     </widget>
    </item>
-   <item row="15" column="0" colspan="4">
+   <item row="16" column="0" colspan="4">
     <widget class="QProgressBar" name="overall_progressBar">
      <property name="value">
       <number>0</number>
      </property>
     </widget>
    </item>
-   <item row="14" column="0" colspan="2">
+   <item row="15" column="0" colspan="2">
     <widget class="QLabel" name="label_6">
      <property name="text">
       <string>Over all progress</string>
      </property>
     </widget>
    </item>
-   <item row="18" column="0">
+   <item row="14" column="0">
+    <spacer name="verticalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="19" column="0">
     <widget class="QPushButton" name="btn_about">
      <property name="maximumSize">
       <size>
@@ -126,33 +139,6 @@
      </property>
     </widget>
    </item>
-   <item row="10" column="0" colspan="2">
-    <widget class="QCheckBox" name="chk_load_image">
-     <property name="text">
-      <string>Load Image</string>
-     </property>
-    </widget>
-   </item>
-   <item row="11" column="0">
-    <widget class="QLabel" name="lbl_url">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item row="13" column="0">
-    <spacer name="verticalSpacer_4">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="6" column="0" colspan="4">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -163,7 +149,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lne_SRTM_path"/>
+      <widget class="QLineEdit" name="lne_SRTM_path">
+       <property name="text">
+        <string>[empty for temporary file]</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btn_file_dialog">
@@ -173,6 +163,19 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item row="8" column="1" rowspan="2">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item row="2" column="2">
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -198,26 +201,6 @@
      </property>
     </widget>
    </item>
-   <item row="8" column="1" rowspan="2">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="9" column="2" rowspan="2">
-    <widget class="QPushButton" name="btn_download">
-     <property name="text">
-      <string>Download</string>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="2">
     <layout class="QVBoxLayout" name="verticalLayout_4">
      <item>
@@ -235,17 +218,34 @@
      </item>
     </layout>
    </item>
-   <item row="16" column="0" colspan="2">
+   <item row="17" column="0" colspan="2">
     <widget class="QLabel" name="label_7">
      <property name="text">
       <string>Image download progress</string>
      </property>
     </widget>
    </item>
-   <item row="12" column="0" colspan="4">
+   <item row="13" column="0" colspan="4">
     <widget class="Line" name="line_3">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="0" colspan="2">
+    <widget class="QPushButton" name="btn_download">
+     <property name="text">
+      <string>Download</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="2">
+    <widget class="QCheckBox" name="chk_load_image">
+     <property name="text">
+      <string>Load Image</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

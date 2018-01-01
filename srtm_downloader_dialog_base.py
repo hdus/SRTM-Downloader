@@ -64,12 +64,15 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             username = b'%s' % username
             password = b'%s' % password
             
-            print ("User: %s,  Password: %s" % (username,  password))
+            lat_diff = abs(int(self.lne_north.text()) - int(self.lne_south.text()))
+            lon_diff = abs(int(self.lne_east.text()) - int(self.lne_west.text()))
+            n_tiles = lat_diff * lon_diff
+            tile_counter = 1
             
             for lat in range(int(self.lne_south.text()), int(self.lne_north.text())):
                 for lon in range(int(self.lne_west.text()), int(self.lne_east.text())):
                     try:
-                        self.progressBar.setValue(0)
+                        self.image_progressBar.setValue(0)
                         if lon < 10 and lon >= 0:
                             lon = "E00%s" % lon
                         elif lon >= 10 and lon < 100:
@@ -95,7 +98,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
     
                         url = u"https://e4ftl01.cr.usgs.gov//MODV6_Dal_D/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat, lon)
                         file_name = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
-                        self.lbl_url.setText("Download: %s" % (url.split('/')[len(url.split('/'))-1]))
+#                        self.lbl_url.setText("Download: %s" % (url.split('/')[len(url.split('/'))-1]))
     
                         passman = urllib.request.HTTPPasswordMgrWithDefaultRealm()
                         passman.add_password(None, url, username, password)
@@ -120,9 +123,12 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
     
                             file_size_dl += len(buffer)
                             f.write(buffer)
-                            self.progressBar.setValue(file_size_dl * 100. / file_size)
+                            self.image_progressBar.setValue(file_size_dl * 100. / file_size)
     
                         f.close()
+
+                        self.overall_progressBar.setValue(tile_counter * 100 / n_tiles)
+                        tile_counter += 1
     
                         if self.chk_load_image.checkState() == Qt.Checked:
                             out_image = self.unzip(file_name)
@@ -135,7 +141,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                             QApplication.restoreOverrideCursor()
                             return False
                         elif err.code == 404:
-                            pass
+                            tile_counter += 1
                         else:
                             QMessageBox.information(None, self.tr('Error'),  self.tr("HTTP-Error: %s") % err.reason)
                             return False
