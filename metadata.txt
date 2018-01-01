@@ -10,14 +10,14 @@
 name=SRTM Downloader
 qgisMinimumVersion=2.14
 description=Downloads SRTM Tiles from NASA Server
-version=0.1
+version=1.0.0
 author=Dr. Horst Duester / Sourcepole AG
 email=horst.duester@sourcepole.ch
 
 about=Plugin for download of SRTM Tiles from NASA
 
-tracker=http://bugs
-repository=http://repo
+tracker=https://github.com/hdus/SRTM-Downloader/issues
+repository=https://github.com/hdus/SRTM-Downloader
 # End of mandatory metadata
 
 # Recommended items:
@@ -28,7 +28,7 @@ repository=http://repo
 # Tags are comma separated with spaces allowed
 tags=python
 
-homepage=http://homepage
+homepage=https://github.com/hdus/SRTM-Downloader/wiki
 category=Plugins
 icon=icon.png
 # experimental flag
