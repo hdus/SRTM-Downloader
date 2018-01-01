@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/SRTM-Downloader" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
