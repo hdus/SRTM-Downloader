@@ -23,8 +23,7 @@
 from qgis.PyQt import uic
 from qgis.PyQt.QtCore import pyqtSlot
 from qgis.PyQt.QtWidgets import QDialog
-from registration_view import RegistrationView
-import os
+import os,  webbrowser
 
     
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
@@ -71,10 +70,8 @@ class Login(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         
-        @param link DESCRIPTION
+        @param link Link to NASA registration page
         @type QString
         """
-        # TODO: not implemented yet
-        self.registration = RegistrationView(link)
-        self.registration.exec_()
+        webbrowser.open(link, new=2)
 
