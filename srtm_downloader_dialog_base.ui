@@ -167,7 +167,7 @@
      <item>
       <widget class="QLineEdit" name="lne_SRTM_path">
        <property name="text">
-        <string>[empty for temporary file]</string>
+        <string>[empty for temporary files]</string>
        </property>
       </widget>
      </item>
