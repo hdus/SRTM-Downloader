@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.0.dtd">
 <!-- eric project file for project SRTM - Download -->
-<!-- Saved: 2018-01-01, 15:31:46 -->
+<!-- Saved: 2018-01-02, 07:02:54 -->
 <!-- Copyright (C) 2018 ,  -->
 <Project version="6.0">
   <Language>en_US</Language>
@@ -26,7 +26,6 @@
   </Sources>
   <Forms>
     <Form>login.ui</Form>
-    <Form>registration_view.ui</Form>
     <Form>srtm_downloader_dialog_base.ui</Form>
   </Forms>
   <Translations>

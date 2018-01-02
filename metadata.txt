@@ -23,10 +23,12 @@ repository=https://github.com/hdus/SRTM-Downloader
 # Recommended items:
 
 # Uncomment the following line and add your changelog:
-# changelog=
-  1.02
-  - QGIS 3 compatibility
-
+changelog=
+  1.0.2
+    - QGIS 3 ready
+  1.0.1
+    - missing UI files added
+    
 # Tags are comma separated with spaces allowed
 tags=python
 

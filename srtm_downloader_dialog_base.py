@@ -25,19 +25,28 @@ from qgis.PyQt.QtCore import pyqtSlot,  Qt
 from qgis.PyQt.QtWidgets import QDialog,  QFileDialog, QApplication, QMessageBox
 from .about.do_about import About
 from qgis.core import *
-from login import Login
+from .login import Login
 import urllib.request, urllib.error, urllib.parse, base64
 import math,  os,  tempfile
 
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'srtm_downloader_dialog_base.ui'))
-
-
+        
+        
 class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
     """
     Class documentation goes here.
     """
+    
+    try:            # QGIS3
+        VERSION_INT = Qgis.QGIS_VERSION_INT
+        VERSION = Qgis.QGIS_VERSION
+    except:     # QGIS2
+        VERSION_INT = QGis.QGIS_VERSION_INT
+        VERSION = QGis.QGIS_VERSION
+    
+    
     def __init__(self, iface,  parent=None):
         """
         Constructor
@@ -58,7 +67,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         self.close()
 
     @pyqtSlot()
@@ -66,10 +74,18 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
-        crsSrc =self.iface.mapCanvas().mapRenderer().destinationCrs()
         crsDest = QgsCoordinateReferenceSystem(4326)  # WGS84
-        xform = QgsCoordinateTransform(crsSrc, crsDest)
-        extent = xform.transform(self.iface.mapCanvas().extent())
+        
+        if self.VERSION_INT < 29900:    # QGIS2
+            crsSrc =self.iface.mapCanvas().mapRenderer().destinationCrs()    
+            xform = QgsCoordinateTransform(crsSrc, crsDest)
+        else:                                           # QGIS3
+            crsSrc =self.iface.mapCanvas().mapSettings().destinationCrs()
+            xform = QgsCoordinateTransform()
+            xform.setSourceCrs(crsSrc)
+            xform.setDestinationCrs(crsDest)
+            
+        extent = xform.transform(self.iface.mapCanvas().extent())        
 
         self.lne_west.setText(str(int(math.floor(extent.xMinimum()))))
         self.lne_east.setText(str(math.ceil(extent.xMaximum())))
@@ -79,8 +95,14 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
 
     def get_tiles(self,  username,  password):
             QApplication.setOverrideCursor(Qt.WaitCursor)
-            username = b'%s' % username
-            password = b'%s' % password
+            
+#            if self.VERSION_INT < 29900:    # QGIS2
+#                username = b'%s' % username
+#                password = b'%s' % password
+#            else:
+#            username = str.encode(username)
+#            password = str.encode(password)
+
             
             lat_diff = abs(int(self.lne_north.text()) - int(self.lne_south.text()))
             lon_diff = abs(int(self.lne_east.text()) - int(self.lne_west.text()))
@@ -92,31 +114,30 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                     try:
                         self.image_progressBar.setValue(0)
                         if lon < 10 and lon >= 0:
-                            lon = "E00%s" % lon
+                            lon_tx = "E00%s" % lon
                         elif lon >= 10 and lon < 100:
-                            lon = "E0%s" % lon
+                            lon_tx = "E0%s" % lon
                         elif lon >= 100:
-                            lon = "E%s" % lon
+                            lon_tx = "E%s" % lon
                         elif lon > -10 and lon < 0:
-                            lon = "W00%s" % abs(lon)
+                            lon_tx = "W00%s" % abs(lon)
                         elif lon <= -10 and lon > -100:
-                            lon = "W0%s" % abs(lon)
+                            lon_tx = "W0%s" % abs(lon)
                         elif lon <= -100:
-                            lon = "W%s" % abs(lon)
+                            lon_tx = "W%s" % abs(lon)
     
                         if lat < 10 and lat >= 0:
-                            lat = "N0%s" % lat
+                            lat_tx = "N0%s" % lat
                         elif lat >= 10 and lat < 100:
-                            lat = "N%s" % lat
+                            lat_tx = "N%s" % lat
                         elif lat > -10 and lat < 0:
-                            lat = "S0%s" % abs(lat)
+                            lat_tx = "S0%s" % abs(lat)
                         elif lat < -10 and lat > -100:
-                            lat = "S%s" % abs(lat)
+                            lat_tx = "S%s" % abs(lat)
     
     
-                        url = u"https://e4ftl01.cr.usgs.gov//MODV6_Dal_D/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat, lon)
+                        url = u"https://e4ftl01.cr.usgs.gov//MODV6_Dal_D/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
                         file_name = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
-#                        self.lbl_url.setText("Download: %s" % (url.split('/')[len(url.split('/'))-1]))
     
                         passman = urllib.request.HTTPPasswordMgrWithDefaultRealm()
                         passman.add_password(None, url, username, password)
@@ -124,7 +145,12 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                         urllib.request.install_opener(urllib.request.build_opener(urllib.request.HTTPCookieProcessor()))
     
                         request = urllib.request.Request(url)
-                        base64string = base64.b64encode(b'%s:%s' % (username, password))
+                        
+                        if self.VERSION_INT < 29900:    # QGIS2
+                            base64string = base64.b64encode(b'%s:%s' % (username, password))
+                        else:
+                            base64string = base64.b64encode(str.encode(username)+str.encode(':')+str.encode(password))
+                            
                         request.add_header("Authorization", b"Basic %s" % base64string)   
                         u = urllib.request.urlopen(request)
     
@@ -159,6 +185,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                             QApplication.restoreOverrideCursor()
                             return False
                         elif err.code == 404:
+                            # sector not covered by image
                             tile_counter += 1
                         else:
                             QMessageBox.critical(None, self.tr('Error'),  self.tr("HTTP-Error: %s") % err.reason)
@@ -249,6 +276,5 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
         self.about = About()
         self.about.exec_()

@@ -41,12 +41,12 @@ class About( QDialog, FORM_CLASS):
         self.tabWidget.setTabText(3,  self.tr("Change Log"))
     
         # setup texts
-        aboutString = pystring( self.metadata.description() )
+        aboutString = self.metadata.description()
     
         contribString = self.tr("<p><center><b>Author(s):</b></center></p>") 
         contribString += self.tr(u"<p>")+self.metadata.author()+"<br>" 
         
-        licenseString = pystring(self.tr(u"Sourcepole AG - Linux & Open Source Solutions\n"))
+        licenseString = self.tr(u"Sourcepole AG - Linux & Open Source Solutions\n")
         licenseString += self.tr(u"Weberstrasse 5, 8004 Zurich, Switzerland\n")
         
         licenseString += "\n"
