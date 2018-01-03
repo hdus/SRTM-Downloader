@@ -147,12 +147,9 @@ class SrtmDownloader:
 
         if add_to_toolbar:
             self.iface.addToolBarIcon(action)
-            self.iface.addPluginToMenu("SRTM-Downloader", action)
 
         if add_to_menu:
-            self.iface.addPluginToMenu(
-                self.menu,
-                action)
+            self.iface.addPluginToMenu("SRTM-Downloader", action)
 
         self.actions.append(action)
 
@@ -170,14 +167,9 @@ class SrtmDownloader:
 
 
     def unload(self):
-        """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
-            self.iface.removePluginMenu(
-                self.tr(u'&SRTM Downloader'),
-                action)
+            self.iface.removePluginMenu(u'SRTM Downloader', action)
             self.iface.removeToolBarIcon(action)
-        # remove the toolbar
-        del self.toolbar
 
 
     def run(self):
