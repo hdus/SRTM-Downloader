@@ -146,7 +146,8 @@ class SrtmDownloader:
             action.setWhatsThis(whats_this)
 
         if add_to_toolbar:
-            self.toolbar.addAction(action)
+            self.iface.addToolBarIcon(action)
+            self.iface.addPluginToMenu("SRTM-Downloader", action)
 
         if add_to_menu:
             self.iface.addPluginToMenu(
