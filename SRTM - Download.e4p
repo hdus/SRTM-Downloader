@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.0.dtd">
 <!-- eric project file for project SRTM - Download -->
-<!-- Saved: 2018-01-02, 07:02:54 -->
+<!-- Saved: 2018-01-05, 09:03:15 -->
 <!-- Copyright (C) 2018 ,  -->
 <Project version="6.0">
   <Language>en_US</Language>
@@ -15,7 +15,6 @@
   <Eol index="0"/>
   <Sources>
     <Source>__init__.py</Source>
-    <Source>about/__init__.py</Source>
     <Source>about/do_about.py</Source>
     <Source>about/metadata.py</Source>
     <Source>login.py</Source>
@@ -160,4 +159,29 @@
     <FiletypeAssociation pattern="README" type="OTHERS"/>
     <FiletypeAssociation pattern="README.*" type="OTHERS"/>
   </FiletypeAssociations>
+  <Documentation>
+    <DocumentationParams>
+      <dict>
+        <key>
+          <string>ERIC4DOC</string>
+        </key>
+        <value>
+          <dict>
+            <key>
+              <string>outputDirectory</string>
+            </key>
+            <value>
+              <string></string>
+            </value>
+            <key>
+              <string>qtHelpEnabled</string>
+            </key>
+            <value>
+              <bool>False</bool>
+            </value>
+          </dict>
+        </value>
+      </dict>
+    </DocumentationParams>
+  </Documentation>
 </Project>
