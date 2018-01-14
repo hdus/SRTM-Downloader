@@ -1,64 +1,121 @@
 # -*- coding: utf-8 -*-
-'''
-QNetworkAccessManager in PyQt
+"""
+/***************************************************************************
+ SrtmDownloader
+                                 A QGIS plugin
+ Downloads SRTM Tiles from NASA Server
+                              -------------------
+        begin                : 2017-12-30
+        git sha              : $Format:%H$
+        copyright            : (C) 2017 by Dr. Horst Duester / Sourcepole AG
+        email                : horst.duester@sourcepole.ch
+ ***************************************************************************/
 
-In this example, we show how to authenticate
-to a web page.
-
-Author: Jan Bodnar
-Website: zetcode.com
-Last edited: September 2017
-'''
-import sip
-sip.setapi('QVariant',2)
-from PyQt4 import QtCore, QtNetwork
-import sys, json
-      
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+"""
+from qgis.core import *
+from qgis.PyQt.QtCore import QUrl
+from qgis.PyQt.QtNetwork import QNetworkRequest      
+import os
       
 class Download:
 
-    def __init__(self,  url=None,  filename=None):    
-      self.url = url
-      self.filename = filename
-      
-      self.doRequest()
-        
-    def doRequest(self):   
-        print ("Start: %s" % self.filename)
-#        url = "https://e4ftl01.cr.usgs.gov/MODV6_Dal_D/SRTM/SRTMGL1.003/2000.02.11/N45E006.SRTMGL1.hgt.zip"
-#        self.filename = "/home/hdus/temp/image.zip"
-        req = QtNetwork.QNetworkRequest(QtCore.QUrl(self.url))
-        self.nam = QtNetwork.QNetworkAccessManager()
-        self.nam.authenticationRequired.connect(self.authenticate)
+    def __init__(self,  parent=None,  iface=None):    
+        self.opener = parent
+        self.iface = iface
+
+    def get_image(self,  url,  filename,  progress,  load_to_canvas=True):
+        self.filename = filename 
+        self.progress = progress
+        self.load_to_canvas = load_to_canvas
+        req = QNetworkRequest(QUrl(url))
+        self.nam = QgsNetworkAccessManager.instance()
         self.nam.finished.connect(self.replyFinished)
         reply = self.nam.get(req)  
-        
-        
-    def authenticate(self, reply, auth):
-        auth.setUser("hdus")
-        auth.setPassword("W3ldgmn!")         
-             
 
     def replyFinished(self, reply): 
-        
-        possibleRedirectUrl = reply.attribute(QtNetwork.QNetworkRequest.RedirectionTargetAttribute);
 
-    # We'll deduct if the redirection is valid in the redirectUrl function
-        _urlRedirectedTo = possibleRedirectUrl
-
-    # If the URL is not empty, we're being redirected. 
-        if _urlRedirectedTo != None:
-            print ("Redirect")    
-    # We'll do another request to the redirection url. */
-            self.nam.get(QtNetwork.QNetworkRequest(_urlRedirectedTo))
-            
-        else:
-            print ("Finished")
-            result = reply.readAll()
-            f = open(self.filename, 'wb')
-            f.write(result)
-            f.close()      
+            possibleRedirectUrl = reply.attribute(QNetworkRequest.RedirectionTargetAttribute);
     
-        # Clean up. */
-            reply.deleteLater()
-            QtCore.QCoreApplication.quit()
+        # We'll deduct if the redirection is valid in the redirectUrl function
+            _urlRedirectedTo = possibleRedirectUrl
+    
+        # If the URL is not empty, we're being redirected. 
+            if _urlRedirectedTo != None:
+                self.nam.get(QNetworkRequest(_urlRedirectedTo))                
+            else:
+                if self.opener != None:
+                    progress_value = float(self.opener.overall_progressBar.value()) + float(self.progress)
+                    print (self.progress,  progress_value)
+                    self.opener.overall_progressBar.setValue(progress_value)
+                    
+                result = reply.readAll()
+                f = open(self.filename, 'wb')
+                f.write(result)
+                f.close()      
+                
+                if self.load_to_canvas:
+                    out_image = self.unzip(self.filename)
+                    (dir, file) = os.path.split(out_image)
+                    self.iface.addRasterLayer(out_image, file)
+                
+            # Clean up. */
+                reply.deleteLater()
+                
+        
+    def unzip(self,  zip_file):
+        import zipfile
+        (dir, file) = os.path.split(zip_file)
+
+        if not dir.endswith(':') and not os.path.exists(dir):
+            os.mkdir(dir)
+        
+        try:
+            zf = zipfile.ZipFile(zip_file)
+    
+            # create directory structure to house files
+    #        self._createstructure(file, dir)
+    
+            # extract files to directory structure
+            for i, name in enumerate(zf.namelist()):
+                if not name.endswith('/'):
+                    outfile = open(os.path.join(dir, name), 'wb')
+                    outfile.write(zf.read(name))
+                    outfile.flush()
+                    outfile.close()
+                    print ("Out-File: %s" % os.path.join(dir, name))
+                    return os.path.join(dir, name)
+        except:
+            return None
+
+
+    def _makedirs(self, directories, basedir):
+        """ Create any directories that don't currently exist """
+        for dir in directories:
+            curdir = os.path.join(basedir, dir)
+            if not os.path.exists(curdir):
+                os.mkdir(curdir)           
+
+
+    def _listdirs(self, file):
+        """ Grabs all the directories in the zip structure
+        This is necessary to create the structure before trying
+        to extract the file to it. """
+        zf = zipfile.ZipFile(file)
+
+        dirs = []
+
+        for name in zf.namelist():
+            if name.endswith('/'):
+                dirs.append(name)
+
+        dirs.sort()
+        return dirs                
+

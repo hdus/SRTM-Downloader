@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
@@ -11,6 +12,7 @@
         email                : horst.duester@sourcepole.ch
  ***************************************************************************/
 
+/*************************************************************************
 /***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,20 +22,19 @@
  *                                                                         *
  ***************************************************************************/
 """
+from qgis.core import *
 from qgis.PyQt import uic
-from qgis.PyQt.QtCore import pyqtSlot,  Qt
+from qgis.PyQt import QtNetwork
+from qgis.PyQt.QtCore import pyqtSlot,  Qt,  QUrl
 from qgis.PyQt.QtGui import QIntValidator
 from qgis.PyQt.QtWidgets import QDialog,  QFileDialog, QApplication, QMessageBox
-from .about.do_about import About
-from qgis.core import *
-from .login import Login
-import urllib.request, urllib.error, urllib.parse, base64
-import math,  os,  tempfile
-
+from about.do_about import About
+from download.download import Download
+import math,  os,  tempfile,  sys
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'srtm_downloader_dialog_base.ui'))
-        
+
         
 class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
     """
@@ -75,6 +76,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.lne_north.textChanged.connect(self.coordinates_valid)
         self.lne_south.textChanged.connect(self.coordinates_valid)
 
+        
     @pyqtSlot()
     def on_button_box_rejected(self):
         """
@@ -113,25 +115,18 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         else:
             self.btn_download.setEnabled(False)
 
-    def get_tiles(self,  username,  password):
-            QApplication.setOverrideCursor(Qt.WaitCursor)
+    def get_tiles(self):
             
-#            if self.VERSION_INT < 29900:    # QGIS2
-#                username = b'%s' % username
-#                password = b'%s' % password
-#            else:
-#            username = str.encode(username)
-#            password = str.encode(password)
-
+            QApplication.setOverrideCursor(Qt.WaitCursor)
             
             lat_diff = abs(int(self.lne_north.text()) - int(self.lne_south.text()))
             lon_diff = abs(int(self.lne_east.text()) - int(self.lne_west.text()))
             n_tiles = lat_diff * lon_diff
-            tile_counter = 1
+            progress = float(1) / float(n_tiles) * float(100)
+            print (progress)
             
             for lat in range(int(self.lne_south.text()), int(self.lne_north.text())):
                 for lon in range(int(self.lne_west.text()), int(self.lne_east.text())):
-                    try:
                         self.image_progressBar.setValue(0)
                         if lon < 10 and lon >= 0:
                             lon_tx = "E00%s" % lon
@@ -154,66 +149,20 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                             lat_tx = "S0%s" % abs(lat)
                         elif lat < -10 and lat > -100:
                             lat_tx = "S%s" % abs(lat)
-    
-    
-                        url = u"https://e4ftl01.cr.usgs.gov//MODV6_Dal_D/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
-                        file_name = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
-    
-                        passman = urllib.request.HTTPPasswordMgrWithDefaultRealm()
-                        passman.add_password(None, url, username, password)
-                        urllib.request.install_opener(urllib.request.build_opener(urllib.request.HTTPBasicAuthHandler(passman)))
-                        urllib.request.install_opener(urllib.request.build_opener(urllib.request.HTTPCookieProcessor()))
-    
-                        request = urllib.request.Request(url)
-                        
-                        if self.VERSION_INT < 29900:    # QGIS2
-                            base64string = base64.b64encode(b'%s:%s' % (username, password))
-                        else:
-                            base64string = base64.b64encode(str.encode(username)+str.encode(':')+str.encode(password))
                             
-                        request.add_header("Authorization", b"Basic %s" % base64string)   
-                        u = urllib.request.urlopen(request)
-    
-                        f = open(file_name, 'wb')
-                        meta = u.info()
-                        file_size = int(meta["Content-Length"])
-    
-                        file_size_dl = 0
-                        block_sz = 8192
-                        while True:
-                            buffer = u.read(block_sz)
-                            if not buffer:
-                                break
-    
-                            file_size_dl += len(buffer)
-                            f.write(buffer)
-                            self.image_progressBar.setValue(file_size_dl * 100. / file_size)
-    
-                        f.close()
-
-                        self.overall_progressBar.setValue(tile_counter * 100 / n_tiles)
-                        tile_counter += 1
-    
+                        url = "https://e4ftl01.cr.usgs.gov//MODV6_Dal_D/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
+                        file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
+                        
+                        self.downloader = Download(self,  self.iface)
                         if self.chk_load_image.checkState() == Qt.Checked:
-                            out_image = self.unzip(file_name)
-                            (dir, file) = os.path.split(out_image)
-                            self.iface.addRasterLayer(out_image, file)
-    
-                    except urllib.error.HTTPError as err:
-                        if err.code == 401:
-                            QMessageBox.critical(None, self.tr('Error'),  self.tr('Earth Data Authentication Error!'))
-                            QApplication.restoreOverrideCursor()
-                            return False
-                        elif err.code == 404:
-                            # sector not covered by image
-                            tile_counter += 1
+                            self.downloader.get_image(url,  file,  progress,  True)
                         else:
-                            QMessageBox.critical(None, self.tr('Error'),  self.tr("HTTP-Error: %s") % err.reason)
-                            QApplication.restoreOverrideCursor()
-                            return False
+                            self.downloader.get_image(url,  file,  progress,  False)
     
+
+                            
             QApplication.restoreOverrideCursor()
-            QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
+#            QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
             return True
             
 
@@ -222,15 +171,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
-        if self.username==None or self.password==None:
-            self.login = Login(self)
-            self.login.exec_()
-            if self.success:       
-                self.get_tiles(self.username, self.password)
-            else:
-                pass
-        else:
-            self.get_tiles(self.username, self.password)
+        self.get_tiles()
 
     @pyqtSlot()
     def on_btn_file_dialog_clicked(self):
@@ -243,53 +184,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                                                  home,
                                                  QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks)
 
-        self.lne_SRTM_path.setText(self.dir)
-
-    def unzip(self,  zip_file):
-        import zipfile
-        (dir, file) = os.path.split(zip_file)
-
-        if not dir.endswith(':') and not os.path.exists(dir):
-            os.mkdir(dir)
-
-        zf = zipfile.ZipFile(zip_file)
-
-        # create directory structure to house files
-#        self._createstructure(file, dir)
-
-        # extract files to directory structure
-        for i, name in enumerate(zf.namelist()):
-            if not name.endswith('/'):
-                outfile = open(os.path.join(dir, name), 'wb')
-                outfile.write(zf.read(name))
-                outfile.flush()
-                outfile.close()
-                print ("Out-File: %s" % os.path.join(dir, name))
-                return os.path.join(dir, name)
-
-
-    def _makedirs(self, directories, basedir):
-        """ Create any directories that don't currently exist """
-        for dir in directories:
-            curdir = os.path.join(basedir, dir)
-            if not os.path.exists(curdir):
-                os.mkdir(curdir)           
-
-
-    def _listdirs(self, file):
-        """ Grabs all the directories in the zip structure
-        This is necessary to create the structure before trying
-        to extract the file to it. """
-        zf = zipfile.ZipFile(file)
-
-        dirs = []
-
-        for name in zf.namelist():
-            if name.endswith('/'):
-                dirs.append(name)
-
-        dirs.sort()
-        return dirs           
+        self.lne_SRTM_path.setText(self.dir)   
     
     @pyqtSlot()
     def on_btn_about_clicked(self):
@@ -298,5 +193,4 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         self.about = About()
         self.about.exec_()
-    
-
+      
