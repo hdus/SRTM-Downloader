@@ -67,12 +67,13 @@ class Download:
                         self.iface.addRasterLayer(out_image, file)
                 except:
                     pass
-                
+                    
             # Clean up. */
                 reply.deleteLater()
                 self.opener.image_counter += 1
                 if self.opener.image_counter >= self.opener.n_tiles:
                     self.opener.download_finished()
+
                 
         
     def unzip(self,  zip_file):

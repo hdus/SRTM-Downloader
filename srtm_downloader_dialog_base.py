@@ -130,7 +130,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             
             for lat in range(int(self.lne_south.text()), int(self.lne_north.text())):
                 for lon in range(int(self.lne_west.text()), int(self.lne_east.text())):
-                        self.image_progressBar.setValue(0)
                         if lon < 10 and lon >= 0:
                             lon_tx = "E00%s" % lon
                         elif lon >= 10 and lon < 100:
@@ -169,7 +168,9 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             
     def download_finished(self):
         QApplication.restoreOverrideCursor()
-        QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
+        self.n_tiles = 0
+        self.image_counter = 0
+#        QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
 
     @pyqtSlot()
     def on_btn_download_clicked(self):
