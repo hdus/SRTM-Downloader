@@ -30,13 +30,6 @@
      </property>
     </widget>
    </item>
-   <item row="19" column="0" colspan="4">
-    <widget class="QProgressBar" name="image_progressBar">
-     <property name="value">
-      <number>0</number>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="0" colspan="2">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
@@ -98,7 +91,7 @@
      </property>
     </spacer>
    </item>
-   <item row="20" column="3">
+   <item row="18" column="3">
     <widget class="QDialogButtonBox" name="button_box">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -135,7 +128,14 @@
      </property>
     </spacer>
    </item>
-   <item row="20" column="0">
+   <item row="12" column="0" colspan="2">
+    <widget class="QPushButton" name="btn_download">
+     <property name="text">
+      <string>Download</string>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="0">
     <widget class="QPushButton" name="btn_about">
      <property name="maximumSize">
       <size>
@@ -221,24 +221,10 @@
      </item>
     </layout>
    </item>
-   <item row="18" column="0" colspan="2">
-    <widget class="QLabel" name="label_7">
-     <property name="text">
-      <string>Image download progress</string>
-     </property>
-    </widget>
-   </item>
    <item row="14" column="0" colspan="4">
     <widget class="Line" name="line_3">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="12" column="0" colspan="2">
-    <widget class="QPushButton" name="btn_download">
-     <property name="text">
-      <string>Download</string>
      </property>
     </widget>
    </item>
