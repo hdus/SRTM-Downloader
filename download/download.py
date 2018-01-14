@@ -52,8 +52,7 @@ class Download:
                 self.nam.get(QNetworkRequest(_urlRedirectedTo))                
             else:
                 if self.opener != None:
-                    progress_value = float(self.opener.overall_progressBar.value()) + float(self.progress)
-                    print (self.progress,  progress_value)
+                    progress_value = float(self.opener.overall_progressBar.value()) + 1
                     self.opener.overall_progressBar.setValue(progress_value)
                     
                 result = reply.readAll()
@@ -61,13 +60,19 @@ class Download:
                 f.write(result)
                 f.close()      
                 
-                if self.load_to_canvas:
-                    out_image = self.unzip(self.filename)
-                    (dir, file) = os.path.split(out_image)
-                    self.iface.addRasterLayer(out_image, file)
+                try:
+                    if self.load_to_canvas:
+                        out_image = self.unzip(self.filename)
+                        (dir, file) = os.path.split(out_image)
+                        self.iface.addRasterLayer(out_image, file)
+                except:
+                    pass
                 
             # Clean up. */
                 reply.deleteLater()
+                self.opener.image_counter += 1
+                if self.opener.image_counter >= self.opener.n_tiles:
+                    self.opener.download_finished()
                 
         
     def unzip(self,  zip_file):
