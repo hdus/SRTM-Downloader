@@ -118,9 +118,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             self.btn_download.setEnabled(False)
 
     def get_tiles(self):
-            
-            QApplication.setOverrideCursor(Qt.WaitCursor)
-            
             lat_diff = abs(int(self.lne_north.text()) - int(self.lne_south.text()))
             lon_diff = abs(int(self.lne_east.text()) - int(self.lne_west.text()))
             self.n_tiles = lat_diff * lon_diff
@@ -166,6 +163,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             
     def download_finished(self):
         QApplication.restoreOverrideCursor()
+        self.button_box.setEnabled(True)
         self.n_tiles = 0
         self.image_counter = 0
         QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
@@ -175,6 +173,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
+        self.button_box.setEnabled(False)
+        QApplication.setOverrideCursor(Qt.WaitCursor)
         self.get_tiles()
 
     @pyqtSlot()
