@@ -33,14 +33,18 @@ class Download:
         self.opener = parent
         self.iface = iface
 
-    def get_image(self,  url,  filename,  progress, load_to_canvas=True):
-        self.filename = filename 
-        self.progress = progress
-        self.load_to_canvas = load_to_canvas
-        req = QNetworkRequest(QUrl(url))
-        self.nam = QgsNetworkAccessManager.instance()
-        self.nam.finished.connect(self.replyFinished)
-        reply = self.nam.get(req)  
+    def get_image(self,  url,  filename,  lat_tx,  lon_tx, load_to_canvas=True):
+        
+        layer_name = "%s%s.hgt" % (lat_tx,  lon_tx)
+        if len(QgsMapLayerRegistry.instance().mapLayersByName(layer_name)) == 0:
+            self.filename = filename 
+            self.load_to_canvas = load_to_canvas
+            req = QNetworkRequest(QUrl(url))
+            self.nam = QgsNetworkAccessManager.instance()
+            self.nam.finished.connect(self.replyFinished)
+            reply = self.nam.get(req)  
+        else:
+            self.set_progress()
 
     def replyFinished(self, reply): 
 
@@ -65,20 +69,13 @@ class Download:
                     if self.load_to_canvas:
                         out_image = self.unzip(self.filename)
                         (dir, file) = os.path.split(out_image)
-                        
-                        progress_value = float(self.opener.overall_progressBar.value()) + 1
-                        self.opener.overall_progressBar.setValue(progress_value)
-
-                        if len(QgsMapLayerRegistry.instance().mapLayersByName(file)) == 0:
-                            self.iface.addRasterLayer(out_image, file)
+                        self.iface.addRasterLayer(out_image, file)
+                    self.set_progress()
                 except:
                     pass
                     
             # Clean up. */
                 reply.deleteLater()
-                self.opener.image_counter += 1
-                if self.opener.image_counter >= self.opener.n_tiles:
-                    self.opener.download_finished()
 
                 
         
@@ -128,6 +125,7 @@ class Download:
         dirs.sort()
         return dirs                
         
-    def test(self):
-        print ('ready read')
-
+    def set_progress(self):
+        progress_value = self.opener.overall_progressBar.value() + 1
+        self.opener.overall_progressBar.setValue(progress_value)
+        print ("Progress-Value: %s of %s" % progress_value,  self.opener.n_tiles)        
