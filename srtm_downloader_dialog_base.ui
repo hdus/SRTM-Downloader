@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>652</width>
-    <height>489</height>
+    <width>625</width>
+    <height>449</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,123 +19,109 @@
   <property name="windowTitle">
    <string>SRTM Downloader</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="12" column="2">
-    <widget class="QCheckBox" name="chk_load_image">
-     <property name="text">
-      <string>Load Images to QGIS</string>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>GroupBox</string>
      </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
+     <zorder>label</zorder>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>West</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
+   <item row="1" column="0" colspan="4">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="1">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>North</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lne_north"/>
+       </item>
+      </layout>
      </item>
-     <item>
-      <widget class="QLineEdit" name="lne_west">
-       <property name="maximumSize">
-        <size>
-         <width>300</width>
-         <height>16777215</height>
-        </size>
-       </property>
-      </widget>
+     <item row="1" column="0">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>West</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lne_west">
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="2">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>East</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lne_east"/>
+       </item>
+      </layout>
+     </item>
+     <item row="2" column="1">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>South</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lne_south"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_extent">
+         <property name="text">
+          <string>Set canvas extent</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
-   <item row="1" column="3">
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>East</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lne_east"/>
-     </item>
-    </layout>
-   </item>
-   <item row="3" column="2">
-    <widget class="QPushButton" name="btn_extent">
-     <property name="text">
-      <string>Set canvas extent</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="18" column="3">
-    <widget class="QDialogButtonBox" name="button_box">
+   <item row="3" column="0">
+    <widget class="Line" name="line">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Close</set>
-     </property>
     </widget>
    </item>
-   <item row="17" column="0" colspan="4">
-    <widget class="QProgressBar" name="overall_progressBar">
-     <property name="value">
-      <number>0</number>
-     </property>
-    </widget>
-   </item>
-   <item row="16" column="0" colspan="2">
-    <widget class="QLabel" name="lbl_file_download">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item row="15" column="0">
-    <spacer name="verticalSpacer_4">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="12" column="0" colspan="2">
-    <widget class="QPushButton" name="btn_download">
-     <property name="text">
-      <string>Download</string>
-     </property>
-    </widget>
-   </item>
-   <item row="18" column="0">
+   <item row="12" column="0">
     <widget class="QPushButton" name="btn_about">
      <property name="maximumSize">
       <size>
@@ -148,14 +134,87 @@
      </property>
     </widget>
    </item>
+   <item row="12" column="3">
+    <widget class="QDialogButtonBox" name="button_box">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Close</set>
+     </property>
+    </widget>
+   </item>
    <item row="5" column="0" colspan="4">
-    <widget class="Line" name="line">
+    <widget class="Line" name="line_2">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="6" column="0" colspan="4">
+   <item row="7" column="2">
+    <widget class="QCheckBox" name="chk_load_image">
+     <property name="text">
+      <string>Load Images to QGIS</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="7" column="0" colspan="2">
+    <widget class="QPushButton" name="btn_download">
+     <property name="text">
+      <string>Download</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="9" column="0">
+    <spacer name="verticalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="8" column="0" colspan="4">
+    <widget class="Line" name="line_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="4">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="label_5">
@@ -174,72 +233,25 @@
      <item>
       <widget class="QPushButton" name="btn_file_dialog">
        <property name="text">
-        <string>select</string>
+        <string>...</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item row="2" column="2">
-    <layout class="QVBoxLayout" name="verticalLayout_3">
-     <item>
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>South</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lne_south"/>
-     </item>
-    </layout>
-   </item>
-   <item row="7" column="0" rowspan="2" colspan="4">
-    <widget class="Line" name="line_2">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+   <item row="11" column="0" colspan="4">
+    <widget class="QProgressBar" name="overall_progressBar">
+     <property name="value">
+      <number>0</number>
      </property>
     </widget>
    </item>
-   <item row="0" column="2">
-    <layout class="QVBoxLayout" name="verticalLayout_4">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>North</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lne_north"/>
-     </item>
-    </layout>
-   </item>
-   <item row="14" column="0" colspan="4">
-    <widget class="Line" name="line_3">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+   <item row="10" column="0" colspan="4">
+    <widget class="QLabel" name="lbl_file_download">
+     <property name="text">
+      <string/>
      </property>
     </widget>
-   </item>
-   <item row="11" column="0">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
