@@ -36,13 +36,14 @@ class Download:
     def get_image(self,  url,  filename,  lat_tx,  lon_tx, load_to_canvas=True):
         
         layer_name = "%s%s.hgt" % (lat_tx,  lon_tx)
+        
         if len(QgsMapLayerRegistry.instance().mapLayersByName(layer_name)) == 0:
             self.filename = filename 
             self.load_to_canvas = load_to_canvas
             req = QNetworkRequest(QUrl(url))
             self.nam = QgsNetworkAccessManager.instance()
             self.nam.finished.connect(self.replyFinished)
-            reply = self.nam.get(req)  
+            self.nam.get(req)  
         else:
             self.set_progress()
 
@@ -126,6 +127,7 @@ class Download:
         return dirs                
         
     def set_progress(self):
+        self.opener.overall_progressBar.setMaximum(self.opener.n_tiles)
         progress_value = self.opener.overall_progressBar.value() + 1
         self.opener.overall_progressBar.setValue(progress_value)
-        print ("Progress-Value: %s of %s" % progress_value,  self.opener.n_tiles)        
+        self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s") % (progress_value,  self.opener.n_tiles)))
