@@ -157,13 +157,13 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                             file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
                             
                             self.downloader = Download(self,  self.iface)
+                            
                             if self.chk_load_image.checkState() == Qt.Checked:
                                 self.downloader.get_image(url,  file, lat_tx, lon_tx, True)
                             else:
                                 self.downloader.get_image(url,  file, lat_tx, lon_tx, False)
                         except:
                             pass
-    
             return True
             
     def download_finished(self):
@@ -199,4 +199,11 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         self.about = About()
         self.about.exec_()
+        
+    def set_progress(self):
+        self.overall_progressBar.setMaximum(self.n_tiles)
+        progress_value = self.overall_progressBar.value() + 1
+        self.overall_progressBar.setValue(progress_value)
+        self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s") % (progress_value,  self.n_tiles)))
+        
       

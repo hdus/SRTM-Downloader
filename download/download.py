@@ -45,7 +45,7 @@ class Download:
             self.nam.finished.connect(self.replyFinished)
             self.nam.get(req)  
         else:
-            self.set_progress()
+            self.opener.set_progress()
 
     def replyFinished(self, reply): 
 
@@ -60,7 +60,12 @@ class Download:
         # If the URL is not empty, we're being redirected. 
             if _urlRedirectedTo != None:
                 self.nam.get(QNetworkRequest(_urlRedirectedTo))                
-            else:                    
+            else:             
+                if reply.error() ==  QNetworkReply.ContentNotFoundError:
+                    reply.abort()
+                    reply.deleteLater()
+                    self.opener.set_progress()
+                    
                 result = reply.readAll()
                 f = open(self.filename, 'wb')
                 f.write(result)
@@ -71,7 +76,7 @@ class Download:
                         out_image = self.unzip(self.filename)
                         (dir, file) = os.path.split(out_image)
                         self.iface.addRasterLayer(out_image, file)
-                    self.set_progress()
+                    self.opener.set_progress()
                 except:
                     pass
                     
@@ -126,8 +131,3 @@ class Download:
         dirs.sort()
         return dirs                
         
-    def set_progress(self):
-        self.opener.overall_progressBar.setMaximum(self.opener.n_tiles)
-        progress_value = self.opener.overall_progressBar.value() + 1
-        self.opener.overall_progressBar.setValue(progress_value)
-        self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s") % (progress_value,  self.opener.n_tiles)))
