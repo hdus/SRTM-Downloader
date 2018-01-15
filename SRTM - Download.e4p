@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Project SYSTEM "Project-6.0.dtd">
+<!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project SRTM - Download -->
-<!-- Saved: 2018-01-15, 14:22:31 -->
+<!-- Saved: 2018-01-15, 17:23:45 -->
 <!-- Copyright (C) 2018 ,  -->
-<Project version="6.0">
+<Project version="5.1">
   <Language>en_US</Language>
   <Hash>c72c14f21e14728f0cd11ac901d1cac48b513194</Hash>
   <ProgLanguage mixed="0">Python2</ProgLanguage>
@@ -15,6 +15,9 @@
   <Eol index="0"/>
   <Sources>
     <Source>__init__.py</Source>
+    <Source>about/__init__.py</Source>
+    <Source>about/do_about.py</Source>
+    <Source>about/metadata.py</Source>
     <Source>download/__init__.py</Source>
     <Source>download/download.py</Source>
     <Source>registration_view.py</Source>
