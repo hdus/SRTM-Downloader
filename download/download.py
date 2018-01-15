@@ -47,10 +47,7 @@ class Download:
         else:
             self.opener.set_progress()
 
-    def replyFinished(self, reply): 
-
-            if  reply.error() != QNetworkReply.NoError:
-               self.nam.get(QNetworkRequest(reply.url()))          
+    def replyFinished(self, reply):    
 
             possibleRedirectUrl = reply.attribute(QNetworkRequest.RedirectionTargetAttribute);
     
@@ -62,27 +59,31 @@ class Download:
                 self.nam.get(QNetworkRequest(_urlRedirectedTo))                
             else:             
                 if reply.error() ==  QNetworkReply.ContentNotFoundError:
+                    self.opener.set_progress()
                     reply.abort()
                     reply.deleteLater()
-                    self.opener.set_progress()
                     
-                result = reply.readAll()
-                f = open(self.filename, 'wb')
-                f.write(result)
-                f.close()      
-                
-                try:
+                elif reply.error() ==  QNetworkReply.NoError:
+                    result = reply.readAll()
+                    f = open(self.filename, 'wb')
+                    f.write(result)
+                    f.close()      
+                    
+#                    try:
                     if self.load_to_canvas:
                         out_image = self.unzip(self.filename)
                         (dir, file) = os.path.split(out_image)
                         self.iface.addRasterLayer(out_image, file)
-                    self.opener.set_progress()
-                except:
-                    pass
                     
-            # Clean up. */
-                reply.deleteLater()
-
+                    self.opener.set_progress()
+                        
+                # Clean up. */
+                    reply.deleteLater()
+#                    except:
+#                        self.nam.get(QNetworkRequest(reply.url()))
+                        
+                else:
+                    self.nam.get(QNetworkRequest(reply.url()))          
                 
         
     def unzip(self,  zip_file):

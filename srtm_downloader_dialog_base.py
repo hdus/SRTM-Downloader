@@ -152,25 +152,23 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                         elif lat < -10 and lat > -100:
                             lat_tx = "S%s" % abs(lat)
                         
-                        try:
-                            url = "https://e4ftl01.cr.usgs.gov//MODV6_Dal_D/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
-                            file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
-                            
-                            self.downloader = Download(self,  self.iface)
-                            
-                            if self.chk_load_image.checkState() == Qt.Checked:
-                                self.downloader.get_image(url,  file, lat_tx, lon_tx, True)
-                            else:
-                                self.downloader.get_image(url,  file, lat_tx, lon_tx, False)
-                        except:
-                            pass
+                        url = "https://e4ftl01.cr.usgs.gov//MODV6_Dal_D/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
+                        file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
+                        
+                        self.downloader = Download(self,  self.iface)
+                        
+                        if self.chk_load_image.checkState() == Qt.Checked:
+                            self.downloader.get_image(url,  file, lat_tx, lon_tx, True)
+                        else:
+                            self.downloader.get_image(url,  file, lat_tx, lon_tx, False)
+
             return True
             
     def download_finished(self):
         QApplication.restoreOverrideCursor()
         self.n_tiles = 0
         self.image_counter = 0
-#        QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
+        QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
 
     @pyqtSlot()
     def on_btn_download_clicked(self):
@@ -204,6 +202,9 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.overall_progressBar.setMaximum(self.n_tiles)
         progress_value = self.overall_progressBar.value() + 1
         self.overall_progressBar.setValue(progress_value)
-        self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s") % (progress_value,  self.n_tiles)))
+        self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (progress_value,  self.n_tiles)))
+        
+        if progress_value == self.n_tiles:
+            self.download_finished()
         
       
