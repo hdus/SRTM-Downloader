@@ -156,11 +156,16 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                             url = "https://e4ftl01.cr.usgs.gov//MODV6_Dal_D/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
                             file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
                             
-                            self.downloader = Download(self,  self.iface)
-                            if self.chk_load_image.checkState() == Qt.Checked:
-                                self.downloader.get_image(url,  file, True)
+                            if len(QgsMapLayerRegistry.instance().mapLayersByName("%s%s.hgt" % (lat_tx,  lon_tx))) == 0:
+                                self.downloader = Download(self,  self.iface)
+                                if self.chk_load_image.checkState() == Qt.Checked:
+                                    self.downloader.get_image(url,  file, True)
+                                else:
+                                    self.downloader.get_image(url,  file, False)
                             else:
-                                self.downloader.get_image(url,  file,  False)
+                                progress_value = float(self.opener.overall_progressBar.value()) + 1
+                                self.opener.overall_progressBar.setValue(progress_value)
+                                print ("Progress-Value: %s" % progress_value)
                         except:
                             pass
     

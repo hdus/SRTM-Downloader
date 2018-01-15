@@ -22,7 +22,9 @@
 """
 from qgis.core import *
 from qgis.PyQt.QtCore import QUrl
-from qgis.PyQt.QtNetwork import QNetworkRequest      
+from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply
+
+
 import os
       
 class Download:
@@ -31,7 +33,7 @@ class Download:
         self.opener = parent
         self.iface = iface
 
-    def get_image(self,  url,  filename,  progress,  load_to_canvas=True):
+    def get_image(self,  url,  filename,  progress, load_to_canvas=True):
         self.filename = filename 
         self.progress = progress
         self.load_to_canvas = load_to_canvas
@@ -42,6 +44,9 @@ class Download:
 
     def replyFinished(self, reply): 
 
+            if  reply.error() != QNetworkReply.NoError:
+               self.nam.get(QNetworkRequest(reply.url()))          
+
             possibleRedirectUrl = reply.attribute(QNetworkRequest.RedirectionTargetAttribute);
     
         # We'll deduct if the redirection is valid in the redirectUrl function
@@ -50,11 +55,7 @@ class Download:
         # If the URL is not empty, we're being redirected. 
             if _urlRedirectedTo != None:
                 self.nam.get(QNetworkRequest(_urlRedirectedTo))                
-            else:
-                if self.opener != None:
-                    progress_value = float(self.opener.overall_progressBar.value()) + 1
-                    self.opener.overall_progressBar.setValue(progress_value)
-                    
+            else:                    
                 result = reply.readAll()
                 f = open(self.filename, 'wb')
                 f.write(result)
@@ -64,7 +65,12 @@ class Download:
                     if self.load_to_canvas:
                         out_image = self.unzip(self.filename)
                         (dir, file) = os.path.split(out_image)
-                        self.iface.addRasterLayer(out_image, file)
+                        
+                        progress_value = float(self.opener.overall_progressBar.value()) + 1
+                        self.opener.overall_progressBar.setValue(progress_value)
+
+                        if len(QgsMapLayerRegistry.instance().mapLayersByName(file)) == 0:
+                            self.iface.addRasterLayer(out_image, file)
                 except:
                     pass
                     
@@ -85,9 +91,6 @@ class Download:
         
         try:
             zf = zipfile.ZipFile(zip_file)
-    
-            # create directory structure to house files
-    #        self._createstructure(file, dir)
     
             # extract files to directory structure
             for i, name in enumerate(zf.namelist()):
@@ -124,4 +127,7 @@ class Download:
 
         dirs.sort()
         return dirs                
+        
+    def test(self):
+        print ('ready read')
 
