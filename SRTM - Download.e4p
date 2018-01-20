@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project SRTM - Download -->
-<!-- Saved: 2018-01-15, 17:23:45 -->
+<!-- Saved: 2018-01-20, 15:24:16 -->
 <!-- Copyright (C) 2018 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -20,7 +20,6 @@
     <Source>about/metadata.py</Source>
     <Source>download/__init__.py</Source>
     <Source>download/download.py</Source>
-    <Source>registration_view.py</Source>
     <Source>resources_rc.py</Source>
     <Source>srtm_downloader.py</Source>
     <Source>srtm_downloader_dialog_base.py</Source>

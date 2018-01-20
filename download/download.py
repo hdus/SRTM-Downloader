@@ -32,12 +32,26 @@ class Download:
     def __init__(self,  parent=None,  iface=None):    
         self.opener = parent
         self.iface = iface
+        
+        try:
+            self.VERSION_INT = Qgis.QGIS_VERSION_INT
+            self.VERSION = Qgis.QGIS_VERSION
+        except:
+            self.VERSION_INT = QGis.QGIS_VERSION_INT
+            self.VERSION = QGis.QGIS_VERSION               
 
     def get_image(self,  url,  filename,  lat_tx,  lon_tx, load_to_canvas=True):
         
         layer_name = "%s%s.hgt" % (lat_tx,  lon_tx)
         
-        if len(QgsMapLayerRegistry.instance().mapLayersByName(layer_name)) == 0:
+        if self.VERSION_INT < 29900:
+            layers_exists = len(QgsMapLayerRegistry.instance().mapLayersByName(layer_name)) != 0
+        else:
+            layer_exists = len(QgsProject.instance().mapLayersByName(layer_name)) != 0
+            
+        print (layer_exists)
+        
+        if not layer_exists:
             self.filename = filename 
             self.load_to_canvas = load_to_canvas
             req = QNetworkRequest(QUrl(url))

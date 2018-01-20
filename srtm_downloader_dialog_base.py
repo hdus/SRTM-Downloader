@@ -28,8 +28,8 @@ from qgis.PyQt import QtNetwork
 from qgis.PyQt.QtCore import pyqtSlot,  Qt,  QUrl
 from qgis.PyQt.QtGui import QIntValidator
 from qgis.PyQt.QtWidgets import QDialog,  QFileDialog, QApplication, QMessageBox
-from about.do_about import About
-from download.download import Download
+from .about.do_about import About
+from .download.download import Download
 import math,  os,  tempfile,  sys
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(

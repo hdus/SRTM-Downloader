@@ -20,13 +20,14 @@
  *                                                                         *
  ***************************************************************************/
 """
-from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
-from PyQt4.QtGui import QIcon,  QAction
+from qgis.PyQt.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
+from qgis.PyQt.QtGui import QIcon
+from qgis.PyQt.QtWidgets import QAction
 from qgis.core import *
 # Initialize Qt resources from file resources.py
-from resources_rc import *
+from .resources_rc import *
 # Import the code for the dialog
-from srtm_downloader_dialog_base import SrtmDownloaderDialogBase
+from .srtm_downloader_dialog_base import SrtmDownloaderDialogBase
 
 import os.path
 
@@ -42,6 +43,13 @@ class SrtmDownloader:
             application at run time.
         :type iface: QgsInterface
         """
+        try:
+            VERSION_INT = Qgis.QGIS_VERSION_INT
+            VERSION = Qgis.QGIS_VERSION
+        except:
+            VERSION_INT = QGis.QGIS_VERSION_INT
+            VERSION = QGis.QGIS_VERSION        
+            
         # Save reference to the QGIS interface
         self.iface = iface
         # initialize plugin directory
