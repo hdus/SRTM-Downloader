@@ -45,7 +45,7 @@ class Download:
         layer_name = "%s%s.hgt" % (lat_tx,  lon_tx)
         
         if self.VERSION_INT < 29900:
-            layers_exists = len(QgsMapLayerRegistry.instance().mapLayersByName(layer_name)) != 0
+            layer_exists = len(QgsMapLayerRegistry.instance().mapLayersByName(layer_name)) != 0
         else:
             layer_exists = len(QgsProject.instance().mapLayersByName(layer_name)) != 0
             
@@ -83,18 +83,18 @@ class Download:
                     f.write(result)
                     f.close()      
                     
-#                    try:
                     if self.load_to_canvas:
-                        out_image = self.unzip(self.filename)
-                        (dir, file) = os.path.split(out_image)
-                        self.iface.addRasterLayer(out_image, file)
+                        try:
+                            out_image = self.unzip(self.filename)
+                            (dir, file) = os.path.split(out_image)
+                            self.iface.addRasterLayer(out_image, file)
+                        except:
+                            pass
                     
                     self.opener.set_progress()
                         
                 # Clean up. */
                     reply.deleteLater()
-#                    except:
-#                        self.nam.get(QNetworkRequest(reply.url()))
                         
                 else:
                     self.nam.get(QNetworkRequest(reply.url()))          
