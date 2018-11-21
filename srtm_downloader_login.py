@@ -24,14 +24,17 @@ class Dlg_Login(QDialog, FORM_CLASS):
         """
         super(Dlg_Login, self).__init__(parent)
         self.setupUi(self)
+        self.parent = parent
     
     @pyqtSlot()
     def on_buttonBox_accepted(self):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
-        raise NotImplementedError
+        self.parent.username = self.lne_user.text()
+        self.parent.password = self.lne_password.text()
+        self.close()
+        
     
     @pyqtSlot()
     def on_buttonBox_rejected(self):
@@ -39,4 +42,4 @@ class Dlg_Login(QDialog, FORM_CLASS):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        self.close()
