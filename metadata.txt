@@ -10,7 +10,7 @@ name=SRTM Downloader
 qgisMinimumVersion=2.14
 qgisMaximumVersion=3.99
 description=Downloads SRTM Tiles from NASA Server
-version=1.1.4
+version=1.2.0
 author=Dr. Horst Duester Sourcepole AG
 email=horst.duester@sourcepole.ch
 
@@ -24,6 +24,9 @@ repository=https://github.com/hdus/SRTM-Downloader
 
 # Uncomment the following line and add your changelog:
 changelog=
+  1.2.0
+    - login dialog added
+    - already loaded images are not loaded twice
   1.1.4
     - Bugfixing
   1.1.3
