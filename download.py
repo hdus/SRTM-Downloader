@@ -23,7 +23,7 @@
 from qgis.core import *
 from qgis.PyQt.QtCore import QUrl,  Qt
 from qgis.PyQt.QtWidgets import QApplication
-from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply,  QNetworkAccessManager
+from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply
 from .srtm_downloader_login import Login
 import os
       
@@ -35,34 +35,23 @@ class Download:
         self.login_accepted = False
         self.username = None
         self.password = None
-#        self.nam = QgsNetworkAccessManager.instance()
-        self.nam = QNetworkAccessManager()
+        self.akt_download = 0
+        self.all_download = 0
+        self.request_is_aborted = False
+        self.nam = QgsNetworkAccessManager()
         self.nam.authenticationRequired.connect(self.set_credentials)
-        self.nam.finished.connect(self.reply_finished)         
-        
-        try:
-            self.VERSION_INT = Qgis.QGIS_VERSION_INT
-            self.VERSION = Qgis.QGIS_VERSION
-        except:
-            self.VERSION_INT = QGis.QGIS_VERSION_INT
-            self.VERSION = QGis.QGIS_VERSION               
+        self.nam.finished.connect(self.reply_finished)           
+        self.login = Login()  
             
     def layer_exists(self,  name):            
         
-        if self.VERSION_INT < 29900:
-            if len(QgsMapLayerRegistry.instance().mapLayersByName(name)) != 0:
-                return True
-            else:
-                return False
+        if len(QgsProject.instance().mapLayersByName(name)) != 0:
+            return True
         else:
-            if len(QgsProject.instance().mapLayersByName(name)) != 0:
-                return True
-            else:
-                return False
+            return False
         
 
     def get_image(self,  url,  filename,  lat_tx,  lon_tx, load_to_canvas=True):
-        QApplication.setOverrideCursor(Qt.WaitCursor)
         layer_name = "%s%s.hgt" % (lat_tx,  lon_tx)
 
         if not self.layer_exists(layer_name):
@@ -73,13 +62,16 @@ class Download:
             self.nam.get(req)  
             
     def set_credentials(self, reply, authenticator):
-        self.login = Login()
         
-        if self.login.exec_():        
-            self.authenticator = authenticator
-            self.authenticator.setUser(self.login.username)
-            self.authenticator.setPassword(self.login.password)     
-
+        if not  self.request_is_aborted:
+            if self.login.exec_():        
+                self.authenticator = authenticator
+                self.authenticator.setUser(self.login.username)
+                self.authenticator.setPassword(self.login.password)     
+            else:
+                reply.abort()
+                self.request_is_aborted = True
+                self.parent.download_finished(show_message=False,  abort=True)
      
     def reply_finished(self, reply):    
         
@@ -89,7 +81,8 @@ class Download:
         # If the URL is not empty, we're being redirected. 
             if possibleRedirectUrl != None:
                 request = QNetworkRequest(possibleRedirectUrl)
-                result = self.nam.get(request)                
+                result = self.nam.get(request)  
+                result.downloadProgress.connect(self.progress)
             else:             
                 if reply.error() != None:
                     if reply.error() ==  QNetworkReply.ContentNotFoundError:
@@ -98,6 +91,7 @@ class Download:
                         reply.deleteLater()
                         
                     elif reply.error() ==  QNetworkReply.NoError:
+#                        QApplication.setOverrideCursor(Qt.WaitCursor)
                         result = reply.readAll()
                         f = open(self.filename, 'wb')
                         f.write(result)
@@ -114,6 +108,10 @@ class Download:
                     # Clean up. */
                         reply.deleteLater()
                     
+    def progress(self,  min,  max):
+        self.akt_download += min
+        self.all_download += max
+        self.parent.lbl_progress_values.setText('Downloading %s' % (self.akt_download))        
         
     def unzip(self,  zip_file):
         import zipfile
@@ -132,7 +130,6 @@ class Download:
                     outfile.write(zf.read(name))
                     outfile.flush()
                     outfile.close()
-                    print ("Out-File: %s" % os.path.join(dir, name))
                     return os.path.join(dir, name)
         except:
             return None

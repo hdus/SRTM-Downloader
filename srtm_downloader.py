@@ -43,12 +43,6 @@ class SrtmDownloader:
             application at run time.
         :type iface: QgsInterface
         """
-        try:
-            VERSION_INT = Qgis.QGIS_VERSION_INT
-            VERSION = Qgis.QGIS_VERSION
-        except:
-            VERSION_INT = QGis.QGIS_VERSION_INT
-            VERSION = QGis.QGIS_VERSION        
             
         # Save reference to the QGIS interface
         self.iface = iface

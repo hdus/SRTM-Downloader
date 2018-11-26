@@ -42,14 +42,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
     Class documentation goes here.
     """
     
-    try:            # QGIS3
-        VERSION_INT = Qgis.QGIS_VERSION_INT
-        VERSION = Qgis.QGIS_VERSION
-    except:     # QGIS2
-        VERSION_INT = QGis.QGIS_VERSION_INT
-        VERSION = QGis.QGIS_VERSION
-    
-    
     def __init__(self, iface,  parent=None):
         """
         Constructor
@@ -94,15 +86,10 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         Slot documentation goes here.
         """
         crsDest = QgsCoordinateReferenceSystem(4326)  # WGS84
-        
-        if self.VERSION_INT < 29900:    # QGIS2
-            crsSrc =self.iface.mapCanvas().mapRenderer().destinationCrs()    
-            xform = QgsCoordinateTransform(crsSrc, crsDest)
-        else:                                           # QGIS3
-            crsSrc =self.iface.mapCanvas().mapSettings().destinationCrs()
-            xform = QgsCoordinateTransform()
-            xform.setSourceCrs(crsSrc)
-            xform.setDestinationCrs(crsDest)
+        crsSrc =self.iface.mapCanvas().mapSettings().destinationCrs()
+        xform = QgsCoordinateTransform()
+        xform.setSourceCrs(crsSrc)
+        xform.setDestinationCrs(crsDest)
             
         extent = xform.transform(self.iface.mapCanvas().extent())        
 
@@ -124,6 +111,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             lon_diff = abs(int(self.lne_east.text()) - int(self.lne_west.text()))
             self.n_tiles = lat_diff * lon_diff
             self.image_counter = 0
+            self.init_progress()
+
             self.overall_progressBar.setMaximum(self.n_tiles)
             self.overall_progressBar.setValue(0)
             
@@ -153,7 +142,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                         
 #                        url = "https://s3.amazonaws.com/elevation-tiles-prod/skadi/{0}/{0}{1}.hgt.gz".format(lat_tx, lon_tx)
                         url = "https://e4ftl01.cr.usgs.gov//MODV6_Dal_D/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
-                        
                         file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
                         
                         if not self.downloader.layer_exists('%s%s.hgt' % (lat_tx,  lon_tx)): 
@@ -168,14 +156,17 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             return True
             
             
-    def download_finished(self,  show_message=True):
+    def download_finished(self,  show_message=True,  abort=False):
         
-        if show_message and self.n_tiles == self.overall_progressBar.value():
-            QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
+        if self.n_tiles == self.overall_progressBar.value() or abort:
+            if show_message:
+                QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
+                
             self.button_box.setEnabled(True)
             self.n_tiles = 0
             self.image_counter = 0
-            QApplication.restoreOverrideCursor()
+        
+        QApplication.restoreOverrideCursor()
             
             
     @pyqtSlot()
@@ -184,6 +175,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         Slot documentation goes here.
         """
         self.button_box.setEnabled(False)
+        self.lbl_progress_values.setText(self.tr('Waiting for connection ...'))
         self.get_tiles()
 
     @pyqtSlot()
@@ -212,15 +204,21 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.overall_progressBar.setValue(1)
         self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (1,  self.n_tiles)))
         
+    def add_progress(self):
+        pass
         
-    def set_progress(self):
-        progress_value = self.overall_progressBar.value() + 1
-        self.overall_progressBar.setValue(progress_value)
-        self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (progress_value,  self.n_tiles)))
         
-        print (progress_value,  self.n_tiles)
+    def set_progress(self,  akt_val=None,  all_val=None):
         
-        if progress_value == self.n_tiles:
-            self.download_finished()
+        if all_val == None:
+            progress_value = self.overall_progressBar.value() + 1
+            self.overall_progressBar.setValue(progress_value)
+            self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (progress_value,  self.n_tiles)))
+                    
+            if progress_value == self.n_tiles:
+                self.download_finished(show_message=True)
+        else:
+            self.overall_progressBar.setMaximum(all_val)
+            self.overall_progressBar.setValue(akt_val)
         
       
