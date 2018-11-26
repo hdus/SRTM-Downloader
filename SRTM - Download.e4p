@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project SRTM - Download -->
-<!-- Saved: 2018-01-20, 15:24:16 -->
+<!-- Saved: 2018-11-20, 08:04:41 -->
 <!-- Copyright (C) 2018 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -18,14 +18,15 @@
     <Source>about/__init__.py</Source>
     <Source>about/do_about.py</Source>
     <Source>about/metadata.py</Source>
-    <Source>download/__init__.py</Source>
-    <Source>download/download.py</Source>
+    <Source>download.py</Source>
     <Source>resources_rc.py</Source>
     <Source>srtm_downloader.py</Source>
     <Source>srtm_downloader_dialog_base.py</Source>
+    <Source>srtm_downloader_login.py</Source>
   </Sources>
   <Forms>
     <Form>srtm_downloader_dialog_base.ui</Form>
+    <Form>srtm_downloader_login.ui</Form>
   </Forms>
   <Translations>
     <Translation>i18n/srtmdownload_de.qm</Translation>

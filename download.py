@@ -1,37 +1,44 @@
 # -*- coding: utf-8 -*-
-"""
-/***************************************************************************
- SrtmDownloader
-                                 A QGIS plugin
- Downloads SRTM Tiles from NASA Server
-                              -------------------
-        begin                : 2017-12-30
-        git sha              : $Format:%H$
-        copyright            : (C) 2017 by Dr. Horst Duester / Sourcepole AG
-        email                : horst.duester@sourcepole.ch
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
-"""
+#"""
+#/***************************************************************************
+# SrtmDownloader
+#                                 A QGIS plugin
+# Downloads SRTM Tiles from NASA Server
+#                              -------------------
+#        begin                : 2017-12-30
+#        git sha              : $Format:%H$
+#        copyright            : (C) 2017 by Dr. Horst Duester / Sourcepole AG
+#        email                : horst.duester@sourcepole.ch
+# ***************************************************************************/
+#
+#/***************************************************************************
+# *                                                                         *
+# *   This program is free software; you can redistribute it and/or modify  *
+# *   it under the terms of the GNU General Public License as published by  *
+# *   the Free Software Foundation; either version 2 of the License, or     *
+# *   (at your option) any later version.                                   *
+# *                                                                         *
+# ***************************************************************************/
+#"""
 from qgis.core import *
-from qgis.PyQt.QtCore import QUrl
+from qgis.PyQt.QtCore import QUrl,  Qt
 from qgis.PyQt.QtWidgets import QApplication
-from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply
-from srtm_downloader_login import Dlg_Login
+from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply,  QNetworkAccessManager
+from .srtm_downloader_login import Login
 import os
       
 class Download:
 
     def __init__(self,  parent=None,  iface=None):    
         self.parent = parent
-        self.iface = iface
+        self.iface = iface     
+        self.login_accepted = False
+        self.username = None
+        self.password = None
+#        self.nam = QgsNetworkAccessManager.instance()
+        self.nam = QNetworkAccessManager()
+        self.nam.authenticationRequired.connect(self.set_credentials)
+        self.nam.finished.connect(self.reply_finished)         
         
         try:
             self.VERSION_INT = Qgis.QGIS_VERSION_INT
@@ -39,44 +46,52 @@ class Download:
         except:
             self.VERSION_INT = QGis.QGIS_VERSION_INT
             self.VERSION = QGis.QGIS_VERSION               
-
-    def get_image(self,  url,  filename,  lat_tx,  lon_tx, load_to_canvas=True):
-        
-        layer_name = "%s%s.hgt" % (lat_tx,  lon_tx)
+            
+    def layer_exists(self,  name):            
         
         if self.VERSION_INT < 29900:
-            layer_exists = len(QgsMapLayerRegistry.instance().mapLayersByName(layer_name)) != 0
+            if len(QgsMapLayerRegistry.instance().mapLayersByName(name)) != 0:
+                return True
+            else:
+                return False
         else:
-            layer_exists = len(QgsProject.instance().mapLayersByName(layer_name)) != 0
-                    
-        if not layer_exists or not self.parent.cancelled:
-            self.filename = filename 
-            self.load_to_canvas = load_to_canvas
-            req = QNetworkRequest(QUrl(url))
-            self.nam = QgsNetworkAccessManager.instance()
-            self.nam.authenticationRequired.connect(self.auth_handler)
-            self.nam.finished.connect(self.replyFinished)
-            self.nam.get(req)  
-        else:
-            self.parent.set_progress()
-            
-    def auth_handler(self, reply,  authenticator):
-            self.login = Dlg_Login()
-            self.login.show()
-            authenticator.setUser(m_ftpUser);
-            authenticator.setPassword(m_ftpPasswd);        
+            if len(QgsProject.instance().mapLayersByName(name)) != 0:
+                return True
+            else:
+                return False
+        
 
-    def replyFinished(self, reply):    
-            possibleRedirectUrl = reply.attribute(QNetworkRequest.RedirectionTargetAttribute);
-    
-        # We'll deduct if the redirection is valid in the redirectUrl function
-            _urlRedirectedTo = possibleRedirectUrl
-    
+    def get_image(self,  url,  filename,  lat_tx,  lon_tx, load_to_canvas=True):
+        QApplication.setOverrideCursor(Qt.WaitCursor)
+        layer_name = "%s%s.hgt" % (lat_tx,  lon_tx)
+
+        if not self.layer_exists(layer_name):
+            self.filename = filename 
+            self.load_to_canvas = True       
+            download_url = QUrl(url)    
+            req = QNetworkRequest(download_url)
+            self.nam.get(req)  
+            
+    def set_credentials(self, reply, authenticator):
+        self.login = Login()
+        
+        if self.login.exec_():        
+            self.authenticator = authenticator
+            self.authenticator.setUser(self.login.username)
+            self.authenticator.setPassword(self.login.password)     
+
+     
+    def reply_finished(self, reply):    
+        
+        if reply != None:
+            possibleRedirectUrl = reply.attribute(QNetworkRequest.RedirectionTargetAttribute)
+            
         # If the URL is not empty, we're being redirected. 
-            if _urlRedirectedTo != None:
-                self.nam.get(QNetworkRequest(_urlRedirectedTo))                
+            if possibleRedirectUrl != None:
+                request = QNetworkRequest(possibleRedirectUrl)
+                result = self.nam.get(request)                
             else:             
-                if reply.error != None:
+                if reply.error() != None:
                     if reply.error() ==  QNetworkReply.ContentNotFoundError:
                         self.parent.set_progress()
                         reply.abort()
@@ -88,23 +103,16 @@ class Download:
                         f.write(result)
                         f.close()      
                         
-                        if self.load_to_canvas:
-                            try:
-                                out_image = self.unzip(self.filename)
-                                (dir, file) = os.path.split(out_image)
-                                self.iface.addRasterLayer(out_image, file)
-                            except:
-                                pass
                         
-                        self.parent.set_progress()
+                        out_image = self.unzip(self.filename)
+                        (dir, file) = os.path.split(out_image)
+                        if not self.layer_exists(file):
+                            self.iface.addRasterLayer(out_image, file)
+                        
+                        self.parent.set_progress()  
                             
                     # Clean up. */
                         reply.deleteLater()
-                        
-                    else:
-                        QApplication.restoreOverrideCursor()
-                        self.parent.cancelled = True
-#                        self.nam.get(QNetworkRequest(reply.url()))          
                     
         
     def unzip(self,  zip_file):

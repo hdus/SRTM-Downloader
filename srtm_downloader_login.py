@@ -1,7 +1,25 @@
 # -*- coding: utf-8 -*-
-
 """
-Module implementing dlg_login.
+/***************************************************************************
+ SrtmDownloader
+                                 A QGIS plugin
+ Downloads SRTM Tiles from NASA Server
+                              -------------------
+        begin                : 2017-12-30
+        git sha              : $Format:%H$
+        copyright            : (C) 2017 by Dr. Horst Duester / Sourcepole AG
+        email                : horst.duester@sourcepole.ch
+ ***************************************************************************/
+
+/*************************************************************************
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 """
 from qgis.PyQt.QtCore import pyqtSlot
 from qgis.PyQt.QtWidgets import QDialog
@@ -11,7 +29,7 @@ import os
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'srtm_downloader_login.ui'))
 
-class Dlg_Login(QDialog, FORM_CLASS):
+class Login(QDialog, FORM_CLASS):
     """
     Class documentation goes here.
     """
@@ -22,18 +40,17 @@ class Dlg_Login(QDialog, FORM_CLASS):
         @param parent reference to the parent widget
         @type QWidget
         """
-        super(Dlg_Login, self).__init__(parent)
+        super(Login, self).__init__(parent)
         self.setupUi(self)
-        self.parent = parent
     
     @pyqtSlot()
     def on_buttonBox_accepted(self):
         """
         Slot documentation goes here.
         """
-        self.parent.username = self.lne_user.text()
-        self.parent.password = self.lne_password.text()
-        self.close()
+        self.username = self.lne_user.text()
+        self.password = self.lne_password.text()
+        self.accept()
         
     
     @pyqtSlot()
@@ -42,4 +59,4 @@ class Dlg_Login(QDialog, FORM_CLASS):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        self.close()
+        self.reject()
