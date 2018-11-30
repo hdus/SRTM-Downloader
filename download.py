@@ -117,9 +117,7 @@ class Download:
             progress_widget = self.parent.tableWidget.cellWidget(current_row,  1)
             progress_widget.setValue(akt)
             progress_widget.setMaximum(max)        
-            
-            if akt == max:
-                
+                            
         
     def unzip(self,  zip_file):
         import zipfile
