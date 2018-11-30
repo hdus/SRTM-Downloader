@@ -21,7 +21,7 @@
 # ***************************************************************************/
 #"""
 from qgis.core import *
-from qgis.PyQt.QtCore import QUrl,  Qt
+from qgis.PyQt.QtCore import QUrl,  Qt,  QFileInfo
 from qgis.PyQt.QtWidgets import QApplication
 from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply
 from .srtm_downloader_login import Login
@@ -82,7 +82,8 @@ class Download:
             if possibleRedirectUrl != None:
                 request = QNetworkRequest(possibleRedirectUrl)
                 result = self.nam.get(request)  
-                result.downloadProgress.connect(self.progress)
+                self.parent.init_download_progress(result)
+                result.downloadProgress.connect(lambda done,  all,  reply=result: self.progress(done,  all,  reply))
             else:             
                 if reply.error() != None:
                     if reply.error() ==  QNetworkReply.ContentNotFoundError:
@@ -108,10 +109,17 @@ class Download:
                     # Clean up. */
                         reply.deleteLater()
                     
-    def progress(self,  min,  max):
-        self.akt_download += min
-        self.all_download += max
-        self.parent.lbl_progress_values.setText('Downloading %s' % (self.akt_download))        
+    def progress(self,  akt,  max,  reply):
+        is_image = QFileInfo(reply.url().path()).completeSuffix() == 'SRTMGL1.hgt.zip'
+
+        if is_image:        
+            current_row = self.parent.progress_widget_item_list[QFileInfo(reply.url().path()).baseName()]
+            progress_widget = self.parent.tableWidget.cellWidget(current_row,  1)
+            progress_widget.setValue(akt)
+            progress_widget.setMaximum(max)        
+            
+            if akt == max:
+                
         
     def unzip(self,  zip_file):
         import zipfile

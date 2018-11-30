@@ -25,11 +25,12 @@
 from qgis.core import *
 from qgis.PyQt import uic
 from qgis.PyQt import QtNetwork
-from qgis.PyQt.QtCore import pyqtSlot,  Qt,  QUrl
+from qgis.PyQt.QtCore import pyqtSlot,  Qt,  QUrl,  QFileInfo
 from qgis.PyQt.QtGui import QIntValidator
-from qgis.PyQt.QtWidgets import QDialog,  QFileDialog, QApplication, QMessageBox
+from qgis.PyQt.QtWidgets import *
 from .about.do_about import About
 from .download import Download
+from .srtm_progress_widget import ProgressWidget
 
 import math,  os,  tempfile
 
@@ -72,7 +73,10 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         
         self.overall_progressBar.setValue(0)
         self.downloader = Download(self,  self.iface)
-        
+        self.progress_widget_item_list = {}
+        self.row_count = 1
+        self.tableWidget.setColumnCount(2)
+                
     @pyqtSlot()
     def on_button_box_rejected(self):
         """
@@ -175,7 +179,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         Slot documentation goes here.
         """
         self.button_box.setEnabled(False)
-        self.lbl_progress_values.setText(self.tr('Waiting for connection ...'))
         self.get_tiles()
 
     @pyqtSlot()
@@ -204,7 +207,19 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.overall_progressBar.setValue(1)
         self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (1,  self.n_tiles)))
         
-    def add_progress(self):
+        
+    def init_download_progress(self,  reply):
+        is_image = QFileInfo(reply.url().path()).completeSuffix() == 'SRTMGL1.hgt.zip'
+
+        if is_image:
+            self.tableWidget.setRowCount(self.row_count)
+            progress_bar = QProgressBar()
+            self.tableWidget.setItem(self.row_count-1,  0,  QTableWidgetItem(QFileInfo(reply.url().path()).baseName(),  Qt.DisplayRole))
+            self.tableWidget.setCellWidget(self.row_count-1, 1,  QProgressBar())
+            self.progress_widget_item_list[QFileInfo(reply.url().path()).baseName()] = self.row_count-1
+            self.row_count += 1
+
+    def set_download_progress(self,  process,  akt,  all):
         pass
         
         

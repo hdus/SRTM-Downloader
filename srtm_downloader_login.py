@@ -42,6 +42,8 @@ class Login(QDialog, FORM_CLASS):
         """
         super(Login, self).__init__(parent)
         self.setupUi(self)
+        self.lne_user.setText('hdus')
+        self.lne_password.setText('W3ldgmn!')
     
     @pyqtSlot()
     def on_buttonBox_accepted(self):

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project SRTM - Download -->
-<!-- Saved: 2018-11-26, 20:00:52 -->
+<!-- Saved: 2018-11-30, 21:52:02 -->
 <!-- Copyright (C) 2018 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -15,6 +15,7 @@
   <Eol index="0"/>
   <Sources>
     <Source>Ui_srtm_downloader_dialog_base.py</Source>
+    <Source>Ui_srtm_progress_widget.py</Source>
     <Source>__init__.py</Source>
     <Source>about/__init__.py</Source>
     <Source>about/do_about.py</Source>
@@ -24,10 +25,12 @@
     <Source>srtm_downloader.py</Source>
     <Source>srtm_downloader_dialog_base.py</Source>
     <Source>srtm_downloader_login.py</Source>
+    <Source>srtm_progress_widget.py</Source>
   </Sources>
   <Forms>
     <Form>srtm_downloader_dialog_base.ui</Form>
     <Form>srtm_downloader_login.ui</Form>
+    <Form>srtm_progress_widget.ui</Form>
   </Forms>
   <Translations>
     <Translation>i18n/srtmdownload_de.qm</Translation>

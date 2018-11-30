@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>625</width>
-    <height>491</height>
+    <height>825</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -113,13 +113,6 @@
      </item>
     </layout>
    </item>
-   <item row="3" column="0">
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
    <item row="13" column="0">
     <widget class="QPushButton" name="btn_about">
      <property name="maximumSize">
@@ -143,14 +136,14 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="0" colspan="4">
+   <item row="4" column="0" colspan="4">
     <widget class="Line" name="line_2">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="7" column="2">
+   <item row="5" column="2">
     <widget class="QCheckBox" name="chk_load_image">
      <property name="text">
       <string>Load Images to QGIS</string>
@@ -160,60 +153,37 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="0">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="7" column="0" colspan="2">
+   <item row="5" column="0" colspan="2">
     <widget class="QPushButton" name="btn_download">
      <property name="text">
       <string>Download</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="9" column="0">
+   <item row="7" column="0">
     <spacer name="verticalSpacer_4">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>40</height>
+       <height>20</height>
       </size>
      </property>
     </spacer>
    </item>
-   <item row="8" column="0" colspan="4">
+   <item row="6" column="0" colspan="4">
     <widget class="Line" name="line_3">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="4" column="0" colspan="4">
+   <item row="3" column="0" colspan="4">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="label_5">
@@ -238,7 +208,7 @@
      </item>
     </layout>
    </item>
-   <item row="12" column="0" colspan="4">
+   <item row="11" column="0" colspan="4">
     <widget class="QProgressBar" name="overall_progressBar">
      <property name="value">
       <number>0</number>
@@ -252,11 +222,35 @@
      </property>
     </widget>
    </item>
-   <item row="11" column="0" colspan="4">
-    <widget class="QLabel" name="lbl_progress_values">
-     <property name="text">
-      <string/>
+   <item row="12" column="0" colspan="4">
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="showGrid">
+      <bool>false</bool>
      </property>
+     <attribute name="horizontalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>150</number>
+     </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>50</number>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>23</number>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
     </widget>
    </item>
   </layout>
