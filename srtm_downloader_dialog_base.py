@@ -30,7 +30,6 @@ from qgis.PyQt.QtGui import QIntValidator
 from qgis.PyQt.QtWidgets import *
 from .about.do_about import About
 from .download import Download
-from .srtm_progress_widget import ProgressWidget
 
 import math,  os,  tempfile
 
