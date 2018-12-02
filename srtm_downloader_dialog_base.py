@@ -143,7 +143,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                         elif lat < -10 and lat > -100:
                             lat_tx = "S%s" % abs(lat)
                         
-#                        url = "https://s3.amazonaws.com/elevation-tiles-prod/skadi/{0}/{0}{1}.hgt.gz".format(lat_tx, lon_tx)
                         url = "https://e4ftl01.cr.usgs.gov//MODV6_Dal_D/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
                         file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
                         
@@ -209,18 +208,13 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         
     def init_download_progress(self,  reply):
         is_image = QFileInfo(reply.url().path()).completeSuffix() == 'SRTMGL1.hgt.zip'
-
+        
         if is_image:
             self.tableWidget.setRowCount(self.row_count)
-            progress_bar = QProgressBar()
             self.tableWidget.setItem(self.row_count-1,  0,  QTableWidgetItem(QFileInfo(reply.url().path()).baseName(),  Qt.DisplayRole))
             self.tableWidget.setCellWidget(self.row_count-1, 1,  QProgressBar())
             self.progress_widget_item_list[QFileInfo(reply.url().path()).baseName()] = self.row_count-1
             self.row_count += 1
-
-    def set_download_progress(self,  process,  akt,  all):
-        pass
-        
         
     def set_progress(self,  akt_val=None,  all_val=None):
         

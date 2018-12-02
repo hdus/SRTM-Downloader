@@ -25,7 +25,7 @@ from qgis.PyQt.QtCore import QUrl,  Qt,  QFileInfo
 from qgis.PyQt.QtWidgets import QApplication
 from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply
 from .srtm_downloader_login import Login
-import os
+import os,  time
       
 class Download:
 
@@ -92,12 +92,10 @@ class Download:
                         reply.deleteLater()
                         
                     elif reply.error() ==  QNetworkReply.NoError:
-#                        QApplication.setOverrideCursor(Qt.WaitCursor)
                         result = reply.readAll()
                         f = open(self.filename, 'wb')
                         f.write(result)
                         f.close()      
-                        
                         
                         out_image = self.unzip(self.filename)
                         (dir, file) = os.path.split(out_image)
@@ -117,7 +115,22 @@ class Download:
             progress_widget = self.parent.tableWidget.cellWidget(current_row,  1)
             progress_widget.setValue(akt)
             progress_widget.setMaximum(max)        
+             
+            if reply.isFinished():
+                self.drop_row(current_row)
                             
+    def drop_row(self,  i):
+        self.parent.tableWidget.removeRow(i)
+
+        for key,  value in self.parent.progress_widget_item_list.items():
+            if value == i:
+                self.parent.progress_widget_item_list.pop(key)
+                break
+                
+        for key,  value in self.parent.progress_widget_item_list.items():
+            if value > i:
+                self.parent.progress_widget_item_list[key] = value-1
+        
         
     def unzip(self,  zip_file):
         import zipfile
