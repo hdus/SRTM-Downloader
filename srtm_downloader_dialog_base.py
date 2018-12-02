@@ -73,7 +73,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.overall_progressBar.setValue(0)
         self.downloader = Download(self,  self.iface)
         self.progress_widget_item_list = {}
-        self.row_count = 1
+        self.row_count = 0
         self.tableWidget.setColumnCount(2)
                 
     @pyqtSlot()
@@ -206,14 +206,14 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (1,  self.n_tiles)))
         
         
-    def init_download_progress(self,  reply):
+    def add_download_progress(self,  reply):
         is_image = QFileInfo(reply.url().path()).completeSuffix() == 'SRTMGL1.hgt.zip'
         
         if is_image:
-            self.tableWidget.setRowCount(self.row_count)
-            self.tableWidget.setItem(self.row_count-1,  0,  QTableWidgetItem(QFileInfo(reply.url().path()).baseName(),  Qt.DisplayRole))
-            self.tableWidget.setCellWidget(self.row_count-1, 1,  QProgressBar())
-            self.progress_widget_item_list[QFileInfo(reply.url().path()).baseName()] = self.row_count-1
+            self.tableWidget.setRowCount(self.row_count+1)
+            self.tableWidget.setItem(self.row_count,  0,  QTableWidgetItem(QFileInfo(reply.url().path()).baseName(),  Qt.DisplayRole))
+            self.tableWidget.setCellWidget(self.row_count, 1,  QProgressBar())
+            self.progress_widget_item_list[QFileInfo(reply.url().path()).baseName()] = self.row_count
             self.row_count += 1
         
     def set_progress(self,  akt_val=None,  all_val=None):
