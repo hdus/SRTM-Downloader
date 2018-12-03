@@ -23,7 +23,6 @@
 from qgis.PyQt.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
-from qgis.core import *
 # Initialize Qt resources from file resources.py
 from .resources_rc import *
 # Import the code for the dialog
@@ -68,7 +67,7 @@ class SrtmDownloader:
         # TODO: We are going to let the user set this up in a future iteration
         self.toolbar = self.iface.addToolBar(u'SrtmDownloader')
         self.toolbar.setObjectName(u'SrtmDownloader')
-
+        
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
         """Get the translation for a string using Qt translation API.
