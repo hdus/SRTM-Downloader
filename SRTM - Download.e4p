@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project SRTM - Download -->
-<!-- Saved: 2018-11-30, 22:31:07 -->
-<!-- Copyright (C) 2018 ,  -->
+<!-- Saved: 2019-02-08, 21:12:40 -->
+<!-- Copyright (C) 2019 ,  -->
 <Project version="5.1">
   <Language>en_US</Language>
   <Hash>c72c14f21e14728f0cd11ac901d1cac48b513194</Hash>
@@ -15,9 +15,6 @@
   <Eol index="0"/>
   <Sources>
     <Source>__init__.py</Source>
-    <Source>about/__init__.py</Source>
-    <Source>about/do_about.py</Source>
-    <Source>about/metadata.py</Source>
     <Source>download.py</Source>
     <Source>resources_rc.py</Source>
     <Source>srtm_downloader.py</Source>
