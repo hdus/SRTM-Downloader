@@ -162,7 +162,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         
         if self.n_tiles == self.overall_progressBar.value() or abort:
             if show_message:
-                QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
+                Box.information(None,  self.tr("Result"),  self.tr("Download completed"))
                 
             self.button_box.setEnabled(True)
             self.n_tiles = 0

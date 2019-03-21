@@ -23,7 +23,7 @@
 from qgis.core import *
 from qgis.PyQt.QtCore import QUrl,  Qt,  QFileInfo
 from qgis.PyQt.QtWidgets import QApplication
-from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply
+from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply,  QNetworkAccessManager
 from .srtm_downloader_login import Login
 import os,  time
       
@@ -38,7 +38,7 @@ class Download:
         self.akt_download = 0
         self.all_download = 0
         self.request_is_aborted = False
-        self.nam = QgsNetworkAccessManager()
+        self.nam = QNetworkAccessManager()
         self.nam.authenticationRequired.connect(self.set_credentials)
         self.nam.finished.connect(self.reply_finished)           
         self.login = Login()  
@@ -62,7 +62,6 @@ class Download:
             self.nam.get(req)  
             
     def set_credentials(self, reply, authenticator):
-        
         if not  self.request_is_aborted:
             if self.login.exec_():        
                 self.authenticator = authenticator
@@ -82,7 +81,8 @@ class Download:
             if possibleRedirectUrl != None:
                 request = QNetworkRequest(possibleRedirectUrl)
                 result = self.nam.get(request)  
-                self.parent.init_download_progress(result)
+                self.parent.init_progress()
+                self.parent.add_download_progress(reply)
                 result.downloadProgress.connect(lambda done,  all,  reply=result: self.progress(done,  all,  reply))
             else:             
                 if reply.error() != None:
