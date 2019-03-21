@@ -17,20 +17,10 @@
    <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="1">
-    <widget class="QLineEdit" name="lne_user"/>
-   </item>
    <item row="3" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
       <string>Password:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="QLineEdit" name="lne_password">
-     <property name="echoMode">
-      <enum>QLineEdit::Password</enum>
      </property>
     </widget>
    </item>
@@ -41,14 +31,14 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="1">
+   <item row="4" column="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </item>
-   <item row="0" column="0" colspan="2">
+   <item row="0" column="0" colspan="3">
     <widget class="QLabel" name="label_3">
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;https://urs.earthdata.nasa.gov is requesting your username and password. If you do not have a Earthdata Login, create one at &lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://urs.earthdata.nasa.gov//users/new&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -61,7 +51,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
+   <item row="1" column="2">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -74,8 +64,31 @@
      </property>
     </spacer>
    </item>
+   <item row="3" column="1" colspan="2">
+    <widget class="QLineEdit" name="lne_password">
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QLineEdit" name="lne_user"/>
+   </item>
+   <item row="4" column="0">
+    <widget class="QCheckBox" name="chk_save_credentials">
+     <property name="text">
+      <string>Save Credentials</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>lne_user</tabstop>
+  <tabstop>lne_password</tabstop>
+  <tabstop>buttonBox</tabstop>
+  <tabstop>chk_save_credentials</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

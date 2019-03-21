@@ -21,7 +21,7 @@
 # ***************************************************************************/
 #"""
 from qgis.core import *
-from qgis.PyQt.QtCore import QUrl,  Qt,  QFileInfo
+from qgis.PyQt.QtCore import QUrl,  Qt,  QFileInfo,  QSettings
 from qgis.PyQt.QtWidgets import QApplication
 from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply,  QNetworkAccessManager
 from .srtm_downloader_login import Login
@@ -33,8 +33,6 @@ class Download:
         self.parent = parent
         self.iface = iface     
         self.login_accepted = False
-        self.username = None
-        self.password = None
         self.akt_download = 0
         self.all_download = 0
         self.request_is_aborted = False
@@ -63,14 +61,23 @@ class Download:
             
     def set_credentials(self, reply, authenticator):
         if not  self.request_is_aborted:
-            if self.login.exec_():        
-                self.authenticator = authenticator
-                self.authenticator.setUser(self.login.username)
-                self.authenticator.setPassword(self.login.password)     
+            self.get_settings()
+            if  self.username == None and self.password == None: 
+                if self.login.exec_():        
+                    self.authenticator = authenticator
+                    self.authenticator.setUser(self.login.username)
+                    self.authenticator.setPassword(self.login.password)     
+                    if self.login.chk_save_credentials.isChecked():
+                        self.set_settings()
             else:
-                reply.abort()
-                self.request_is_aborted = True
-                self.parent.download_finished(show_message=False,  abort=True)
+                self.authenticator = authenticator
+                self.authenticator.setUser(self.username)
+                self.authenticator.setPassword(self.password)               
+        else:
+            reply.abort()
+            self.request_is_aborted = True
+            self.parent.download_finished(show_message=False,  abort=True)
+
      
     def reply_finished(self, reply):    
         
@@ -175,5 +182,17 @@ class Download:
                 dirs.append(name)
 
         dirs.sort()
-        return dirs                
+        return dirs          
+  
+    def set_settings(self):
+        settings = QSettings()
+        mySettingsPath = "/SRTM-Downloader"
+        settings.setValue(mySettingsPath+"/username", self.login.username )
+        settings.setValue(mySettingsPath+"/password",  self.login.password)        
+        
+    def get_settings(self):
+        settings = QSettings()
+        mySettingsPath = "/SRTM-Downloader"
+        self.username = settings.value(mySettingsPath+"/username")
+        self.password = settings.value(mySettingsPath+"/password")        
         

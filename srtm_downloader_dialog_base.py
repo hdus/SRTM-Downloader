@@ -1,4 +1,5 @@
 #!/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
@@ -162,7 +163,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         
         if self.n_tiles == self.overall_progressBar.value() or abort:
             if show_message:
-                Box.information(None,  self.tr("Result"),  self.tr("Download completed"))
+                QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
                 
             self.button_box.setEnabled(True)
             self.n_tiles = 0
@@ -223,7 +224,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             self.overall_progressBar.setValue(progress_value)
             self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (progress_value,  self.n_tiles)))
                     
-            if progress_value == self.n_tiles:
+            if progress_value == self.n_tiles+1:
+                self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (progress_value-1,  self.n_tiles)))
                 self.download_finished(show_message=True)
         else:
             self.overall_progressBar.setMaximum(all_val)
