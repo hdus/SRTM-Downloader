@@ -39,7 +39,6 @@ class Download:
         self.nam = QNetworkAccessManager()
         self.nam.authenticationRequired.connect(self.set_credentials)
         self.nam.finished.connect(self.reply_finished)           
-        self.login = Login()  
             
     def layer_exists(self,  name):            
         
@@ -62,17 +61,14 @@ class Download:
     def set_credentials(self, reply, authenticator):
         if not  self.request_is_aborted:
             self.get_settings()
-            if  self.username == None and self.password == None: 
-                if self.login.exec_():        
-                    self.authenticator = authenticator
-                    self.authenticator.setUser(self.login.username)
-                    self.authenticator.setPassword(self.login.password)     
-                    if self.login.chk_save_credentials.isChecked():
-                        self.set_settings()
-            else:
+            self.login = Login(self.username,  self.password)  
+
+            if self.login.exec_():        
                 self.authenticator = authenticator
-                self.authenticator.setUser(self.username)
-                self.authenticator.setPassword(self.password)               
+                self.authenticator.setUser(self.login.username)
+                self.authenticator.setPassword(self.login.password)     
+                if self.login.chk_save_credentials.isChecked():
+                    self.set_settings()
         else:
             reply.abort()
             self.request_is_aborted = True

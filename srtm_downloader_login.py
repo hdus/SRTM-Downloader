@@ -33,7 +33,7 @@ class Login(QDialog, FORM_CLASS):
     """
     Class documentation goes here.
     """
-    def __init__(self, parent=None):
+    def __init__(self, username,  password,  parent=None):
         """
         Constructor
         
@@ -42,6 +42,9 @@ class Login(QDialog, FORM_CLASS):
         """
         super(Login, self).__init__(parent)
         self.setupUi(self)
+        
+        self.lne_user.setText(username)
+        self.lne_password.setText(password)
     
     @pyqtSlot()
     def on_buttonBox_accepted(self):
