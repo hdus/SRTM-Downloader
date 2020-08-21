@@ -207,8 +207,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         
     def init_progress(self):
         self.overall_progressBar.setMaximum(self.n_tiles)
-        self.overall_progressBar.setValue(1)
-        self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (1,  self.n_tiles)))
+        self.overall_progressBar.setValue(0)
+        self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (0,  self.n_tiles)))
         
         
     def add_download_progress(self,  reply):
