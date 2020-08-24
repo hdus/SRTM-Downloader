@@ -58,6 +58,7 @@ class Download:
             req = QNetworkRequest(download_url)
             self.nam.get(req)  
             
+            
     def set_credentials(self, reply, authenticator):
         if not  self.request_is_aborted:
             self.get_settings()
@@ -84,7 +85,7 @@ class Download:
             if possibleRedirectUrl != None:
                 request = QNetworkRequest(possibleRedirectUrl)
                 result = self.nam.get(request)  
-                self.parent.init_progress()
+#                self.parent.init_progress()
                 self.parent.add_download_progress(reply)
                 result.downloadProgress.connect(lambda done,  all,  reply=result: self.progress(done,  all,  reply))
             else:             
