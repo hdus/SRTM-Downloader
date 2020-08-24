@@ -30,6 +30,7 @@ from qgis.PyQt.QtCore import pyqtSlot,  Qt,  QUrl,  QFileInfo
 from qgis.PyQt.QtGui import QIntValidator
 from qgis.PyQt.QtWidgets import *
 from .about.do_about import About
+from .about.metadata import Metadata
 from .download import Download
 
 import math,  os,  tempfile
@@ -76,6 +77,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.progress_widget_item_list = {}
         self.row_count = 0
         self.tableWidget.setColumnCount(2)
+        self.setWindowTitle("SRTM-Downloader %s" % (Metadata().version()))
                 
     @pyqtSlot()
     def on_button_box_rejected(self):
