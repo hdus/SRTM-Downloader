@@ -143,7 +143,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                             lat_tx = "N%s" % lat
                         elif lat > -10 and lat < 0:
                             lat_tx = "S0%s" % abs(lat)
-                        elif lat < -10 and lat > -100:
+                        elif lat <= -10 and lat > -100:
                             lat_tx = "S%s" % abs(lat)
                         
                         try:
