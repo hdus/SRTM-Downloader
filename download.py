@@ -21,11 +21,10 @@
 # ***************************************************************************/
 #"""
 from qgis.core import *
-from qgis.PyQt.QtCore import QUrl,  Qt,  QFileInfo,  QSettings
-from qgis.PyQt.QtWidgets import QApplication
+from qgis.PyQt.QtCore import QUrl,  QFileInfo,  QSettings
 from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply,  QNetworkAccessManager
 from .srtm_downloader_login import Login
-import os,  time
+import os
       
 class Download:
 
