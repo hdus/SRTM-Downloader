@@ -7,8 +7,8 @@
 #                              -------------------
 #        begin                : 2017-12-30
 #        git sha              : $Format:%H$
-#        copyright            : (C) 2017 by Dr. Horst Duester / Sourcepole AG
-#        email                : horst.duester@sourcepole.ch
+#        copyright            : (C) 2017 by Dr. Horst Duester
+#        email                : horst.duester@kappasys.ch
 # ***************************************************************************/
 #
 #/***************************************************************************

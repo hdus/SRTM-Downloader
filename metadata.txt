@@ -11,8 +11,8 @@ qgisMinimumVersion=3.00
 qgisMaximumVersion=3.99
 description=Downloads SRTM Tiles from NASA Server
 version=3.1.10
-author=Dr. Horst Duester Sourcepole AG
-email=horst.duester@sourcepole.ch
+author=Dr. Horst Duester
+email=horst.duester@kappasys.ch
 
 about=Plugin for download of SRTM Tiles from NASA
 
