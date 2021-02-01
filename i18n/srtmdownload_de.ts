@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="de_CH">
+<!DOCTYPE TS><TS version="2.0" language="de_CH" sourcelanguage="">
 <context>
     <name>About</name>
     <message>
@@ -113,37 +112,37 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="37"/>
+        <location filename="../srtm_downloader_dialog_base.ui" line="30"/>
         <source>North</source>
         <translation>Nord</translation>
     </message>
     <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="54"/>
+        <location filename="../srtm_downloader_dialog_base.ui" line="47"/>
         <source>West</source>
         <translation>West</translation>
     </message>
     <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="78"/>
+        <location filename="../srtm_downloader_dialog_base.ui" line="71"/>
         <source>East</source>
         <translation>Ost</translation>
     </message>
     <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="95"/>
+        <location filename="../srtm_downloader_dialog_base.ui" line="88"/>
         <source>South</source>
         <translation>Süd</translation>
     </message>
     <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="108"/>
+        <location filename="../srtm_downloader_dialog_base.ui" line="101"/>
         <source>Set canvas extent</source>
         <translation>Kartenausdehnung setzen</translation>
     </message>
     <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="159"/>
+        <location filename="../srtm_downloader_dialog_base.ui" line="152"/>
         <source>Download</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="191"/>
+        <location filename="../srtm_downloader_dialog_base.ui" line="184"/>
         <source>Output-Path:</source>
         <translation>Ausgabepfad</translation>
     </message>
@@ -153,12 +152,12 @@
         <translation>Verzeichnis öffnen</translation>
     </message>
     <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="125"/>
+        <location filename="../srtm_downloader_dialog_base.ui" line="118"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="149"/>
+        <location filename="../srtm_downloader_dialog_base.ui" line="142"/>
         <source>Load Images to QGIS</source>
         <translation>Bilder in die Karte laden</translation>
     </message>
@@ -173,7 +172,7 @@
         <translation>Herunterladen der Bilder erfolgreich</translation>
     </message>
     <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="198"/>
+        <location filename="../srtm_downloader_dialog_base.ui" line="191"/>
         <source>[empty for temporary files]</source>
         <translation></translation>
     </message>
@@ -183,7 +182,7 @@
         <translation>Fortschritt beim Herunterladen: %s von %s Bildern</translation>
     </message>
     <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="205"/>
+        <location filename="../srtm_downloader_dialog_base.ui" line="198"/>
         <source>...</source>
         <translation></translation>
     </message>

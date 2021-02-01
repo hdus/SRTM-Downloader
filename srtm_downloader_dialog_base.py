@@ -147,7 +147,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                             lat_tx = "S%s" % abs(lat)
                         
                         try:
-                            url = "https://e4ftl01.cr.usgs.gov//MODV6_Dal_D/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
+                            url = "https://e4ftl01.cr.usgs.gov/DP133/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
                             file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
                             
                             if not self.downloader.layer_exists('%s%s.hgt' % (lat_tx,  lon_tx)): 
