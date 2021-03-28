@@ -22,6 +22,7 @@
 #"""
 from qgis.core import *
 from qgis.PyQt.QtCore import QUrl,  QFileInfo,  QSettings
+from qgis.PyQt.QtWidgets import QMessageBox
 from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply,  QNetworkAccessManager
 from .srtm_downloader_login import Login
 import os
@@ -87,27 +88,27 @@ class Download:
                 self.parent.add_download_progress(reply)
                 result.downloadProgress.connect(lambda done,  all,  reply=result: self.progress(done,  all,  reply))
             else:             
-                if reply.error() != None:
-                    if reply.error() ==  QNetworkReply.ContentNotFoundError:
-                        self.parent.set_progress()
-                        reply.abort()
-                        reply.deleteLater()
+                if reply.error() != None and reply.error() != QNetworkReply.NoError:
+                    QMessageBox.information(None, 'Error',  reply.errorString())
+                    self.parent.set_progress()
+                    reply.abort()
+                    reply.deleteLater()
                         
-                    elif reply.error() ==  QNetworkReply.NoError:
-                        result = reply.readAll()
-                        f = open(self.filename, 'wb')
-                        f.write(result)
-                        f.close()      
+                elif reply.error() ==  QNetworkReply.NoError:
+                    result = reply.readAll()
+                    f = open(self.filename, 'wb')
+                    f.write(result)
+                    f.close()      
+                    
+                    out_image = self.unzip(self.filename)
+                    (dir, file) = os.path.split(out_image)
+                    if not self.layer_exists(file):
+                        self.iface.addRasterLayer(out_image, file)
+                    
+                    self.parent.set_progress()  
                         
-                        out_image = self.unzip(self.filename)
-                        (dir, file) = os.path.split(out_image)
-                        if not self.layer_exists(file):
-                            self.iface.addRasterLayer(out_image, file)
-                        
-                        self.parent.set_progress()  
-                            
-                    # Clean up. */
-                        reply.deleteLater()
+                # Clean up. */
+                    reply.deleteLater()
                     
     def progress(self,  akt,  max,  reply):
         is_image = QFileInfo(reply.url().path()).completeSuffix() == 'SRTMGL1.hgt.zip'
