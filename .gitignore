@@ -2,6 +2,7 @@
 /qgiscloud/.gitignore
 *.pyc
 *.e4p
+*.epj
 qgiscloud.zip
 createdist.sh
 exclude.lst

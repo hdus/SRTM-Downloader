@@ -39,6 +39,7 @@ class Download:
         self.nam = QNetworkAccessManager()
         self.nam.authenticationRequired.connect(self.set_credentials)
         self.nam.finished.connect(self.reply_finished)           
+        id_error = False
             
     def layer_exists(self,  name):            
         
@@ -89,7 +90,7 @@ class Download:
                 result.downloadProgress.connect(lambda done,  all,  reply=result: self.progress(done,  all,  reply))
             else:             
                 if reply.error() != None and reply.error() != QNetworkReply.NoError:
-                    QMessageBox.information(None, 'Error',  reply.errorString())
+                    self.parent.is_error = reply.errorString()
                     self.parent.set_progress()
                     reply.abort()
                     reply.deleteLater()

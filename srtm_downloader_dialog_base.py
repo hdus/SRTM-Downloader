@@ -118,6 +118,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             self.n_tiles = lat_diff * lon_diff
             self.image_counter = 0
             self.init_progress()
+            self.is_error = None
 
             self.overall_progressBar.setMaximum(self.n_tiles)
             self.overall_progressBar.setValue(0)
@@ -147,7 +148,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                             lat_tx = "S%s" % abs(lat)
                         
                         try:
-                            url = "https://e4ftl01.cr.usgs.gov/DP133/SRTM/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
+                            url = "http://e4ftl01.cr.usgs.gov/MEASURES/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
                             file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
                             
                             if not self.downloader.layer_exists('%s%s.hgt' % (lat_tx,  lon_tx)): 
@@ -169,7 +170,10 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         
         if self.n_tiles == self.overall_progressBar.value() or abort:
             if show_message:
-                QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
+                if self.is_error != None:
+                    QMessageBox.information(None, 'Error',  self.is_error)
+                else:
+                    QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
                 
             self.button_box.setEnabled(True)
             self.n_tiles = 0
