@@ -23,17 +23,19 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.core import *
+from qgis.core import QgsCoordinateReferenceSystem,  QgsCoordinateTransform
 from qgis.PyQt import uic
 from qgis.PyQt import QtNetwork
 from qgis.PyQt.QtCore import pyqtSlot,  Qt,  QUrl,  QFileInfo
 from qgis.PyQt.QtGui import QIntValidator
-from qgis.PyQt.QtWidgets import *
+from qgis.PyQt.QtWidgets import QDialog,  QMessageBox,  QTableWidgetItem,  QProgressBar,  QApplication
 from .about.do_about import About
 from .about.metadata import Metadata
 from .download import Download
 
-import math,  os,  tempfile
+import math
+import os
+import tempfile
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'srtm_downloader_dialog_base.ui'))
@@ -76,7 +78,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.downloader = Download(self,  self.iface)
         self.progress_widget_item_list = {}
         self.row_count = 0
-        self.tableWidget.setColumnCount(2)
+        self.progressTableWidget.setColumnCount(2)
         self.setWindowTitle("SRTM-Downloader %s" % (Metadata().version()))
                 
     @pyqtSlot()
@@ -104,9 +106,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.lne_south.setText(str(int(math.floor(extent.yMinimum()))))
         self.lne_north.setText(str(math.ceil(extent.yMaximum())))
 
-
     def coordinates_valid(self,  text):
-        
         if self.lne_west.text() != '' and self.lne_east.text() != '' and self.lne_south.text() != '' and self.lne_north.text() != '':
             self.btn_download.setEnabled(True)
         else:
@@ -167,7 +167,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             
             
     def download_finished(self,  show_message=True,  abort=False):
-        
         if self.n_tiles == self.overall_progressBar.value() or abort:
             if show_message:
                 if self.is_error != None:
@@ -221,14 +220,13 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         is_image = QFileInfo(reply.url().path()).completeSuffix() == 'SRTMGL1.hgt.zip'
         
         if is_image:
-            self.tableWidget.setRowCount(self.row_count+1)
-            self.tableWidget.setItem(self.row_count,  0,  QTableWidgetItem(QFileInfo(reply.url().path()).baseName(),  Qt.DisplayRole))
-            self.tableWidget.setCellWidget(self.row_count, 1,  QProgressBar())
+            self.progressTableWidget.setRowCount(self.row_count+1)
+            self.progressTableWidget.setItem(self.row_count,  0,  QTableWidgetItem(QFileInfo(reply.url().path()).baseName(),  Qt.DisplayRole))
+            self.progressTableWidget.setCellWidget(self.row_count, 1,  QProgressBar())
             self.progress_widget_item_list[QFileInfo(reply.url().path()).baseName()] = self.row_count
             self.row_count += 1
         
     def set_progress(self,  akt_val=None,  all_val=None):
-        
         if all_val == None:
             progress_value = self.overall_progressBar.value() + 1
             self.overall_progressBar.setValue(progress_value)
@@ -240,5 +238,3 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         else:
             self.overall_progressBar.setMaximum(all_val)
             self.overall_progressBar.setValue(akt_val)
-        
-      
