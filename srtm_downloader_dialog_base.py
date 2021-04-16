@@ -28,7 +28,7 @@ from qgis.PyQt import uic
 from qgis.PyQt import QtNetwork
 from qgis.PyQt.QtCore import pyqtSlot,  Qt,  QUrl,  QFileInfo
 from qgis.PyQt.QtGui import QIntValidator
-from qgis.PyQt.QtWidgets import QDialog,  QMessageBox,  QTableWidgetItem,  QProgressBar,  QApplication
+from qgis.PyQt.QtWidgets import QDialog,  QMessageBox,  QTableWidgetItem,  QProgressBar,  QApplication,  QFileDialog
 from .about.do_about import About
 from .about.metadata import Metadata
 from .download import Download
