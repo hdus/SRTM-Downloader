@@ -86,7 +86,6 @@ class Download:
             if possibleRedirectUrl != None:
                 request = QNetworkRequest(possibleRedirectUrl)
                 result = self.nam.get(request)  
-                self.parent.init_progress()
                 self.parent.add_download_progress(reply)
                 result.downloadProgress.connect(lambda done,  all,  reply=result: self.progress(done,  all,  reply))
             else:             
