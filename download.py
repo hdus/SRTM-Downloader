@@ -20,7 +20,7 @@
 # *                                                                         *
 # ***************************************************************************/
 #"""
-from qgis.core import *
+from qgis.core import QgsProject
 from qgis.PyQt.QtCore import QUrl,  QFileInfo,  QSettings
 from qgis.PyQt.QtWidgets import QMessageBox
 from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply,  QNetworkAccessManager
@@ -86,6 +86,7 @@ class Download:
             if possibleRedirectUrl != None:
                 request = QNetworkRequest(possibleRedirectUrl)
                 result = self.nam.get(request)  
+                self.parent.init_progress()
                 self.parent.add_download_progress(reply)
                 result.downloadProgress.connect(lambda done,  all,  reply=result: self.progress(done,  all,  reply))
             else:             
@@ -116,7 +117,7 @@ class Download:
 
         if is_image:        
             current_row = self.parent.progress_widget_item_list[QFileInfo(reply.url().path()).baseName()]
-            progress_widget = self.parent.tableWidget.cellWidget(current_row,  1)
+            progress_widget = self.parent.progressTableWidget.cellWidget(current_row,  1)
             progress_widget.setValue(akt)
             progress_widget.setMaximum(max)        
              
@@ -124,7 +125,7 @@ class Download:
                 self.drop_row(current_row)
                             
     def drop_row(self,  i):
-        self.parent.tableWidget.removeRow(i)
+        self.parent.progressTableWidget.removeRow(i)
 
         for key,  value in self.parent.progress_widget_item_list.items():
             if value == i:
