@@ -123,6 +123,7 @@ class Download:
                             """Sorry, the Earthdata Service is currently unavailable. <br>
     For further informations please open <a href="%s">NASA Earth data Service</a>""" % url )
                     shown = True
+                    self.parent.button_box.setEnabled(True)
                     
                     
     def progress(self,  akt,  max,  reply):

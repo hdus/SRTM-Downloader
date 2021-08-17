@@ -187,6 +187,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
+        self.progressTableWidget.clear()
+        self.row_count = 0
         self.button_box.setEnabled(False)
         self.get_tiles()
 
