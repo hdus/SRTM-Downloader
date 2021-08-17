@@ -51,14 +51,13 @@ class Download:
 
     def get_image(self,  url,  filename,  lat_tx,  lon_tx, load_to_canvas=True):
         layer_name = "%s%s.hgt" % (lat_tx,  lon_tx)
-
+        
         if not self.layer_exists(layer_name):
             self.filename = filename 
             self.load_to_canvas = True       
             download_url = QUrl(url)    
             req = QNetworkRequest(download_url)
-            self.nam.get(req)  
-            
+            reply = self.nam.get(req)              
             
     def set_credentials(self, reply, authenticator):
         if not  self.request_is_aborted:
@@ -103,9 +102,13 @@ class Download:
                     
                     out_image = self.unzip(self.filename)
                     (dir, file) = os.path.split(out_image)
-                    if not self.layer_exists(file):
-                        self.iface.addRasterLayer(out_image, file)
                     
+                    try:
+                        if not self.layer_exists(file):
+                            self.iface.addRasterLayer(out_image, file)
+                    except:
+                        pass
+                        
                     self.parent.set_progress()  
                         
                 # Clean up. */
