@@ -27,8 +27,9 @@ from qgis.PyQt.QtWidgets import QAction
 from .resources_rc import *
 # Import the code for the dialog
 from .srtm_downloader_dialog_base import SrtmDownloaderDialogBase
-
 import os.path
+
+__author__ = 'Dr. Horst Düster'
 
 
 class SrtmDownloader:
