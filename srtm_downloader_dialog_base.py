@@ -40,7 +40,6 @@ import tempfile
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'srtm_downloader_dialog_base.ui'))
 
-IMAGE_URL = "https://e4ftl01.cr.usgs.gov/MEASURES/SRTMGL1.003/2000.02.11/"
         
 class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
     """
@@ -114,57 +113,57 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             self.btn_download.setEnabled(False)
 
     def get_tiles(self):
-        global IMAGE_URL
-        lat_diff = abs(int(self.lne_north.text()) - int(self.lne_south.text()))
-        lon_diff = abs(int(self.lne_east.text()) - int(self.lne_west.text()))
-        self.n_tiles = lat_diff * lon_diff
-        self.image_counter = 0
-        self.init_progress()
-        self.is_error = None
+            lat_diff = abs(int(self.lne_north.text()) - int(self.lne_south.text()))
+            lon_diff = abs(int(self.lne_east.text()) - int(self.lne_west.text()))
+            self.n_tiles = lat_diff * lon_diff
+            self.image_counter = 0
+            self.init_progress()
+            self.is_error = None
 
-        self.overall_progressBar.setMaximum(self.n_tiles)
-        self.overall_progressBar.setValue(0)
-        
-        for lat in range(int(self.lne_south.text()), int(self.lne_north.text())):
-            for lon in range(int(self.lne_west.text()), int(self.lne_east.text())):
-                    if lon < 10 and lon >= 0:
-                        lon_tx = "E00%s" % lon
-                    elif lon >= 10 and lon < 100:
-                        lon_tx = "E0%s" % lon
-                    elif lon >= 100:
-                        lon_tx = "E%s" % lon
-                    elif lon > -10 and lon < 0:
-                        lon_tx = "W00%s" % abs(lon)
-                    elif lon <= -10 and lon > -100:
-                        lon_tx = "W0%s" % abs(lon)
-                    elif lon <= -100:
-                        lon_tx = "W%s" % abs(lon)
-
-                    if lat < 10 and lat >= 0:
-                        lat_tx = "N0%s" % lat
-                    elif lat >= 10 and lat < 100:
-                        lat_tx = "N%s" % lat
-                    elif lat > -10 and lat < 0:
-                        lat_tx = "S0%s" % abs(lat)
-                    elif lat <= -10 and lat > -100:
-                        lat_tx = "S%s" % abs(lat)
-                    
-                    url = "%s%s%s.SRTMGL1.hgt.zip" % (IMAGE_URL,  lat_tx, lon_tx)
-                    file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
-                    try:    
-                        if not self.downloader.layer_exists('%s%s.hgt' % (lat_tx,  lon_tx)): 
-                            if self.chk_load_image.checkState() == Qt.Checked:
-                                self.downloader.get_image(url,  file, lat_tx, lon_tx, True)
+            self.overall_progressBar.setMaximum(self.n_tiles)
+            self.overall_progressBar.setValue(0)
+            
+            for lat in range(int(self.lne_south.text()), int(self.lne_north.text())):
+                for lon in range(int(self.lne_west.text()), int(self.lne_east.text())):
+                        if lon < 10 and lon >= 0:
+                            lon_tx = "E00%s" % lon
+                        elif lon >= 10 and lon < 100:
+                            lon_tx = "E0%s" % lon
+                        elif lon >= 100:
+                            lon_tx = "E%s" % lon
+                        elif lon > -10 and lon < 0:
+                            lon_tx = "W00%s" % abs(lon)
+                        elif lon <= -10 and lon > -100:
+                            lon_tx = "W0%s" % abs(lon)
+                        elif lon <= -100:
+                            lon_tx = "W%s" % abs(lon)
+    
+                        if lat < 10 and lat >= 0:
+                            lat_tx = "N0%s" % lat
+                        elif lat >= 10 and lat < 100:
+                            lat_tx = "N%s" % lat
+                        elif lat > -10 and lat < 0:
+                            lat_tx = "S0%s" % abs(lat)
+                        elif lat <= -10 and lat > -100:
+                            lat_tx = "S%s" % abs(lat)
+                        
+                        try:
+                            url = "https://e4ftl01.cr.usgs.gov/MEASURES/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
+                            file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
+                            
+                            if not self.downloader.layer_exists('%s%s.hgt' % (lat_tx,  lon_tx)): 
+                                if self.chk_load_image.checkState() == Qt.Checked:
+                                    self.downloader.get_image(url,  file, lat_tx, lon_tx, True)
+                                else:
+                                    self.downloader.get_image(url,  file, lat_tx, lon_tx, False)
                             else:
-                                self.downloader.get_image(url,  file, lat_tx, lon_tx, False)
-                        else:
-                            self.set_progress()
-                            self.download_finished(False)
-                    except:
-                        QMessageBox.warning(None,  self.tr("Error"),  self.tr("Wrong definition of coordinates"))
-                        return False
-        
-        return True
+                                self.set_progress()
+                                self.download_finished(False)
+                        except:
+                            QMessageBox.warning(None,  self.tr("Error"),  self.tr("Wrong definition of coordinates"))
+                            return False
+            
+            return True
             
             
     def download_finished(self,  show_message=True,  abort=False):
@@ -187,8 +186,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
-        self.progressTableWidget.clear()
-        self.row_count = 0
         self.button_box.setEnabled(False)
         self.get_tiles()
 

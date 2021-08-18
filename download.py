@@ -40,6 +40,7 @@ class Download:
         self.nam.authenticationRequired.connect(self.set_credentials)
         self.nam.finished.connect(self.reply_finished)           
         id_error = False
+        self.shown = False
             
     def layer_exists(self,  name):            
         
@@ -60,6 +61,7 @@ class Download:
             reply = self.nam.get(req)              
             
     def set_credentials(self, reply, authenticator):
+        self.shown = True
         if not  self.request_is_aborted:
             self.get_settings()
             self.login = Login(self.username,  self.password)  
@@ -77,7 +79,7 @@ class Download:
 
      
     def reply_finished(self, reply):    
-        shown = False
+        
         if reply != None:
             possibleRedirectUrl = reply.attribute(QNetworkRequest.RedirectionTargetAttribute)
             
@@ -94,7 +96,7 @@ class Download:
                     reply.abort()
                     reply.deleteLater()
                         
-                elif reply.error() ==  QNetworkReply.NoError and self.login_accepted:
+                elif reply.error() ==  QNetworkReply.NoError:
                     result = reply.readAll()
                     f = open(self.filename, 'wb')
                     f.write(result)
@@ -113,18 +115,6 @@ class Download:
                         
                 # Clean up. */
                     reply.deleteLater()
-                
-                else:
-                    if not shown:
-                        url = "https://urs.earthdata.nasa.gov/oauth/authorize?scope=uid&app_type=401&response_type=code&redirect_uri=https%3A%2F%2Fe4ftl01.cr.usgs.gov%2Foauth"
-                        res = QMessageBox.warning(
-                            None,
-                            "Service not available",
-                            """Sorry, the Earthdata Service is currently unavailable. <br>
-    For further informations please open <a href="%s">NASA Earth data Service</a>""" % url )
-                    shown = True
-                    self.parent.button_box.setEnabled(True)
-                    
                     
     def progress(self,  akt,  max,  reply):
         is_image = QFileInfo(reply.url().path()).completeSuffix() == 'SRTMGL1.hgt.zip'
