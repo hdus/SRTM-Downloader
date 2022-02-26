@@ -62,17 +62,11 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.cancelled = False
         self.dir = tempfile.gettempdir()
         self.btn_download.setEnabled(False)
-        
-        self.int_validator = QIntValidator()
-        self.lne_east.setValidator(self.int_validator)
-        self.lne_west.setValidator(self.int_validator)
-        self.lne_north.setValidator(self.int_validator)
-        self.lne_south.setValidator(self.int_validator)
-        
-        self.lne_east.textChanged.connect(self.coordinates_valid)
-        self.lne_west.textChanged.connect(self.coordinates_valid)
-        self.lne_north.textChanged.connect(self.coordinates_valid)
-        self.lne_south.textChanged.connect(self.coordinates_valid)
+              
+        self.spb_east.valueChanged.connect(self.coordinates_valid)
+        self.spb_west.valueChanged.connect(self.coordinates_valid)
+        self.spb_north.valueChanged.connect(self.coordinates_valid)
+        self.spb_south.valueChanged.connect(self.coordinates_valid)
         
         self.overall_progressBar.setValue(0)
         self.downloader = Download(self,  self.iface)
@@ -101,20 +95,39 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             
         extent = xform.transform(self.iface.mapCanvas().extent())        
 
-        self.lne_west.setText(str(int(math.floor(extent.xMinimum()))))
-        self.lne_east.setText(str(math.ceil(extent.xMaximum())))
-        self.lne_south.setText(str(int(math.floor(extent.yMinimum()))))
-        self.lne_north.setText(str(math.ceil(extent.yMaximum())))
+        self.spb_west.setValue(extent.xMinimum())
+        self.spb_east.setValue(extent.xMaximum())
+        self.spb_south.setValue(extent.yMinimum())
+        self.spb_north.setValue(extent.yMaximum())
 
     def coordinates_valid(self,  text):
-        if self.lne_west.text() != '' and self.lne_east.text() != '' and self.lne_south.text() != '' and self.lne_north.text() != '':
-            self.btn_download.setEnabled(True)
-        else:
+        if self.spb_north.value() < -56 and self.spb_south.value() < -56: 
+            res = QMessageBox.warning(
+                None,
+                self.tr("Box out of covered area"),
+                self.tr("""The area you have defined is completely outside the area covered by the SRTM tiles. """),
+                QMessageBox.StandardButtons(
+                    QMessageBox.Cancel))
             self.btn_download.setEnabled(False)
+        elif self.spb_north.value() > 59 or self.spb_south.value() < -56 and self.spb_north.value() != 0:
+            res = QMessageBox.warning(
+                None,
+                self.tr("Box out of covered area"),
+                self.tr("""The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?"""),
+                QMessageBox.StandardButtons(
+                    QMessageBox.No |
+                    QMessageBox.Yes))            
+            if res == QMessageBox.Yes:
+                self.btn_download.setEnabled(True)
+            else:
+                self.btn_download.setEnabled(False)
+        else:
+            self.btn_download.setEnabled(True)
+        
 
     def get_tiles(self):
-            lat_diff = abs(int(self.lne_north.text()) - int(self.lne_south.text()))
-            lon_diff = abs(int(self.lne_east.text()) - int(self.lne_west.text()))
+            lat_diff = abs(self.spb_north.value() - self.spb_south.value())
+            lon_diff = abs(self.spb_east.value() - self.spb_west.value())
             self.n_tiles = lat_diff * lon_diff
             self.image_counter = 0
             self.init_progress()
@@ -123,8 +136,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             self.overall_progressBar.setMaximum(self.n_tiles)
             self.overall_progressBar.setValue(0)
             
-            for lat in range(int(self.lne_south.text()), int(self.lne_north.text())):
-                for lon in range(int(self.lne_west.text()), int(self.lne_east.text())):
+            for lat in range(self.spb_south.value(), self.spb_north.value()):
+                for lon in range(self.spb_west.value(), self.spb_east.value()):
                         if lon < 10 and lon >= 0:
                             lon_tx = "E00%s" % lon
                         elif lon >= 10 and lon < 100:
