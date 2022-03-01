@@ -184,7 +184,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
     def download_finished(self,  show_message=True,  abort=False):
         if self.n_tiles == self.overall_progressBar.value() or abort:
             if show_message:
-                if self.is_error != None:
+                if self.is_error != None and not "server replied: Not Found" in self.is_error:
                     QMessageBox.information(None, 'Error',  self.is_error)
                 else:
                     QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
