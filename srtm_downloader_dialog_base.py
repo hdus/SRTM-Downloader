@@ -95,10 +95,10 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             
         extent = xform.transform(self.iface.mapCanvas().extent())        
 
-        self.spb_west.setValue(extent.xMinimum())
-        self.spb_east.setValue(extent.xMaximum())
-        self.spb_south.setValue(extent.yMinimum())
-        self.spb_north.setValue(extent.yMaximum())
+        self.spb_west.setValue(math.floor(extent.xMinimum()))
+        self.spb_east.setValue(math.ceil(extent.xMaximum()))
+        self.spb_south.setValue(math.floor(extent.yMinimum()))
+        self.spb_north.setValue(math.ceil(extent.yMaximum()))
 
     def coordinates_valid(self,  text):
         if self.spb_north.value() < -56 and self.spb_south.value() < -56: 
@@ -128,6 +128,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
     def get_tiles(self):
             lat_diff = abs(self.spb_north.value() - self.spb_south.value())
             lon_diff = abs(self.spb_east.value() - self.spb_west.value())
+            print (lat_diff)
+            print (lon_diff)
             self.n_tiles = lat_diff * lon_diff
             self.image_counter = 0
             self.init_progress()
