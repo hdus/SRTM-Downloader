@@ -33,7 +33,7 @@ class Login(QDialog, FORM_CLASS):
     """
     Class documentation goes here.
     """
-    def __init__(self, username,  password,  parent=None):
+    def __init__(self, username,  password,  opener=None,  parent=None):
         """
         Constructor
         
@@ -43,6 +43,7 @@ class Login(QDialog, FORM_CLASS):
         super(Login, self).__init__(parent)
         self.setupUi(self)
         
+        self.opener = opener
         self.lne_user.setText(username)
         self.lne_password.setText(password)
     
@@ -62,4 +63,5 @@ class Login(QDialog, FORM_CLASS):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
+        self.opener.request_is_aborted = True
         self.reject()

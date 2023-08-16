@@ -76,7 +76,7 @@ class Download:
         self.shown = True
         if not  self.request_is_aborted:
             self.get_settings()
-            self.login = Login(self.username,  self.password)  
+            self.login = Login(self.username,  self.password,  opener=self)  
 
             if self.login.exec_():        
                 self.authenticator = authenticator
