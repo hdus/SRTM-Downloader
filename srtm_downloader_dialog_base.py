@@ -23,16 +23,28 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.core import QgsCoordinateReferenceSystem,  QgsCoordinateTransform
 from qgis.PyQt import uic
-from qgis.PyQt import QtNetwork
-from qgis.PyQt.QtCore import pyqtSlot,  Qt,  QUrl,  QFileInfo
-from qgis.PyQt.QtGui import QIntValidator
-from qgis.PyQt.QtWidgets import QDialog,  QMessageBox,  QTableWidgetItem,  QProgressBar,  QApplication,  QFileDialog
+from qgis.core import (QgsCoordinateReferenceSystem,  
+                                      QgsCoordinateTransform,  
+                                      QgsProject, 
+                                      QgsRasterLayer)
+                                      
+from qgis.PyQt.QtCore import (pyqtSlot,  
+                                                     Qt,  
+                                                     QFileInfo)
+                                      
+from qgis.PyQt.QtWidgets import (QDialog,  
+                                                            QMessageBox,  
+                                                            QTableWidgetItem,  
+                                                            QProgressBar, 
+                                                            QApplication,  
+                                                            QFileDialog)                                      
+
 from .about.do_about import About
 from .about.metadata import Metadata
 from .download import Download
 
+import processing
 import math
 import os
 import tempfile
@@ -74,6 +86,10 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.row_count = 0
         self.progressTableWidget.setColumnCount(2)
         self.setWindowTitle("SRTM-Downloader %s" % (Metadata().version()))
+        self.lne_SRTM_path.setText(tempfile.gettempdir())
+        self.min_tile = ''
+        self.max_tile = ''
+        
                 
     @pyqtSlot()
     def on_button_box_rejected(self):
@@ -124,12 +140,41 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         else:
             self.btn_download.setEnabled(True)
         
+    def create_vrt(self):
+        # Das Projektobjekt abrufen
+        project = QgsProject.instance()
+        group_name = 'srtm_images'
+        group = QgsProject.instance().layerTreeRoot().findGroup(group_name)        
+        
+        # Eine Liste zum Speichern der Rasterlayer erstellen
+        raster_layers = []
+
+        for child in group.children():
+            raster_layers.append(child.name())
+                
+        print (raster_layers)
+        outputs = {}
+        
+        # Build virtual raster
+        alg_params = {
+            'ADD_ALPHA': False,
+            'ASSIGN_CRS': None,
+            'EXTRA': '',
+            'INPUT': raster_layers,
+            'PROJ_DIFFERENCE': False,
+            'RESAMPLING': 0,  # Nearest Neighbour
+            'RESOLUTION': 0,  # Average
+            'SEPARATE': False,
+            'SRC_NODATA': '',
+            'OUTPUT': '{}/{}_{}.vrt'.format(self.lne_SRTM_path.text(),  self.min_tile,  self.max_tile)
+        }
+        outputs['BuildVirtualRaster'] = processing.run('gdal:buildvirtualraster', alg_params, is_child_algorithm=True)
+        raster_layer = QgsRasterLayer(outputs['BuildVirtualRaster']['OUTPUT'], '{}_{}'.format(self.min_tile,  self.max_tile))
+        QgsProject.instance().addMapLayer(raster_layer)
 
     def get_tiles(self):
             lat_diff = abs(self.spb_north.value() - self.spb_south.value())
             lon_diff = abs(self.spb_east.value() - self.spb_west.value())
-            print (lat_diff)
-            print (lon_diff)
             self.n_tiles = lat_diff * lon_diff
             self.image_counter = 0
             self.init_progress()
@@ -162,10 +207,13 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                         elif lat <= -10 and lat > -100:
                             lat_tx = "S%s" % abs(lat)
                         
+                        if self.min_tile == '':
+                            self.min_tile = '%s%s'  % (lat_tx, lon_tx)
+                        self.max_tile = '%s%s'  % (lat_tx, lon_tx)
+                        
                         try:
                             url = "https://e4ftl01.cr.usgs.gov/MEASURES/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
                             file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
-                            
                             if not self.downloader.layer_exists('%s%s.hgt' % (lat_tx,  lon_tx)): 
                                 if self.chk_load_image.checkState() == Qt.Checked:
                                     self.downloader.get_image(url,  file, lat_tx, lon_tx, True)
@@ -187,6 +235,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                 if self.is_error != None and not "server replied: Not Found" in self.is_error:
                     QMessageBox.information(None, 'Error',  self.is_error)
                 else:
+                    self.create_vrt()
                     QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
                 
             self.button_box.setEnabled(True)
@@ -201,6 +250,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
+        self.min_tile = ''
+        self.max_tile = ''
         self.button_box.setEnabled(False)
         self.get_tiles()
 
@@ -233,6 +284,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         
     def add_download_progress(self,  reply):
         is_image = QFileInfo(reply.url().path()).completeSuffix() == 'SRTMGL1.hgt.zip'
+        
         if is_image:
             self.progressTableWidget.setRowCount(self.row_count+1)
             self.progressTableWidget.setItem(self.row_count,  0,  QTableWidgetItem(QFileInfo(reply.url().path()).baseName(),  Qt.DisplayRole))

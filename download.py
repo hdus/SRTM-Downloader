@@ -20,10 +20,17 @@
 # *                                                                         *
 # ***************************************************************************/
 #"""
-from qgis.core import QgsProject
-from qgis.PyQt.QtCore import QUrl,  QFileInfo,  QSettings
-from qgis.PyQt.QtWidgets import QMessageBox
-from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply,  QNetworkAccessManager
+from qgis.core import (QgsProject,  
+                                       QgsRasterLayer)
+                                       
+from qgis.PyQt.QtCore import (QUrl,  
+                                                     QFileInfo,  
+                                                     QSettings)
+                                                     
+from qgis.PyQt.QtNetwork import (QNetworkRequest, 
+                                                            QNetworkReply,  
+                                                            QNetworkAccessManager)
+                                                            
 from .srtm_downloader_login import Login
 import os
       
@@ -41,6 +48,11 @@ class Download:
         self.nam.finished.connect(self.reply_finished)           
         id_error = False
         self.shown = False
+        self.root = QgsProject.instance().layerTreeRoot()
+        self.group = self.root.findGroup('srtm_images')
+        
+        if self.group is None:
+            self.group = QgsProject.instance().layerTreeRoot().addGroup('srtm_images')
             
     def layer_exists(self,  name):            
         
@@ -49,7 +61,7 @@ class Download:
         else:
             return False
         
-
+            
     def get_image(self,  url,  filename,  lat_tx,  lon_tx, load_to_canvas=True):
         layer_name = "%s%s.hgt" % (lat_tx,  lon_tx)
         
@@ -107,7 +119,13 @@ class Download:
                     
                     try:
                         if not self.layer_exists(file):
-                            self.iface.addRasterLayer(out_image, file)
+                            raster_layer = QgsRasterLayer(out_image, file)
+                            QgsProject.instance().addMapLayer(raster_layer)
+                            layer = self.root.findLayer(raster_layer.id())
+                            clone = layer.clone()
+                            self.group.insertChildNode(0,  clone)
+                            self.root.removeChildNode(layer)
+                            clone.legend().setExpanded(False)                            
                     except:
                         pass
                         
