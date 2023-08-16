@@ -27,6 +27,7 @@ changelog=
   3.2.0
   - The downloaded images are loaded into the srtm_images group.
   - After successful download a VRT is generated from the images.  
+  - Clean download cancellation introduced.
   3.1.17
   - Bugfixing
   3.1.16
