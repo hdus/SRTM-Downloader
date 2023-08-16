@@ -88,7 +88,7 @@ class Download:
         else:
             reply.abort()
             self.request_is_aborted = True
-            self.parent.download_finished(show_message=False,  abort=True)
+            self.parent.download_finished(show_message=True,  abort=True)
 
     def abort_reply(self):
         for reply in self.reply_list:
@@ -98,7 +98,7 @@ class Download:
         if len(self.reply_list) > 0:
             self.parent.download_finished(show_message=False,  abort=True)
         else:
-            self.parent.download_finished(show_message=True,  abort=False)
+            self.parent.download_finished(show_message=False,  abort=True)
             
         self.reply_list = []
         self.request_is_aborted = True

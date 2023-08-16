@@ -97,7 +97,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
-        self.downloader.abort_reply()
+        if self.downloader.request_is_aborted:
+            self.downloader.abort_reply()
         self.close()
 
     @pyqtSlot()
@@ -221,7 +222,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                                     self.downloader.get_image(url,  file, lat_tx, lon_tx, False)
                             else:
                                 self.set_progress()
-                                self.download_finished(False)
+                                self.download_finished(show_message = False,  abort = False)
                         except:
                             QMessageBox.warning(None,  self.tr("Error"),  self.tr("Wrong definition of coordinates"))
                             return False
@@ -230,11 +231,12 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             
             
     def download_finished(self,  show_message=True,  abort=False):
+        
         if self.n_tiles == self.overall_progressBar.value() or abort:
             if show_message:
                 if self.is_error != None and not "server replied: Not Found" in self.is_error:
                     QMessageBox.information(None, 'Error',  self.is_error)
-            elif abort:
+            elif abort or (show_message and abort):
                     QMessageBox.information(None, self.tr("Abort"),  self.tr('Download terminated'))
             else:
                     self.create_vrt()
@@ -303,7 +305,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                     
             if progress_value == self.n_tiles:
                 self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (progress_value,  self.n_tiles)))
-                self.download_finished(show_message=True)
+                self.download_finished(show_message=False,  abort=False)
         else:
             self.overall_progressBar.setMaximum(all_val)
             self.overall_progressBar.setValue(akt_val)

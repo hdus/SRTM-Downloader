@@ -64,5 +64,5 @@ class Login(QDialog, FORM_CLASS):
         """
         # TODO: not implemented yet
         self.opener.request_is_aborted = True
-#        self.opener.abort_reply()
+        self.opener.abort_reply()
         self.reject()
