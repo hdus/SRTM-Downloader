@@ -46,10 +46,10 @@ class Download:
         self.nam = QNetworkAccessManager()
         self.nam.authenticationRequired.connect(self.set_credentials)
         self.nam.finished.connect(self.reply_finished)           
-        id_error = False
         self.shown = False
         self.root = QgsProject.instance().layerTreeRoot()
         self.group = self.root.findGroup('srtm_images')
+        self.reply_list = []
         
         if self.group is None:
             self.group = QgsProject.instance().layerTreeRoot().addGroup('srtm_images')
@@ -70,7 +70,8 @@ class Download:
             self.load_to_canvas = True       
             download_url = QUrl(url)    
             req = QNetworkRequest(download_url)
-            reply = self.nam.get(req)              
+            reply = self.nam.get(req)       
+            self.reply_list.append(reply)       
             
     def set_credentials(self, reply, authenticator):
         self.shown = True
@@ -89,50 +90,65 @@ class Download:
             self.request_is_aborted = True
             self.parent.download_finished(show_message=False,  abort=True)
 
+    def abort_reply(self):
+        for reply in self.reply_list:
+            reply.abort()
+            reply.deleteLater()
+        
+        if len(self.reply_list) > 0:
+            self.parent.download_finished(show_message=False,  abort=True)
+        else:
+            self.parent.download_finished(show_message=True,  abort=False)
+            
+        self.reply_list = []
+        self.request_is_aborted = True
      
     def reply_finished(self, reply):    
-        
-        if reply != None:
-            possibleRedirectUrl = reply.attribute(QNetworkRequest.RedirectionTargetAttribute)
-            
-        # If the URL is not empty, we're being redirected. 
-            if possibleRedirectUrl != None:
-                request = QNetworkRequest(possibleRedirectUrl)
-                result = self.nam.get(request)  
-                self.parent.add_download_progress(reply)
-                result.downloadProgress.connect(lambda done,  all,  reply=result: self.progress(done,  all,  reply))
-            else:             
-                if reply.error() != None and reply.error() != QNetworkReply.NoError:
-                    self.parent.is_error = reply.errorString()
-                    self.parent.set_progress()
-                    reply.abort()
-                    reply.deleteLater()
+        if not self.request_is_aborted:
+            if reply != None:
+                possibleRedirectUrl = reply.attribute(QNetworkRequest.RedirectionTargetAttribute)
+                
+            # If the URL is not empty, we're being redirected. 
+                if possibleRedirectUrl != None:
+                    request = QNetworkRequest(possibleRedirectUrl)
+                    result = self.nam.get(request)  
+                    self.parent.add_download_progress(reply)
+                    result.downloadProgress.connect(lambda done,  all,  reply=result: self.progress(done,  all,  reply))
+                    if reply in self.reply_list:
+                        self.reply_list.remove(reply)
+                        reply.deleteLater()                    
+                else:             
+                    if reply.error() != None and reply.error() != QNetworkReply.NoError:
+                        self.parent.is_error = reply.errorString()
+                        self.parent.set_progress()
+                        reply.abort()
+                        reply.deleteLater()
+                            
+                    elif reply.error() ==  QNetworkReply.NoError:
+                        result = reply.readAll()
+                        f = open(self.filename, 'wb')
+                        f.write(result)
+                        f.close()      
                         
-                elif reply.error() ==  QNetworkReply.NoError:
-                    result = reply.readAll()
-                    f = open(self.filename, 'wb')
-                    f.write(result)
-                    f.close()      
-                    
-                    out_image = self.unzip(self.filename)
-                    (dir, file) = os.path.split(out_image)
-                    
-                    try:
-                        if not self.layer_exists(file):
-                            raster_layer = QgsRasterLayer(out_image, file)
-                            QgsProject.instance().addMapLayer(raster_layer)
-                            layer = self.root.findLayer(raster_layer.id())
-                            clone = layer.clone()
-                            self.group.insertChildNode(0,  clone)
-                            self.root.removeChildNode(layer)
-                            clone.legend().setExpanded(False)                            
-                    except:
-                        pass
+                        out_image = self.unzip(self.filename)
+                        (dir, file) = os.path.split(out_image)
                         
-                    self.parent.set_progress()  
-                        
-                # Clean up. */
-                    reply.deleteLater()
+                        try:
+                            if not self.layer_exists(file):
+                                raster_layer = QgsRasterLayer(out_image, file)
+                                QgsProject.instance().addMapLayer(raster_layer)
+                                layer = self.root.findLayer(raster_layer.id())
+                                clone = layer.clone()
+                                self.group.insertChildNode(0,  clone)
+                                self.root.removeChildNode(layer)
+                                clone.legend().setExpanded(False)                            
+                        except:
+                            pass
+                            
+                        self.parent.set_progress()  
+                            
+                    # Clean up. */
+                        reply.deleteLater()
                     
     def progress(self,  akt,  max,  reply):
         is_image = QFileInfo(reply.url().path()).completeSuffix() == 'SRTMGL1.hgt.zip'

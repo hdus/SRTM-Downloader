@@ -89,6 +89,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.lne_SRTM_path.setText(tempfile.gettempdir())
         self.min_tile = ''
         self.max_tile = ''
+        self.n_tiles = 0
         
                 
     @pyqtSlot()
@@ -96,6 +97,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
+        self.downloader.abort_reply()
         self.close()
 
     @pyqtSlot()
@@ -142,7 +144,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         
     def create_vrt(self):
         # Das Projektobjekt abrufen
-        project = QgsProject.instance()
         group_name = 'srtm_images'
         group = QgsProject.instance().layerTreeRoot().findGroup(group_name)        
         
@@ -152,7 +153,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         for child in group.children():
             raster_layers.append(child.name())
                 
-        print (raster_layers)
         outputs = {}
         
         # Build virtual raster
@@ -234,7 +234,9 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             if show_message:
                 if self.is_error != None and not "server replied: Not Found" in self.is_error:
                     QMessageBox.information(None, 'Error',  self.is_error)
-                else:
+            elif abort:
+                    QMessageBox.information(None, self.tr("Abort"),  self.tr('Download terminated'))
+            else:
                     self.create_vrt()
                     QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
                 
@@ -252,7 +254,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         self.min_tile = ''
         self.max_tile = ''
-        self.button_box.setEnabled(False)
+        self.button_box.setEnabled(True)
         self.get_tiles()
 
     @pyqtSlot()
@@ -283,6 +285,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         
         
     def add_download_progress(self,  reply):
+        
         is_image = QFileInfo(reply.url().path()).completeSuffix() == 'SRTMGL1.hgt.zip'
         
         if is_image:
