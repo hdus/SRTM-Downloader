@@ -173,9 +173,15 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             'SRC_NODATA': '',
             'OUTPUT': '{}/{}_{}.vrt'.format(self.lne_SRTM_path.text(),  self.min_tile,  self.max_tile)
         }
-        outputs['BuildVirtualRaster'] = processing.run('gdal:buildvirtualraster', alg_params, is_child_algorithm=True)
-        raster_layer = QgsRasterLayer(outputs['BuildVirtualRaster']['OUTPUT'], '{}_{}'.format(self.min_tile,  self.max_tile))
-        QgsProject.instance().addMapLayer(raster_layer)
+        
+        try:
+            outputs['BuildVirtualRaster'] = processing.run('gdal:buildvirtualraster', alg_params, is_child_algorithm=True)
+            raster_layer = QgsRasterLayer(outputs['BuildVirtualRaster']['OUTPUT'], '{}_{}'.format(self.min_tile,  self.max_tile))
+            QgsProject.instance().addMapLayer(raster_layer)
+        except:
+            QMessageBox.information(None,  
+                                                      self.tr('Hint'), 
+                                                      self.tr('To calculate a contiguous VRT please activate the Processing Plugin.'))
 
     def get_tiles(self):
             lat_diff = abs(self.spb_north.value() - self.spb_south.value())
