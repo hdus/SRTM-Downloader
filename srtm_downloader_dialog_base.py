@@ -38,7 +38,8 @@ from qgis.PyQt.QtWidgets import (QDialog,
                                                             QTableWidgetItem,  
                                                             QProgressBar, 
                                                             QApplication,  
-                                                            QFileDialog)                                      
+                                                            QFileDialog, 
+                                                            QDialogButtonBox)                                      
 
 from .about.do_about import About
 from .about.metadata import Metadata
@@ -74,6 +75,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.cancelled = False
         self.dir = tempfile.gettempdir()
         self.btn_download.setEnabled(False)
+        self.request_is_aborted = False
+        self.is_error = None
               
         self.spb_east.valueChanged.connect(self.coordinates_valid)
         self.spb_west.valueChanged.connect(self.coordinates_valid)
@@ -90,16 +93,17 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.min_tile = ''
         self.max_tile = ''
         self.n_tiles = 0
-        
+        self.button_box.button(QDialogButtonBox.Close).setEnabled(True)
+        self.button_box.button(QDialogButtonBox.Abort).setEnabled(False)
                 
     @pyqtSlot()
     def on_button_box_rejected(self):
         """
         Slot documentation goes here.
         """
-        if self.downloader.request_is_aborted:
-            self.downloader.abort_reply()
-        self.close()
+        self.downloader.request_is_aborted = True
+        self.downloader.abort_reply()
+        self.reject()
 
     @pyqtSlot()
     def on_btn_extent_clicked(self):
@@ -241,6 +245,9 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             else:
                     self.create_vrt()
                     QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
+                    self.button_box.button(QDialogButtonBox.Close).setEnabled(True)
+                    self.button_box.button(QDialogButtonBox.Abort).setEnabled(False)
+
                 
             self.button_box.setEnabled(True)
             self.n_tiles = 0
@@ -257,6 +264,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.min_tile = ''
         self.max_tile = ''
         self.button_box.setEnabled(True)
+        self.button_box.button(QDialogButtonBox.Close).setEnabled(False)
+        self.button_box.button(QDialogButtonBox.Abort).setEnabled(True)
         self.get_tiles()
 
     @pyqtSlot()

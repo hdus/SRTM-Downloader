@@ -53,7 +53,7 @@ class Download:
         
         if self.group is None:
             self.group = QgsProject.instance().layerTreeRoot().addGroup('srtm_images')
-            
+        
     def layer_exists(self,  name):            
         
         if len(QgsProject.instance().mapLayersByName(name)) != 0:
@@ -70,8 +70,8 @@ class Download:
             self.load_to_canvas = True       
             download_url = QUrl(url)    
             req = QNetworkRequest(download_url)
-            reply = self.nam.get(req)       
-            self.reply_list.append(reply)       
+            reply = self.nam.get(req)      
+            self.reply_list.append(reply)    
             
     def set_credentials(self, reply, authenticator):
         self.shown = True
@@ -86,23 +86,20 @@ class Download:
                 if self.login.chk_save_credentials.isChecked():
                     self.set_settings()
         else:
-            reply.abort()
+            self.abort_reply()
             self.request_is_aborted = True
             self.parent.download_finished(show_message=True,  abort=True)
 
     def abort_reply(self):
+
+        self.parent.request_is_aborted = True
         for reply in self.reply_list:
             reply.abort()
             reply.deleteLater()
-        
-        if len(self.reply_list) > 0:
-            self.parent.download_finished(show_message=False,  abort=True)
-        else:
-            self.parent.download_finished(show_message=False,  abort=True)
-            
-        self.reply_list = []
-        self.request_is_aborted = True
-     
+            self.reply_list.remove(reply)
+
+        self.parent.download_finished(show_message=True,  abort=True)
+                 
     def reply_finished(self, reply):    
         if not self.request_is_aborted:
             if reply != None:
@@ -113,15 +110,13 @@ class Download:
                     request = QNetworkRequest(possibleRedirectUrl)
                     result = self.nam.get(request)  
                     self.parent.add_download_progress(reply)
-                    result.downloadProgress.connect(lambda done,  all,  reply=result: self.progress(done,  all,  reply))
-                    if reply in self.reply_list:
-                        self.reply_list.remove(reply)
-                        reply.deleteLater()                    
+                    result.downloadProgress.connect(lambda done,  all,  reply=result: self.progress(done,  all,  reply))              
                 else:             
                     if reply.error() != None and reply.error() != QNetworkReply.NoError:
                         self.parent.is_error = reply.errorString()
                         self.parent.set_progress()
                         reply.abort()
+                        self.reply_list.remove(reply)
                         reply.deleteLater()
                             
                     elif reply.error() ==  QNetworkReply.NoError:
@@ -129,7 +124,6 @@ class Download:
                         f = open(self.filename, 'wb')
                         f.write(result)
                         f.close()      
-                        
                         out_image = self.unzip(self.filename)
                         (dir, file) = os.path.split(out_image)
                         
@@ -174,14 +168,12 @@ class Download:
             if value > i:
                 self.parent.progress_widget_item_list[key] = value-1
         
-        
     def unzip(self,  zip_file):
         import zipfile
         (dir, file) = os.path.split(zip_file)
 
         if not dir.endswith(':') and not os.path.exists(dir):
             os.mkdir(dir)
-        
         try:
             zf = zipfile.ZipFile(zip_file)
     
@@ -203,7 +195,6 @@ class Download:
             curdir = os.path.join(basedir, dir)
             if not os.path.exists(curdir):
                 os.mkdir(curdir)           
-
 
     def _listdirs(self, file):
         """ Grabs all the directories in the zip structure
@@ -231,4 +222,3 @@ class Download:
         mySettingsPath = "/SRTM-Downloader"
         self.username = settings.value(mySettingsPath+"/username")
         self.password = settings.value(mySettingsPath+"/password")        
-        
