@@ -95,8 +95,10 @@ class Download:
         self.parent.request_is_aborted = True
         for reply in self.reply_list:
             reply.abort()
+            if reply in self.reply_list:
+                self.reply_list.remove(reply)
+            
             reply.deleteLater()
-            self.reply_list.remove(reply)
 
         self.parent.download_finished(show_message=True,  abort=True)
                  
@@ -116,9 +118,10 @@ class Download:
                         self.parent.is_error = reply.errorString()
                         self.parent.set_progress()
                         reply.abort()
-                        self.reply_list.remove(reply)
+                        if reply in self.reply_list:
+                            self.reply_list.remove(reply)
                         reply.deleteLater()
-                            
+                        
                     elif reply.error() ==  QNetworkReply.NoError:
                         result = reply.readAll()
                         f = open(self.filename, 'wb')
