@@ -10,7 +10,7 @@ name=SRTM-Downloader
 qgisMinimumVersion=3.00
 qgisMaximumVersion=3.99
 description=Downloads SRTM Tiles from NASA Server
-version=3.2.0
+version=3.2.1
 author=Dr. Horst Duester
 email=horst.duester@kappasys.ch
 
@@ -24,6 +24,8 @@ repository=https://github.com/hdus/SRTM-Downloader
 
 # Uncomment the following line and add your changelog:
 changelog=
+  3.2.1
+  - [FIX] #27 by check list contains element - Provided by GitHub User Input-BDF 
   3.2.0
   - The downloaded images are loaded into the srtm_images group.
   - After successful download a VRT is generated from the images.  
