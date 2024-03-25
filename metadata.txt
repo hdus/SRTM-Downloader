@@ -24,6 +24,8 @@ repository=https://github.com/hdus/SRTM-Downloader
 
 # Uncomment the following line and add your changelog:
 changelog=
+  3.2.2 
+  - [FIX] #32
   3.2.1
   - [FIX] #27 by check list contains element - Provided by GitHub User Input-BDF 
   3.2.0
