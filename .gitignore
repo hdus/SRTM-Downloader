@@ -6,5 +6,6 @@
 qgiscloud.zip
 createdist.sh
 exclude.lst
-.eric6project
+.eric7project/
+.jedi/
 __pycache__
