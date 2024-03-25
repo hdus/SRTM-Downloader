@@ -21,7 +21,8 @@
 # ***************************************************************************/
 #"""
 from qgis.core import (QgsProject,  
-                                       QgsRasterLayer)
+                                       QgsRasterLayer, 
+                                       QgsNetworkAccessManager)
                                        
 from qgis.PyQt.QtCore import (QUrl,  
                                                      QFileInfo,  
@@ -44,6 +45,7 @@ class Download:
         self.all_download = 0
         self.request_is_aborted = False
         self.nam = QNetworkAccessManager()
+#        self.nam = QgsNetworkAccessManager.instance()  
         self.nam.authenticationRequired.connect(self.set_credentials)
         self.nam.finished.connect(self.reply_finished)           
         self.shown = False
