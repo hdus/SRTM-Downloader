@@ -59,7 +59,7 @@
        <item>
         <widget class="QPushButton" name="btn_extent">
          <property name="text">
-          <string>Set canvas extent</string>
+          <string>Set to map extent</string>
          </property>
         </widget>
        </item>
