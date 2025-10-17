@@ -5,49 +5,49 @@
     <message>
         <location filename="../about/do_about.py" line="38" />
         <source>Author</source>
-        <translation>Autor</translation>
+        <translation>المؤلف</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="39" />
         <source>Contact</source>
-        <translation>Kontakt</translation>
+        <translation>اتصل بنا</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="40" />
         <source>Change Log</source>
-        <translation>Änderungsprotokoll</translation>
+        <translation>سجل التغيير</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="45" />
         <source>&lt;p&gt;&lt;center&gt;&lt;b&gt;Author(s):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;center&gt;&lt;b&gt;Autor(en):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;center&gt;&lt;b&gt;المؤلف (المؤلفون):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="48" />
         <source>Sourcepole AG - Linux &amp; Open Source Solutions
 </source>
-        <translation>Sourcepole AG - Linux &amp; Open Source Lösungen
+        <translation>Sourcepole AG - حلول لينكس والحلول مفتوحة المصدر
 </translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="49" />
         <source>Weberstrasse 5, 8004 Zurich, Switzerland
 </source>
-        <translation>Weberstrasse 5, 8004 Zurich, Switzerland
+        <translation>فيبرشتراسه 5، 8004 زيورخ، سويسرا
 </translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="52" />
         <source>Contact:
 </source>
-        <translation>Kontakt:
+        <translation>اتصل بـ
 </translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="55" />
         <source>Plugin Resources:
 </source>
-        <translation>Plugin-Ressourcen:
+        <translation>موارد المكوّن الإضافي:
 </translation>
     </message>
 </context>
@@ -56,22 +56,22 @@
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
         <source>Login</source>
-        <translation>Anmeldung</translation>
+        <translation>تسجيل الدخول</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;https://urs.earthdata.nasa.gov is requesting your username and password. If you do not have a Earthdata Login, create one at &lt;/p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;https://urs.earthdata.nasa.gov fragt nach Ihrem Benutzernamen und Passwort. Wenn Sie noch kein Earthdata-Login haben, erstellen Sie eines unter &lt;/p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;/&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;https://urs.earthdata.nasa.gov يطلب اسم المستخدم وكلمة المرور الخاصة بك. إذا لم يكن لديك تسجيل دخول إلى Earthdata، فأنشئ واحدًا على &lt;/p&gt;&lt;p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
         <source>Save Credentials</source>
-        <translation>Berechtigungsnachweise speichern</translation>
+        <translation>حفظ بيانات الاعتماد</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
         <source>Username:</source>
-        <translation>Username:</translation>
+        <translation>اسم المستخدم:</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
@@ -79,13 +79,13 @@
 HINT:
 When SRTM is not downloading rasters, please check your account at the earth data website. When you have not used the service for a longer time, a password change is required for security reasons.</source>
         <translation>
-TIPP:
-Wenn SRTM keine Raster herunterlädt, überprüfen Sie bitte Ihr Konto auf der Erddaten-Website. Wenn Sie den Dienst längere Zeit nicht genutzt haben, ist aus Sicherheitsgründen eine Passwortänderung erforderlich.</translation>
+تلميح:
+عندما لا تقوم SRTM بتحميل النقط، يرجى التحقق من حسابك على موقع بيانات الأرض. عندما لا تستخدم الخدمة لفترة أطول، يلزم تغيير كلمة المرور لأسباب أمنية.</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
         <source>Password:</source>
-        <translation>Kennwort:</translation>
+        <translation>كلمة المرور</translation>
     </message>
 </context>
 <context>
@@ -93,12 +93,12 @@ Wenn SRTM keine Raster herunterlädt, überprüfen Sie bitte Ihr Konto auf der E
     <message>
         <location filename="../srtm_downloader.py" line="67" />
         <source>&amp;SRTM Downloader</source>
-        <translation>&amp;SRTM-Downloader</translation>
+        <translation>&amp;SRTM Downloader</translation>
     </message>
     <message>
         <location filename="../srtm_downloader.py" line="165" />
         <source>SRTM Downloader</source>
-        <translation>SRTM-Downloader</translation>
+        <translation>أداة تنزيل SRTM</translation>
     </message>
 </context>
 <context>
@@ -106,57 +106,57 @@ Wenn SRTM keine Raster herunterlädt, überprüfen Sie bitte Ihr Konto auf der E
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>SRTM Downloader</source>
-        <translation>SRTM-Downloader</translation>
+        <translation>أداة تنزيل SRTM</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>South</source>
-        <translation>Süd</translation>
+        <translation>الجنوب</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Set canvas extent</source>
-        <translation>Leinwandausdehnung festlegen</translation>
+        <translation>تعيين مدى اللوحة القماشية</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>East</source>
-        <translation>Ost</translation>
+        <translation>الشرق</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>North</source>
-        <translation>Norden</translation>
+        <translation>الشمال</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>West</source>
-        <translation>West</translation>
+        <translation>الغرب</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>About</source>
-        <translation>Über</translation>
+        <translation>نبذة عن</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Load Images to QGIS</source>
-        <translation>Bilder in QGIS laden</translation>
+        <translation>تحميل الصور إلى QGIS</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Download</source>
-        <translation>Herunterladen</translation>
+        <translation>تنزيل</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Output-Path:</source>
-        <translation>Ausgangs-Pfad:</translation>
+        <translation>مسار الإخراج:</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>[empty for temporary files]</source>
-        <translation>[leer für temporäre Dateien]</translation>
+        <translation>[فارغة للملفات المؤقتة]</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -167,69 +167,69 @@ Wenn SRTM keine Raster herunterlädt, überprüfen Sie bitte Ihr Konto auf der E
         <location filename="../srtm_downloader_dialog_base.py" line="138" />
         <location filename="../srtm_downloader_dialog_base.py" line="130" />
         <source>Box out of covered area</source>
-        <translation>Box außerhalb des überdachten Bereichs</translation>
+        <translation>صندوق خارج المنطقة المغطاة</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="131" />
         <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
-        <translation>Das von Ihnen definierte Gebiet liegt vollständig außerhalb des von den SRTM-Kacheln abgedeckten Bereichs.</translation>
+        <translation>تقع المنطقة التي حددتها خارج المنطقة التي يغطيها بلاط SRTM تماماً.</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="139" />
         <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
-        <translation>Das von Ihnen definierte Gebiet liegt teilweise außerhalb des von den SRTM-Kacheln abgedeckten Bereichs. Möchten Sie fortfahren?</translation>
+        <translation>المنطقة التي حددتها تقع جزئياً خارج المنطقة التي يغطيها بلاط SRTM. هل ترغب في المتابعة؟</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="183" />
         <source>Hint</source>
-        <translation>Hint</translation>
+        <translation>تلميح</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="184" />
         <source>To calculate a contiguous VRT please activate the Processing Plugin.</source>
-        <translation>Um eine zusammenhängende VRT zu berechnen, aktivieren Sie bitte das Processing Plugin.</translation>
+        <translation>لحساب VRT متجاورة يرجى تنشيط المكون الإضافي للمعالجة.</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="237" />
         <source>Error</source>
-        <translation>Fehler</translation>
+        <translation>خطأ</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="237" />
         <source>Wrong definition of coordinates</source>
-        <translation>Falsche Definition von Koordinaten</translation>
+        <translation>تعريف خاطئ للإحداثيات</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="250" />
         <source>Abort</source>
-        <translation>Abbrechen</translation>
+        <translation>إلغاء</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="250" />
         <source>Download terminated</source>
-        <translation>Download abgebrochen</translation>
+        <translation>تم إنهاء التحميل</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="253" />
         <source>Result</source>
-        <translation>Ergebnis</translation>
+        <translation>النتيجة</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="253" />
         <source>Download completed</source>
-        <translation>Download abgeschlossen</translation>
+        <translation>اكتمل التنزيل</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="284" />
         <source>Open Directory</source>
-        <translation>Verzeichnis öffnen</translation>
+        <translation>الدليل المفتوح</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="322" />
         <location filename="../srtm_downloader_dialog_base.py" line="319" />
         <location filename="../srtm_downloader_dialog_base.py" line="301" />
         <source>Download-Progress: %s of %s images</source>
-        <translation>Download-Fortschritt: %s von %s Bildern</translation>
+        <translation>تقدم التنزيل: %s من %s الصور</translation>
     </message>
 </context>
 <context>
@@ -237,32 +237,32 @@ Wenn SRTM keine Raster herunterlädt, überprüfen Sie bitte Ihr Konto auf der E
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>About</source>
-        <translation>Über</translation>
+        <translation>نبذة عن</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Version:</source>
-        <translation>Version:</translation>
+        <translation>الإصدار:</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>About </source>
-        <translation>Über</translation>
+        <translation>نبذة عن</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Contributors</source>
-        <translation>Mitwirkende</translation>
+        <translation>المساهمون</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Contact</source>
-        <translation>Kontakt</translation>
+        <translation>اتصل بنا</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Change Log</source>
-        <translation>Änderungsprotokoll</translation>
+        <translation>سجل التغيير</translation>
     </message>
 </context>
 </TS>

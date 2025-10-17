@@ -10,44 +10,44 @@
     <message>
         <location filename="../about/do_about.py" line="39" />
         <source>Contact</source>
-        <translation>Kontakt</translation>
+        <translation>Persoană de contact</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="40" />
         <source>Change Log</source>
-        <translation>Änderungsprotokoll</translation>
+        <translation>Jurnal de modificări</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="45" />
         <source>&lt;p&gt;&lt;center&gt;&lt;b&gt;Author(s):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;center&gt;&lt;b&gt;Autor(en):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;&lt;center&gt;&lt;b&gt;Autor(i):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="48" />
         <source>Sourcepole AG - Linux &amp; Open Source Solutions
 </source>
-        <translation>Sourcepole AG - Linux &amp; Open Source Lösungen
+        <translation>Sourcepole AG - Soluții Linux &amp; Open Source
 </translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="49" />
         <source>Weberstrasse 5, 8004 Zurich, Switzerland
 </source>
-        <translation>Weberstrasse 5, 8004 Zurich, Switzerland
+        <translation>Weberstrasse 5, 8004 Zurich, Elveția
 </translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="52" />
         <source>Contact:
 </source>
-        <translation>Kontakt:
+        <translation>Contact:
 </translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="55" />
         <source>Plugin Resources:
 </source>
-        <translation>Plugin-Ressourcen:
+        <translation>Resurse plugin:
 </translation>
     </message>
 </context>
@@ -56,22 +56,22 @@
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
         <source>Login</source>
-        <translation>Anmeldung</translation>
+        <translation>Autentificare</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;https://urs.earthdata.nasa.gov is requesting your username and password. If you do not have a Earthdata Login, create one at &lt;/p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;https://urs.earthdata.nasa.gov fragt nach Ihrem Benutzernamen und Passwort. Wenn Sie noch kein Earthdata-Login haben, erstellen Sie eines unter &lt;/p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;https://urs.earthdata.nasa.gov vă solicită numele de utilizator și parola. Dacă nu aveți un login Earthdata, creați unul la &lt;/p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
         <source>Save Credentials</source>
-        <translation>Berechtigungsnachweise speichern</translation>
+        <translation>Salvați acreditările</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
         <source>Username:</source>
-        <translation>Username:</translation>
+        <translation>Nume utilizator:</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
@@ -79,13 +79,13 @@
 HINT:
 When SRTM is not downloading rasters, please check your account at the earth data website. When you have not used the service for a longer time, a password change is required for security reasons.</source>
         <translation>
-TIPP:
-Wenn SRTM keine Raster herunterlädt, überprüfen Sie bitte Ihr Konto auf der Erddaten-Website. Wenn Sie den Dienst längere Zeit nicht genutzt haben, ist aus Sicherheitsgründen eine Passwortänderung erforderlich.</translation>
+SUGESTIE:
+În cazul în care SRTM nu descarcă rastere, vă rugăm să verificați contul dvs. de pe site-ul web al datelor terestre. În cazul în care nu ați utilizat serviciul pentru o perioadă mai lungă de timp, este necesară schimbarea parolei din motive de securitate.</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
         <source>Password:</source>
-        <translation>Kennwort:</translation>
+        <translation>Parolă:</translation>
     </message>
 </context>
 <context>
@@ -93,12 +93,12 @@ Wenn SRTM keine Raster herunterlädt, überprüfen Sie bitte Ihr Konto auf der E
     <message>
         <location filename="../srtm_downloader.py" line="67" />
         <source>&amp;SRTM Downloader</source>
-        <translation>&amp;SRTM-Downloader</translation>
+        <translation>&amp;SRTM Downloader</translation>
     </message>
     <message>
         <location filename="../srtm_downloader.py" line="165" />
         <source>SRTM Downloader</source>
-        <translation>SRTM-Downloader</translation>
+        <translation>Descărcător SRTM</translation>
     </message>
 </context>
 <context>
@@ -106,57 +106,57 @@ Wenn SRTM keine Raster herunterlädt, überprüfen Sie bitte Ihr Konto auf der E
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>SRTM Downloader</source>
-        <translation>SRTM-Downloader</translation>
+        <translation>Descărcător SRTM</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>South</source>
-        <translation>Süd</translation>
+        <translation>Sud</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Set canvas extent</source>
-        <translation>Leinwandausdehnung festlegen</translation>
+        <translation>Setați întinderea pânzei</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>East</source>
-        <translation>Ost</translation>
+        <translation>Est</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>North</source>
-        <translation>Norden</translation>
+        <translation>Nord</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>West</source>
-        <translation>West</translation>
+        <translation>Vest</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>About</source>
-        <translation>Über</translation>
+        <translation>Despre</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Load Images to QGIS</source>
-        <translation>Bilder in QGIS laden</translation>
+        <translation>Încărcarea imaginilor în QGIS</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Download</source>
-        <translation>Herunterladen</translation>
+        <translation>Descărcare</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Output-Path:</source>
-        <translation>Ausgangs-Pfad:</translation>
+        <translation>Cale de ieșire:</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>[empty for temporary files]</source>
-        <translation>[leer für temporäre Dateien]</translation>
+        <translation>[gol pentru fișierele temporare]</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -167,69 +167,69 @@ Wenn SRTM keine Raster herunterlädt, überprüfen Sie bitte Ihr Konto auf der E
         <location filename="../srtm_downloader_dialog_base.py" line="138" />
         <location filename="../srtm_downloader_dialog_base.py" line="130" />
         <source>Box out of covered area</source>
-        <translation>Box außerhalb des überdachten Bereichs</translation>
+        <translation>Cutie în afara zonei acoperite</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="131" />
         <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
-        <translation>Das von Ihnen definierte Gebiet liegt vollständig außerhalb des von den SRTM-Kacheln abgedeckten Bereichs.</translation>
+        <translation>Zona pe care ați definit-o este complet în afara zonei acoperite de dalele SRTM.</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="139" />
         <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
-        <translation>Das von Ihnen definierte Gebiet liegt teilweise außerhalb des von den SRTM-Kacheln abgedeckten Bereichs. Möchten Sie fortfahren?</translation>
+        <translation>Zona pe care ați definit-o este parțial în afara zonei acoperite de dalele SRTM. Doriți să continuați?</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="183" />
         <source>Hint</source>
-        <translation>Hint</translation>
+        <translation>Indicație</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="184" />
         <source>To calculate a contiguous VRT please activate the Processing Plugin.</source>
-        <translation>Um eine zusammenhängende VRT zu berechnen, aktivieren Sie bitte das Processing Plugin.</translation>
+        <translation>Pentru a calcula o VRT contiguă, vă rugăm să activați Plugin-ul de procesare.</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="237" />
         <source>Error</source>
-        <translation>Fehler</translation>
+        <translation>Eroare</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="237" />
         <source>Wrong definition of coordinates</source>
-        <translation>Falsche Definition von Koordinaten</translation>
+        <translation>Definiție greșită a coordonatelor</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="250" />
         <source>Abort</source>
-        <translation>Abbrechen</translation>
+        <translation>Abandonați</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="250" />
         <source>Download terminated</source>
-        <translation>Download abgebrochen</translation>
+        <translation>Descărcare terminată</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="253" />
         <source>Result</source>
-        <translation>Ergebnis</translation>
+        <translation>Rezultat</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="253" />
         <source>Download completed</source>
-        <translation>Download abgeschlossen</translation>
+        <translation>Descărcare finalizată</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="284" />
         <source>Open Directory</source>
-        <translation>Verzeichnis öffnen</translation>
+        <translation>Director deschis</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="322" />
         <location filename="../srtm_downloader_dialog_base.py" line="319" />
         <location filename="../srtm_downloader_dialog_base.py" line="301" />
         <source>Download-Progress: %s of %s images</source>
-        <translation>Download-Fortschritt: %s von %s Bildern</translation>
+        <translation>Download-Progres: %s din %s imagini</translation>
     </message>
 </context>
 <context>
@@ -237,32 +237,32 @@ Wenn SRTM keine Raster herunterlädt, überprüfen Sie bitte Ihr Konto auf der E
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>About</source>
-        <translation>Über</translation>
+        <translation>Despre</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Version:</source>
-        <translation>Version:</translation>
+        <translation>Versiune:</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>About </source>
-        <translation>Über</translation>
+        <translation>Despre</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Contributors</source>
-        <translation>Mitwirkende</translation>
+        <translation>Contributori</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Contact</source>
-        <translation>Kontakt</translation>
+        <translation>Persoană de contact</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Change Log</source>
-        <translation>Änderungsprotokoll</translation>
+        <translation>Jurnal de modificări</translation>
     </message>
 </context>
 </TS>
