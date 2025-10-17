@@ -1,9 +1,7 @@
-/"qgiscloud/C:\\nppdf32Log\\debuglog.txt"
-/qgiscloud/.gitignore
 *.pyc
 *.e4p
 *.epj
-qgiscloud.zip
+template.ts
 createdist.sh
 exclude.lst
 .eric7project/
