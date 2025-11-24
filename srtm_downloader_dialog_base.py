@@ -93,8 +93,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.min_tile = ''
         self.max_tile = ''
         self.n_tiles = 0
-        self.button_box.button(QDialogButtonBox.Close).setEnabled(True)
-        self.button_box.button(QDialogButtonBox.Abort).setEnabled(False)
+        self.button_box.button(QDialogButtonBox.StandardButton.Close).setEnabled(True)
+        self.button_box.button(QDialogButtonBox.StandardButton.Abort).setEnabled(False)
                 
     @pyqtSlot()
     def on_button_box_rejected(self):
@@ -130,7 +130,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                 self.tr("Box out of covered area"),
                 self.tr("""The area you have defined is completely outside the area covered by the SRTM tiles. """),
                 QMessageBox.StandardButtons(
-                    QMessageBox.Cancel))
+                    QMessageBox.StandardButton.Cancel))
             self.btn_download.setEnabled(False)
         elif self.spb_north.value() > 59 or self.spb_south.value() < -56 and self.spb_north.value() != 0:
             res = QMessageBox.warning(
@@ -138,9 +138,9 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                 self.tr("Box out of covered area"),
                 self.tr("""The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?"""),
                 QMessageBox.StandardButtons(
-                    QMessageBox.No |
-                    QMessageBox.Yes))            
-            if res == QMessageBox.Yes:
+                    QMessageBox.StandardButton.No |
+                    QMessageBox.StandardButton.Yes))            
+            if res == QMessageBox.StandardButton.Yes:
                 self.btn_download.setEnabled(True)
             else:
                 self.btn_download.setEnabled(False)
@@ -226,7 +226,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                             url = "https://e4ftl01.cr.usgs.gov/MEASURES/SRTMGL1.003/2000.02.11/%s%s.SRTMGL1.hgt.zip" % (lat_tx, lon_tx)
                             file = "%s/%s" % (self.dir,  url.split('/')[len(url.split('/'))-1])
                             if not self.downloader.layer_exists('%s%s.hgt' % (lat_tx,  lon_tx)): 
-                                if self.chk_load_image.checkState() == Qt.Checked:
+                                if self.chk_load_image.checkState() == Qt.CheckState.Checked:
                                     self.downloader.get_image(url,  file, lat_tx, lon_tx, True)
                                 else:
                                     self.downloader.get_image(url,  file, lat_tx, lon_tx, False)
@@ -251,8 +251,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             else:
                     self.create_vrt()
                     QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
-                    self.button_box.button(QDialogButtonBox.Close).setEnabled(True)
-                    self.button_box.button(QDialogButtonBox.Abort).setEnabled(False)
+                    self.button_box.button(QDialogButtonBox.StandardButton.Close).setEnabled(True)
+                    self.button_box.button(QDialogButtonBox.StandardButton.Abort).setEnabled(False)
 
                 
             self.button_box.setEnabled(True)
@@ -270,8 +270,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.min_tile = ''
         self.max_tile = ''
         self.button_box.setEnabled(True)
-        self.button_box.button(QDialogButtonBox.Close).setEnabled(False)
-        self.button_box.button(QDialogButtonBox.Abort).setEnabled(True)
+        self.button_box.button(QDialogButtonBox.StandardButton.Close).setEnabled(False)
+        self.button_box.button(QDialogButtonBox.StandardButton.Abort).setEnabled(True)
         self.get_tiles()
 
     @pyqtSlot()
@@ -283,7 +283,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         home = expanduser("~")
         self.dir = QFileDialog.getExistingDirectory(None, self.tr("Open Directory"),
                                                  home,
-                                                 QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks)
+                                                 QFileDialog.Option.ShowDirsOnly | QFileDialog.Option.DontResolveSymlinks)
 
         self.lne_SRTM_path.setText(self.dir)   
     
@@ -293,7 +293,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         Slot documentation goes here.
         """
         self.about = About()
-        self.about.exec_()
+        self.about.exec()
         
     def init_progress(self):
         self.overall_progressBar.setMaximum(self.n_tiles)
@@ -307,7 +307,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         
         if is_image:
             self.progressTableWidget.setRowCount(self.row_count+1)
-            self.progressTableWidget.setItem(self.row_count,  0,  QTableWidgetItem(QFileInfo(reply.url().path()).baseName(),  Qt.DisplayRole))
+            self.progressTableWidget.setItem(self.row_count,  0,  QTableWidgetItem(QFileInfo(reply.url().path()).baseName(),  Qt.ItemDataRole.DisplayRole))
             self.progressTableWidget.setCellWidget(self.row_count, 1,  QProgressBar())
             self.progress_widget_item_list[QFileInfo(reply.url().path()).baseName()] = self.row_count
             self.row_count += 1

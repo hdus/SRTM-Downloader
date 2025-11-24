@@ -79,7 +79,7 @@
 HINT:
 When SRTM is not downloading rasters, please check your account at the earth data website. When you have not used the service for a longer time, a password change is required for security reasons.</source>
         <translation>
-INDICE :
+ASTUCE :
 Si SRTM ne télécharge pas de trames, vérifiez votre compte sur le site web des données de la terre. Si vous n'avez pas utilisé le service depuis longtemps, un changement de mot de passe est nécessaire pour des raisons de sécurité.</translation>
     </message>
     <message>
@@ -115,8 +115,8 @@ Si SRTM ne télécharge pas de trames, vérifiez votre compte sur le site web de
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Définir l'étendue de la toile</translation>
+        <source>Set map extent</source>
+        <translation>Définir l'étendue de la carte</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

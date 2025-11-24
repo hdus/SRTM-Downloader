@@ -98,7 +98,7 @@ Ja SRTM nesaņem rastrus, lūdzu, pārbaudiet savu kontu Zemes datu tīmekļa vi
     <message>
         <location filename="../srtm_downloader.py" line="165" />
         <source>SRTM Downloader</source>
-        <translation>SRTM lejupielādētājs</translation>
+        <translation>SRTM Downloader</translation>
     </message>
 </context>
 <context>
@@ -106,7 +106,7 @@ Ja SRTM nesaņem rastrus, lūdzu, pārbaudiet savu kontu Zemes datu tīmekļa vi
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>SRTM Downloader</source>
-        <translation>SRTM lejupielādētājs</translation>
+        <translation>SRTM Downloader</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -115,8 +115,8 @@ Ja SRTM nesaņem rastrus, lūdzu, pārbaudiet savu kontu Zemes datu tīmekļa vi
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Iestatīt audekla apjomu</translation>
+        <source>Set map extent</source>
+        <translation>Iestatīt kartes darbības jomu</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

@@ -115,8 +115,8 @@ När SRTM inte laddar ner raster, kontrollera ditt konto på jorddatasidan. Om d
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Ställ in canvasens utsträckning</translation>
+        <source>Set map extent</source>
+        <translation>Ställ in kartans utsträckning</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

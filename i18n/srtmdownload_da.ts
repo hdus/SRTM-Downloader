@@ -115,8 +115,8 @@ Når SRTM ikke downloader rasters, skal du tjekke din konto på jorddatasiden. N
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Indstil lærredets udstrækning</translation>
+        <source>Set map extent</source>
+        <translation>Indstil kortets udstrækning</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

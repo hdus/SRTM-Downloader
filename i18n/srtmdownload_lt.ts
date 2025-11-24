@@ -115,8 +115,8 @@ Jei SRTM neatsisiunčia rastrų, patikrinkite savo paskyrą Žemės duomenų sve
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Nustatyti drobės apimtį</translation>
+        <source>Set map extent</source>
+        <translation>Nustatyti žemėlapio apimtį</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -177,7 +177,7 @@ Jei SRTM neatsisiunčia rastrų, patikrinkite savo paskyrą Žemės duomenų sve
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="139" />
         <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
-        <translation>Jūsų apibrėžta teritorija iš dalies nepatenka į SRTM plytelių padengtą teritoriją. Ar norite tęsti?</translation>
+        <translation>Jūsų apibrėžta teritorija iš dalies nepatenka į SRTM plytelėmis padengtą teritoriją. Ar norite tęsti?</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="183" />

@@ -115,8 +115,8 @@ Ha az SRTM nem tölti le a rasztereket, kérjük, ellenőrizze fiókját a föld
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>A vászon kiterjedésének beállítása</translation>
+        <source>Set map extent</source>
+        <translation>Térkép kiterjedésének beállítása</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

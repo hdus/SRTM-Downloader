@@ -115,8 +115,8 @@ Jeśli SRTM nie pobiera rastrów, należy sprawdzić swoje konto na stronie inte
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Ustawienie zakresu kanwy</translation>
+        <source>Set map extent</source>
+        <translation>Ustaw zakres mapy</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

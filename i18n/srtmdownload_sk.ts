@@ -115,8 +115,8 @@ Ak SRTM nestahuje rastre, skontrolujte svoje konto na webovej stránke Earth Dat
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Nastavenie rozsahu plátna</translation>
+        <source>Set map extent</source>
+        <translation>Nastavenie rozsahu mapy</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

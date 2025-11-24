@@ -115,8 +115,8 @@ SUGESTIE:
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Setați întinderea pânzei</translation>
+        <source>Set map extent</source>
+        <translation>Setați întinderea hărții</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

@@ -115,8 +115,8 @@ Wanneer SRTM geen rasters downloadt, controleer dan uw account op de Earth Data 
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>canvasomvang instellen</translation>
+        <source>Set map extent</source>
+        <translation>Kaartomvang instellen</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

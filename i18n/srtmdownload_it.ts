@@ -115,8 +115,8 @@ Se SRTM non scarica i raster, controllare il proprio account sul sito web dei da
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Impostare l'estensione dell'area di disegno</translation>
+        <source>Set map extent</source>
+        <translation>Impostare l'estensione della mappa</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

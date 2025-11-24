@@ -115,8 +115,8 @@ SRTMのラスターがダウンロードできない場合は、earth data websi
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>キャンバスの範囲を設定する</translation>
+        <source>Set map extent</source>
+        <translation>地図の範囲を設定する</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -172,7 +172,7 @@ SRTMのラスターがダウンロードできない場合は、earth data websi
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="131" />
         <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
-        <translation>あなたが定義したエリアは、SRTMタイルでカバーされているエリアから完全に外れています。</translation>
+        <translation>あなたが定義したエリアは、SRTMタイルがカバーするエリアから完全に外れています。</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="139" />

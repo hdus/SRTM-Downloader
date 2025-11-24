@@ -20,7 +20,7 @@
     <message>
         <location filename="../about/do_about.py" line="45" />
         <source>&lt;p&gt;&lt;center&gt;&lt;b&gt;Author(s):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;center&gt;&lt;b&gt;Tekijä(t):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;&lt;center&gt;&lt;b&gt;Tekijä(t):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;Kirjoittaja(t):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="48" />
@@ -115,8 +115,8 @@ Kun SRTM ei lataa rastereita, tarkista tilisi Earth Data -sivustolla. Kun et ole
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Aseta kankaan laajuus</translation>
+        <source>Set map extent</source>
+        <translation>Määritä kartan laajuus</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

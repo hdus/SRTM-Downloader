@@ -115,8 +115,8 @@ Kui SRTM ei lae alla raste, kontrollige oma kontot Maaandmete veebisaidil. Kui t
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Määra lõuendi ulatus</translation>
+        <source>Set map extent</source>
+        <translation>Määra kaardi ulatus</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -229,7 +229,7 @@ Kui SRTM ei lae alla raste, kontrollige oma kontot Maaandmete veebisaidil. Kui t
         <location filename="../srtm_downloader_dialog_base.py" line="319" />
         <location filename="../srtm_downloader_dialog_base.py" line="301" />
         <source>Download-Progress: %s of %s images</source>
-        <translation>Lae alla-progress: %s piltide %s kohta</translation>
+        <translation>Allalaadimine-progress: %s piltide %s</translation>
     </message>
 </context>
 <context>

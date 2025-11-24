@@ -115,8 +115,8 @@ Se o SRTM não estiver a descarregar rasters, verifique a sua conta no sítio We
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Definir a extensão da tela</translation>
+        <source>Set map extent</source>
+        <translation>Definir a extensão do mapa</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -207,7 +207,7 @@ Se o SRTM não estiver a descarregar rasters, verifique a sua conta no sítio We
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="250" />
         <source>Download terminated</source>
-        <translation>Descarregar terminado</translation>
+        <translation>Descarregamento terminado</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="253" />

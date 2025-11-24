@@ -61,7 +61,7 @@
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;https://urs.earthdata.nasa.gov is requesting your username and password. If you do not have a Earthdata Login, create one at &lt;/p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Τοhttps://urs.earthdata.nasa.gov ζητάει το όνομα χρήστη και τον κωδικό πρόσβασής σας. Αν δεν έχετε σύνδεση στο Earthdata, δημιουργήστε μία στη διεύθυνση &lt;/p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Τοhttps://urs.earthdata.nasa.gov ζητά το όνομα χρήστη και τον κωδικό πρόσβασής σας. Αν δεν έχετε σύνδεση στο Earthdata, δημιουργήστε μία στη διεύθυνση &lt;/p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_login.ui" line="0" />
@@ -115,8 +115,8 @@ When SRTM is not downloading rasters, please check your account at the earth dat
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Ορισμός έκτασης καμβά</translation>
+        <source>Set map extent</source>
+        <translation>Ορισμός έκτασης χάρτη</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

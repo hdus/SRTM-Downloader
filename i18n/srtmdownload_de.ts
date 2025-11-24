@@ -115,8 +115,8 @@ Wenn SRTM keine Raster herunterlädt, überprüfen Sie bitte Ihr Konto auf der E
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Leinwandausdehnung festlegen</translation>
+        <source>Set map extent</source>
+        <translation>Kartenausschnitt festlegen</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

@@ -81,7 +81,7 @@ class Download:
             self.get_settings()
             self.login = Login(self.username,  self.password,  opener=self)  
 
-            if self.login.exec_():        
+            if self.login.exec():        
                 self.authenticator = authenticator
                 self.authenticator.setUser(self.login.username)
                 self.authenticator.setPassword(self.login.password)     
@@ -107,7 +107,7 @@ class Download:
     def reply_finished(self, reply):    
         if not self.request_is_aborted:
             if reply != None:
-                possibleRedirectUrl = reply.attribute(QNetworkRequest.RedirectionTargetAttribute)
+                possibleRedirectUrl = reply.attribute(QNetworkRequest.Attribute.RedirectionTargetAttribute)
                 
             # If the URL is not empty, we're being redirected. 
                 if possibleRedirectUrl != None:
@@ -116,7 +116,7 @@ class Download:
                     self.parent.add_download_progress(reply)
                     result.downloadProgress.connect(lambda done,  all,  reply=result: self.progress(done,  all,  reply))              
                 else:             
-                    if reply.error() != None and reply.error() != QNetworkReply.NoError:
+                    if reply.error() != None and reply.error() != QNetworkReply.NetworkError.NoError:
                         self.parent.is_error = reply.errorString()
                         self.parent.set_progress()
                         reply.abort()
@@ -124,7 +124,7 @@ class Download:
                             self.reply_list.remove(reply)
                         reply.deleteLater()
                         
-                    elif reply.error() ==  QNetworkReply.NoError:
+                    elif reply.error() ==  QNetworkReply.NetworkError.NoError:
                         result = reply.readAll()
                         f = open(self.filename, 'wb')
                         f.write(result)

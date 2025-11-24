@@ -115,8 +115,8 @@ When SRTM is not downloading rasters, please check your account at the earth dat
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>设置画布范围</translation>
+        <source>Set map extent</source>
+        <translation>设置地图范围</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

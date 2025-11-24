@@ -115,8 +115,8 @@ SRTM rasterleri indirmediğinde, lütfen dünya verileri web sitesindeki hesabı
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Tuval boyutunu ayarlama</translation>
+        <source>Set map extent</source>
+        <translation>Harita kapsamını ayarlama</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />

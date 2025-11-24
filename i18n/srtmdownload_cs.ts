@@ -115,8 +115,8 @@ Pokud SRTM nestahuje rastry, zkontrolujte svůj účet na webových stránkách 
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set canvas extent</source>
-        <translation>Nastavení rozsahu plátna</translation>
+        <source>Set map extent</source>
+        <translation>Nastavení rozsahu mapy</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
