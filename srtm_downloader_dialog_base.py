@@ -24,10 +24,7 @@
  ***************************************************************************/
 """
 from qgis.PyQt import uic
-from qgis.core import (QgsCoordinateReferenceSystem,  
-                                      QgsCoordinateTransform,  
-                                      QgsProject, 
-                                      QgsRasterLayer)
+from qgis.core import *
                                       
 from qgis.PyQt.QtCore import (pyqtSlot,  
                                                      Qt,  
@@ -84,7 +81,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.spb_north.valueChanged.connect(self.coordinates_valid)
         self.spb_south.valueChanged.connect(self.coordinates_valid)
         
-        self.overall_progressBar.setValue(0)
         self.setWindowTitle("SRTM-Downloader %s" % (Metadata().version()))
         self.lne_SRTM_path.setText(tempfile.gettempdir())
         self.min_tile = ''
@@ -180,23 +176,32 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         
 
     def get_tiles(self):
-        self.lbl_downloaded_bytes.setText("Preparing Download ...")
-
         product = self.cmb_demtype.currentData()
-        
-        out_path = '/tmp/{}.tiff'.format(product)
         out_path = '{}/{}.tiff'.format(self.lne_SRTM_path.text(),  product)
         
-        self.downloader.download_opentopo_globaldem(product, 
+        image = self.downloader.download_opentopo_globaldem(product, 
                             self.spb_south.value(), 
                             self.spb_north.value(), 
                             self.spb_west.value(), 
                             self.spb_east.value(), 
                             out_path)
         
+        self.load_image_to_canvas(image)
+        self.button_box.button(QDialogButtonBox.Close).setEnabled(True)
+
+        
         return True
-            
-            
+
+    def load_image_to_canvas(self,  image_path=None):
+        rlayer = QgsRasterLayer(image_path, "DEM")
+
+        QgsProject.instance().addMapLayer(rlayer, False)
+        layerTree = self.iface.layerTreeCanvasBridge().rootGroup()
+        layerTree.insertChildNode(0, QgsLayerTreeLayer(rlayer))        
+
+        if not rlayer.isValid():
+            print("Layer failed to load!")
+        
     @pyqtSlot()
     def on_btn_download_clicked(self):
         """
@@ -230,12 +235,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.about = About()
         self.about.exec_()
         
-    def init_progress(self):
-        self.overall_progressBar.setMaximum(self.n_tiles)
-        self.overall_progressBar.setValue(0)
-        self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (0,  self.n_tiles)))
-
-
     @pyqtSlot(str)
     def on_lne_api_key_textChanged(self, p0):
         """

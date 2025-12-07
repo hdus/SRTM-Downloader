@@ -43,6 +43,8 @@ class Downloader:
                     out_path,
                     progress_callback=lambda p: self.overall_progressbar.setValue(int(p))
                 )
+        
+        return out_path
 
     def download_stream(self, url, out_path, progress_callback=None, cancel_callback=None):
         r = requests.get(url, stream=True)
@@ -57,9 +59,6 @@ class Downloader:
                 if chunk:
                     f.write(chunk)
                     downloaded += len(chunk)
-                    self.opener.lbl_downloaded_bytes.setText(str(downloaded))
                     
                     if progress_callback and total:
                         progress_callback(downloaded * 100 / total)
-
-        return out_path
