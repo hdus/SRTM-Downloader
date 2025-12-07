@@ -31,6 +31,7 @@ from qgis.core import (QgsCoordinateReferenceSystem,
                                       
 from qgis.PyQt.QtCore import (pyqtSlot,  
                                                      Qt,  
+                                                     QSettings, 
                                                      QFileInfo)
                                       
 from qgis.PyQt.QtWidgets import (QDialog,  
@@ -91,9 +92,10 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.n_tiles = 0
         self.button_box.button(QDialogButtonBox.Close).setEnabled(True)
         self.button_box.button(QDialogButtonBox.Abort).setEnabled(False)
+        self.settings = QSettings()
         self.init_gui()
         
-        self.downloader = Downloader()
+        self.downloader = Downloader(self)
         
     def init_gui(self):
         dem_dict = {
@@ -114,18 +116,24 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             "CA_MRDEM_DTM": "DTM 30m"
         }
         self.cmb_demtype.clear() 
+        
         for key, desc in dem_dict.items(): 
             self.cmb_demtype.addItem(f"{key} ({desc})", key)        
+            
+        index = self.cmb_demtype.findData(self.settings.value('/SRTM-Downloader/dem'))
+        if index >= 0:
+            self.cmb_demtype.setCurrentIndex(index)            
+            
+        self.lne_api_key.setText(self.settings.value('/SRTM-Downloader/api_key'))
                 
     @pyqtSlot()
     def on_button_box_rejected(self):
         """
         Slot documentation goes here.
         """
-        self.downloader.request_is_aborted = True
-        self.downloader.abort_reply()
         selected_dem = self.cmb_demtype.currentData() 
-        self.settings.setValue('default/dem', selected_dem)
+        self.settings.setValue('/SRTM-Downloader/dem', selected_dem)
+        self.settings.setValue('/SRTM-Downloader/api_key', self.lne_api_key.text())
         self.reject()
 
     @pyqtSlot()
@@ -175,11 +183,11 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.lbl_downloaded_bytes.setText("Preparing Download ...")
 
         product = self.cmb_demtype.currentData()
+        
         out_path = '/tmp/{}.tiff'.format(product)
         out_path = '{}/{}.tiff'.format(self.lne_SRTM_path.text(),  product)
         
-        self.downloader.download_opentopo_globaldem(self,
-                            product, 
+        self.downloader.download_opentopo_globaldem(product, 
                             self.spb_south.value(), 
                             self.spb_north.value(), 
                             self.spb_west.value(), 
@@ -187,28 +195,6 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                             out_path)
         
         return True
-        
-            
-    def download_finished(self,  show_message=True,  abort=False):
-        
-        if self.n_tiles == self.overall_progressBar.value() or abort:
-            if show_message:
-                if self.is_error != None and not "server replied: Not Found" in self.is_error:
-                    QMessageBox.information(None, 'Error',  self.is_error)
-            elif abort or (show_message and abort):
-                    QMessageBox.information(None, self.tr("Abort"),  self.tr('Download terminated'))
-            else:
-                    self.create_vrt()
-                    QMessageBox.information(None,  self.tr("Result"),  self.tr("Download completed"))
-                    self.button_box.button(QDialogButtonBox.Close).setEnabled(True)
-                    self.button_box.button(QDialogButtonBox.Abort).setEnabled(False)
-
-                
-            self.button_box.setEnabled(True)
-            self.n_tiles = 0
-            self.image_counter = 0
-        
-        QApplication.restoreOverrideCursor()
             
             
     @pyqtSlot()
@@ -248,28 +234,15 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.overall_progressBar.setMaximum(self.n_tiles)
         self.overall_progressBar.setValue(0)
         self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (0,  self.n_tiles)))
+
+
+    @pyqtSlot(str)
+    def on_lne_api_key_textChanged(self, p0):
+        """
+        Slot documentation goes here.
+
+        @param p0 DESCRIPTION
+        @type str
+        """
+        self.settings.setValue('/SRTM-Downloader/api_key', p0)
         
-        
-    def add_download_progress(self,  reply):
-        
-        is_image = QFileInfo(reply.url().path()).completeSuffix() == 'SRTMGL1.hgt.zip'
-        
-        if is_image:
-            self.progressTableWidget.setRowCount(self.row_count+1)
-            self.progressTableWidget.setItem(self.row_count,  0,  QTableWidgetItem(QFileInfo(reply.url().path()).baseName(),  Qt.DisplayRole))
-            self.progressTableWidget.setCellWidget(self.row_count, 1,  QProgressBar())
-            self.progress_widget_item_list[QFileInfo(reply.url().path()).baseName()] = self.row_count
-            self.row_count += 1
-#        
-#    def set_progress(self,  akt_val=None,  all_val=None):
-#        if all_val == None:
-#            progress_value = self.overall_progressBar.value() + 1
-#            self.overall_progressBar.setValue(progress_value)
-#            self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (progress_value,  self.n_tiles)))
-#                    
-#            if progress_value == self.n_tiles:
-#                self.lbl_file_download.setText((self.tr("Download-Progress: %s of %s images") % (progress_value,  self.n_tiles)))
-#                self.download_finished(show_message=False,  abort=False)
-#        else:
-#            self.overall_progressBar.setMaximum(all_val)
-#            self.overall_progressBar.setValue(akt_val)
