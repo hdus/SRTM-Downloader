@@ -5,35 +5,35 @@
     <message>
         <location filename="../about/do_about.py" line="38" />
         <source>Author</source>
-        <translation>Autor</translation>
+        <translation>Auteur</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="39" />
         <source>Contact</source>
-        <translation>Kontakt</translation>
+        <translation>Neem contact op met</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="40" />
         <source>Change Log</source>
-        <translation>Änderungsprotokoll</translation>
+        <translation>Wijzigingslogboek</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="45" />
         <source>&lt;p&gt;&lt;center&gt;&lt;b&gt;Author(s):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;center&gt;&lt;b&gt;Autor(en):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;&lt;center&gt;&lt;b&gt;Auteur(s):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="52" />
         <source>Contact:
 </source>
-        <translation>Kontakt:
+        <translation>Contact:
 </translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="55" />
         <source>Plugin Resources:
 </source>
-        <translation>Plugin-Ressourcen:
+        <translation>Plugin bronnen:
 </translation>
     </message>
 </context>
@@ -42,12 +42,12 @@
     <message>
         <location filename="../srtm_downloader.py" line="67" />
         <source>&amp;SRTM Downloader</source>
-        <translation>&amp;SRTM-Downloader</translation>
+        <translation>&amp;SRTM Downloader</translation>
     </message>
     <message>
         <location filename="../srtm_downloader.py" line="165" />
         <source>SRTM Downloader</source>
-        <translation>SRTM-Downloader</translation>
+        <translation>SRTM Downloader</translation>
     </message>
 </context>
 <context>
@@ -56,47 +56,47 @@
         <location filename="../srtm_downloader_dialog_base.py" line="158" />
         <location filename="../srtm_downloader_dialog_base.py" line="150" />
         <source>Box out of covered area</source>
-        <translation>Box außerhalb des überdachten Bereichs</translation>
+        <translation>Box uit overdekte ruimte</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="151" />
         <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
-        <translation>Das von Ihnen definierte Gebiet liegt vollständig außerhalb des von den SRTM-Kacheln abgedeckten Bereichs.</translation>
+        <translation>Het gebied dat u hebt gedefinieerd, ligt volledig buiten het gebied dat wordt gedekt door de SRTM-tegels.</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="159" />
         <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
-        <translation>Das von Ihnen definierte Gebiet liegt teilweise außerhalb des von den SRTM-Kacheln abgedeckten Bereichs. Möchten Sie fortfahren?</translation>
+        <translation>Het gebied dat u hebt gedefinieerd, valt gedeeltelijk buiten het gebied dat door de SRTM-tegels wordt gedekt. Wilt u doorgaan?</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="217" />
         <source>Open Directory</source>
-        <translation>Verzeichnis öffnen</translation>
+        <translation>Open Directory</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>SRTM Downloader</source>
-        <translation>SRTM-Downloader</translation>
+        <translation>SRTM downloader</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Load Image to QGIS</source>
-        <translation>Bild in QGIS laden</translation>
+        <translation>Afbeelding laden naar QGIS</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Download</source>
-        <translation>Herunterladen</translation>
+        <translation>Downloaden</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Output-Path:</source>
-        <translation>Ausgangs-Pfad:</translation>
+        <translation>Uitgangspad:</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>[empty for temporary files]</source>
-        <translation>[leer für temporäre Dateien]</translation>
+        <translation>[leeg voor tijdelijke bestanden].</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -106,32 +106,32 @@
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>About</source>
-        <translation>Über</translation>
+        <translation>Over</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>DEM-Type:</source>
-        <translation>DEM-Type:</translation>
+        <translation>DEM-type:</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>South</source>
-        <translation>Süd</translation>
+        <translation>Zuid</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Set canvas extent</source>
-        <translation>Leinwandausdehnung festlegen</translation>
+        <translation>canvasomvang instellen</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>East</source>
-        <translation>Ost</translation>
+        <translation>Oost</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>North</source>
-        <translation>Norden</translation>
+        <translation>Noord</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -141,12 +141,12 @@
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Request API-Key from OpenTopography Data</source>
-        <translation>API-Schlüssel von OpenTopography-Daten anfordern</translation>
+        <translation>API-sleutel aanvragen bij OpenTopography Data</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a&gt;</source>
-        <translation>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Schlüssel&lt;/a&gt;</translation>
+        <translation>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -154,32 +154,32 @@
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>About</source>
-        <translation>Über</translation>
+        <translation>Over</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Version:</source>
-        <translation>Version:</translation>
+        <translation>Versie:</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>About </source>
-        <translation>Über</translation>
+        <translation>Over</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Contributors</source>
-        <translation>Mitwirkende</translation>
+        <translation>Medewerkers</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Contact</source>
-        <translation>Kontakt</translation>
+        <translation>Neem contact op met</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Change Log</source>
-        <translation>Änderungsprotokoll</translation>
+        <translation>Wijzigingslogboek</translation>
     </message>
 </context>
 </TS>

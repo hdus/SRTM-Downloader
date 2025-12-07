@@ -5,35 +5,35 @@
     <message>
         <location filename="../about/do_about.py" line="38" />
         <source>Author</source>
-        <translation>Autor</translation>
+        <translation>著者</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="39" />
         <source>Contact</source>
-        <translation>Kontakt</translation>
+        <translation>連絡先</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="40" />
         <source>Change Log</source>
-        <translation>Änderungsprotokoll</translation>
+        <translation>変更履歴</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="45" />
         <source>&lt;p&gt;&lt;center&gt;&lt;b&gt;Author(s):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;center&gt;&lt;b&gt;Autor(en):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;&lt;b&gt;著者：&lt;/b&gt;&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="52" />
         <source>Contact:
 </source>
-        <translation>Kontakt:
+        <translation>連絡先
 </translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="55" />
         <source>Plugin Resources:
 </source>
-        <translation>Plugin-Ressourcen:
+        <translation>プラグインのリソース：
 </translation>
     </message>
 </context>
@@ -42,12 +42,12 @@
     <message>
         <location filename="../srtm_downloader.py" line="67" />
         <source>&amp;SRTM Downloader</source>
-        <translation>&amp;SRTM-Downloader</translation>
+        <translation>&amp;SRTMダウンローダー</translation>
     </message>
     <message>
         <location filename="../srtm_downloader.py" line="165" />
         <source>SRTM Downloader</source>
-        <translation>SRTM-Downloader</translation>
+        <translation>SRTMダウンローダー</translation>
     </message>
 </context>
 <context>
@@ -56,47 +56,47 @@
         <location filename="../srtm_downloader_dialog_base.py" line="158" />
         <location filename="../srtm_downloader_dialog_base.py" line="150" />
         <source>Box out of covered area</source>
-        <translation>Box außerhalb des überdachten Bereichs</translation>
+        <translation>カバーエリア外の箱</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="151" />
         <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
-        <translation>Das von Ihnen definierte Gebiet liegt vollständig außerhalb des von den SRTM-Kacheln abgedeckten Bereichs.</translation>
+        <translation>あなたが定義したエリアは、SRTMタイルでカバーされているエリアから完全に外れています。</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="159" />
         <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
-        <translation>Das von Ihnen definierte Gebiet liegt teilweise außerhalb des von den SRTM-Kacheln abgedeckten Bereichs. Möchten Sie fortfahren?</translation>
+        <translation>あなたが定義したエリアは、SRTMタイルでカバーされているエリアから一部外れています。続けますか？</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="217" />
         <source>Open Directory</source>
-        <translation>Verzeichnis öffnen</translation>
+        <translation>オープンディレクトリ</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>SRTM Downloader</source>
-        <translation>SRTM-Downloader</translation>
+        <translation>SRTMダウンローダー</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Load Image to QGIS</source>
-        <translation>Bild in QGIS laden</translation>
+        <translation>QGISに画像を読み込む</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Download</source>
-        <translation>Herunterladen</translation>
+        <translation>ダウンロード</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Output-Path:</source>
-        <translation>Ausgangs-Pfad:</translation>
+        <translation>出力パス：</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>[empty for temporary files]</source>
-        <translation>[leer für temporäre Dateien]</translation>
+        <translation>[テンポラリファイルは空］</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -106,47 +106,47 @@
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>About</source>
-        <translation>Über</translation>
+        <translation>について</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>DEM-Type:</source>
-        <translation>DEM-Type:</translation>
+        <translation>DEMタイプ：</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>South</source>
-        <translation>Süd</translation>
+        <translation>南</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Set canvas extent</source>
-        <translation>Leinwandausdehnung festlegen</translation>
+        <translation>キャンバスの範囲を設定する</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>East</source>
-        <translation>Ost</translation>
+        <translation>イースト</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>North</source>
-        <translation>Norden</translation>
+        <translation>ノース</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>West</source>
-        <translation>West</translation>
+        <translation>ウエスト</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Request API-Key from OpenTopography Data</source>
-        <translation>API-Schlüssel von OpenTopography-Daten anfordern</translation>
+        <translation>OpenTopographyデータからAPI-Keyをリクエストする</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a&gt;</source>
-        <translation>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Schlüssel&lt;/a&gt;</translation>
+        <translation>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a&gt;。</translation>
     </message>
 </context>
 <context>
@@ -154,32 +154,32 @@
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>About</source>
-        <translation>Über</translation>
+        <translation>について</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Version:</source>
-        <translation>Version:</translation>
+        <translation>バージョン</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>About </source>
-        <translation>Über</translation>
+        <translation>について</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Contributors</source>
-        <translation>Mitwirkende</translation>
+        <translation>投稿者</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Contact</source>
-        <translation>Kontakt</translation>
+        <translation>連絡先</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Change Log</source>
-        <translation>Änderungsprotokoll</translation>
+        <translation>変更履歴</translation>
     </message>
 </context>
 </TS>
