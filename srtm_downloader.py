@@ -20,7 +20,7 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.PyQt.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
+from qgis.PyQt.QtCore import QSettings, QTranslator, qVersion, QCoreApplication,  QFileInfo
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 # Initialize Qt resources from file resources.py
@@ -48,19 +48,22 @@ class SrtmDownloader:
         self.iface = iface
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
-        # initialize locale
-        locale = QSettings().value('locale/userLocale')[0:2]
-        locale_path = os.path.join(
-            self.plugin_dir,
-            'i18n',
-            'srtmdownload_{}.qm'.format(locale))
+        
+#        # initialize locale
+        locale_short = QSettings().value("locale/userLocale", type=str)[0:2]
+        locale_long = QSettings().value("locale/userLocale", type=str)
+    
+        self.translator = QTranslator()        
+        if QFileInfo(self.plugin_dir).exists():            
+            if QFileInfo(self.plugin_dir + "/i18n/srtmdownload_" + locale_short + ".qm").exists():
+                translation = self.plugin_dir + "/i18n/srtmdownload_" + locale_short + ".qm"
+                self.translator.load( translation )            
+            elif QFileInfo(self.plugin_dir + "/i18n/srtmdownload_" + locale_long + ".qm").exists():
+                translation = self.plugin_dir + "/i18n/srtmdownload_" + locale_long + ".qm"
+                self.translator.load( translation )            
+        
+        QCoreApplication.installTranslator(self.translator)        
 
-        if os.path.exists(locale_path):
-            self.translator = QTranslator()
-            self.translator.load(locale_path)
-
-            if qVersion() > '4.3.3':
-                QCoreApplication.installTranslator(self.translator)
 
         # Declare instance attributes
         self.actions = []
