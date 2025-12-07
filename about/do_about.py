@@ -45,8 +45,8 @@ class About( QDialog, FORM_CLASS):
         contribString = self.tr(u"<p><center><b>Author(s):</b></center></p>") 
         contribString += self.tr(u"<p>{0}<br>".format(self.metadata.author()))
         
-        licenseString = self.tr(u"Sourcepole AG - Linux & Open Source Solutions\n")
-        licenseString += self.tr(u"Weberstrasse 5, 8004 Zurich, Switzerland\n")
+        licenseString = self.tr(u"")
+        licenseString += self.tr(u"")
         
         licenseString += "\n"
         licenseString += self.tr(u"Contact:\n")
