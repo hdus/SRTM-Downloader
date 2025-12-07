@@ -27,23 +27,16 @@ from qgis.PyQt import uic
 from qgis.core import *
                                       
 from qgis.PyQt.QtCore import (pyqtSlot,  
-                                                     Qt,  
-                                                     QSettings, 
-                                                     QFileInfo)
+                                                     QSettings)
                                       
 from qgis.PyQt.QtWidgets import (QDialog,  
                                                             QMessageBox,  
-                                                            QTableWidgetItem,  
-                                                            QProgressBar, 
-                                                            QApplication,  
                                                             QFileDialog, 
                                                             QDialogButtonBox)                                      
 
 from .about.do_about import About
 from .about.metadata import Metadata
-from .download import Download
 from .downloader import Downloader
-import processing
 import math
 import os
 import tempfile
