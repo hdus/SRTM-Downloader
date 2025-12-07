@@ -9,7 +9,7 @@
 name=SRTM-Downloader
 qgisMinimumVersion=3.00
 qgisMaximumVersion=3.99
-description=Plugin for download of SRTM Tiles from OpenTopography Data
+description=Plugin for download of SRTM Tiles from OpenTopography Data, Before you can use the plugin, you must create an API key at https://opentopography.org Here is a description of how to do this.https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets.
 version=3.3.0
 author=Dr. Horst Duester
 email=horst.duester@kappasys.ch
