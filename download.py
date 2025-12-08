@@ -105,6 +105,7 @@ class Download:
         self.parent.download_finished(show_message=True,  abort=True)
                  
     def reply_finished(self, reply):    
+        print (reply)
         if not self.request_is_aborted:
             if reply != None:
                 possibleRedirectUrl = reply.attribute(QNetworkRequest.Attribute.RedirectionTargetAttribute)

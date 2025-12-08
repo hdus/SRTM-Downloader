@@ -7,10 +7,11 @@
 
 [general]
 name=SRTM-Downloader
-qgisMinimumVersion=3.00
-qgisMaximumVersion=3.99
+qgisMinimumVersion=3.99
+qgisMaximumVersion=4.99
 description=Downloads SRTM Tiles from NASA Server
-version=3.2.4
+version=4.0.0
+supportsQt6=True
 author=Dr. Horst Duester
 email=horst.duester@kappasys.ch
 
@@ -24,8 +25,8 @@ repository=https://github.com/hdus/SRTM-Downloader
 
 # Uncomment the following line and add your changelog:
 changelog=
-  3.2.4
-  - Translations added
+  4.0.0
+  - Migration to QGIS 4 / Qt6
   3.2.3
   - Password Hint added to Login Dialog
   3.2.2 
