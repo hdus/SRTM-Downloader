@@ -23,20 +23,6 @@
         <translation>&lt;p&gt;&lt;center&gt;&lt;b&gt;Author(s):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../about/do_about.py" line="48" />
-        <source>Sourcepole AG - Linux &amp; Open Source Solutions
-</source>
-        <translation>Sourcepole AG - Linux 和开源解决方案
-</translation>
-    </message>
-    <message>
-        <location filename="../about/do_about.py" line="49" />
-        <source>Weberstrasse 5, 8004 Zurich, Switzerland
-</source>
-        <translation>瑞士苏黎世韦伯大街 5 号 8004
-</translation>
-    </message>
-    <message>
         <location filename="../about/do_about.py" line="52" />
         <source>Contact:
 </source>
@@ -49,43 +35,6 @@
 </source>
         <translation>插件资源：
 </translation>
-    </message>
-</context>
-<context>
-    <name>Login</name>
-    <message>
-        <location filename="../srtm_downloader_login.ui" line="0" />
-        <source>Login</source>
-        <translation>登录</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_login.ui" line="0" />
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;https://urs.earthdata.nasa.gov is requesting your username and password. If you do not have a Earthdata Login, create one at &lt;/p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;https://urs.earthdata.nasa.gov 正在请求您的用户名和密码。如果您没有 Earthdata 登录，请在 &lt;/p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; 创建一个。</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_login.ui" line="0" />
-        <source>Save Credentials</source>
-        <translation>保存证书</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_login.ui" line="0" />
-        <source>Username:</source>
-        <translation>用户名</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_login.ui" line="0" />
-        <source>
-HINT:
-When SRTM is not downloading rasters, please check your account at the earth data website. When you have not used the service for a longer time, a password change is required for security reasons.</source>
-        <translation>
-提示：
-当 SRTM 无法下载光栅时，请检查您在地球数据网站上的账户。当您较长时间未使用该服务时，出于安全原因需要更改密码。</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_login.ui" line="0" />
-        <source>Password:</source>
-        <translation>密码</translation>
     </message>
 </context>
 <context>
@@ -104,9 +53,65 @@ When SRTM is not downloading rasters, please check your account at the earth dat
 <context>
     <name>SrtmDownloaderDialogBase</name>
     <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="158" />
+        <location filename="../srtm_downloader_dialog_base.py" line="150" />
+        <source>Box out of covered area</source>
+        <translation>箱体离开覆盖区域</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="151" />
+        <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
+        <translation>您定义的区域完全在 SRTM 瓦片覆盖的区域之外。</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="159" />
+        <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
+        <translation>您定义的区域部分超出了 SRTM 瓦片覆盖的区域。您想继续吗？</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="217" />
+        <source>Open Directory</source>
+        <translation>开放目录</translation>
+    </message>
+    <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>SRTM Downloader</source>
         <translation>SRTM 下载器</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>Load Image to QGIS</source>
+        <translation>将图像加载到 QGIS</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>Download</source>
+        <translation>下载</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>Output-Path:</source>
+        <translation>输出路径</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>[empty for temporary files]</source>
+        <translation>[临时文件为空]</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>About</source>
+        <translation>关于</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>DEM-Type:</source>
+        <translation>DEM-Type：</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -135,101 +140,13 @@ When SRTM is not downloading rasters, please check your account at the earth dat
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>About</source>
-        <translation>关于</translation>
+        <source>Request API-Key from OpenTopography Data</source>
+        <translation>从 OpenTopography 数据请求 API 密钥</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Load Images to QGIS</source>
-        <translation>将图像加载到 QGIS</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Download</source>
-        <translation>下载</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Output-Path:</source>
-        <translation>输出路径</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>[empty for temporary files]</source>
-        <translation>[临时文件为空]</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="138" />
-        <location filename="../srtm_downloader_dialog_base.py" line="130" />
-        <source>Box out of covered area</source>
-        <translation>箱体离开覆盖区域</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="131" />
-        <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
-        <translation>您定义的区域完全在 SRTM 瓦片覆盖的区域之外。</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="139" />
-        <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
-        <translation>您定义的区域部分超出了 SRTM 瓦片覆盖的区域。您想继续吗？</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="183" />
-        <source>Hint</source>
-        <translation>提示</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="184" />
-        <source>To calculate a contiguous VRT please activate the Processing Plugin.</source>
-        <translation>要计算连续的 VRT，请激活处理插件。</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="237" />
-        <source>Error</source>
-        <translation>错误</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="237" />
-        <source>Wrong definition of coordinates</source>
-        <translation>坐标定义错误</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="250" />
-        <source>Abort</source>
-        <translation>中止</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="250" />
-        <source>Download terminated</source>
-        <translation>下载终止</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="253" />
-        <source>Result</source>
-        <translation>结果</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="253" />
-        <source>Download completed</source>
-        <translation>下载完成</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="284" />
-        <source>Open Directory</source>
-        <translation>开放目录</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="322" />
-        <location filename="../srtm_downloader_dialog_base.py" line="319" />
-        <location filename="../srtm_downloader_dialog_base.py" line="301" />
-        <source>Download-Progress: %s of %s images</source>
-        <translation>下载进度：%s of %s images</translation>
+        <source>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a&gt;</source>
+        <translation>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a&gt;</translation>
     </message>
 </context>
 <context>

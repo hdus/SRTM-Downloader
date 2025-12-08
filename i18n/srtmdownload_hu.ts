@@ -23,20 +23,6 @@
         <translation>&lt;p&gt;&lt;center&gt;&lt;b&gt;A szerző(k):&lt;/b&gt;&lt;/center&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../about/do_about.py" line="48" />
-        <source>Sourcepole AG - Linux &amp; Open Source Solutions
-</source>
-        <translation>Sourcepole AG - Linux és nyílt forráskódú megoldások
-</translation>
-    </message>
-    <message>
-        <location filename="../about/do_about.py" line="49" />
-        <source>Weberstrasse 5, 8004 Zurich, Switzerland
-</source>
-        <translation>Weberstrasse 5, 8004 Zürich, Svájc
-</translation>
-    </message>
-    <message>
         <location filename="../about/do_about.py" line="52" />
         <source>Contact:
 </source>
@@ -49,43 +35,6 @@
 </source>
         <translation>Plugin erőforrások:
 </translation>
-    </message>
-</context>
-<context>
-    <name>Login</name>
-    <message>
-        <location filename="../srtm_downloader_login.ui" line="0" />
-        <source>Login</source>
-        <translation>Bejelentkezés</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_login.ui" line="0" />
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;https://urs.earthdata.nasa.gov is requesting your username and password. If you do not have a Earthdata Login, create one at &lt;/p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ahttps://urs.earthdata.nasa.gov az Ön felhasználónevét és jelszavát kéri. Ha nincs Earthdata bejelentkezése, hozzon létre egyet a &lt;/p&gt;&lt;p&gt;&lt;a href="https://urs.earthdata.nasa.gov//users/new"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;https://urs.earthdata.nasa.gov//users/new&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt; címen.</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_login.ui" line="0" />
-        <source>Save Credentials</source>
-        <translation>Hitelesítési adatok mentése</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_login.ui" line="0" />
-        <source>Username:</source>
-        <translation>Felhasználónév:</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_login.ui" line="0" />
-        <source>
-HINT:
-When SRTM is not downloading rasters, please check your account at the earth data website. When you have not used the service for a longer time, a password change is required for security reasons.</source>
-        <translation>
-TIPP:
-Ha az SRTM nem tölti le a rasztereket, kérjük, ellenőrizze fiókját a földadatok weboldalán. Ha hosszabb ideje nem használta a szolgáltatást, biztonsági okokból jelszóváltoztatásra van szükség.</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_login.ui" line="0" />
-        <source>Password:</source>
-        <translation>Jelszó:</translation>
     </message>
 </context>
 <context>
@@ -104,9 +53,65 @@ Ha az SRTM nem tölti le a rasztereket, kérjük, ellenőrizze fiókját a föld
 <context>
     <name>SrtmDownloaderDialogBase</name>
     <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="158" />
+        <location filename="../srtm_downloader_dialog_base.py" line="150" />
+        <source>Box out of covered area</source>
+        <translation>Doboz a fedett területen kívül</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="151" />
+        <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
+        <translation>Az Ön által meghatározott terület teljesen kívül esik az SRTM-csempék által lefedett területen.</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="159" />
+        <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
+        <translation>Az Ön által meghatározott terület részben kívül esik az SRTM-csempék által lefedett területen. Szeretné folytatni?</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="217" />
+        <source>Open Directory</source>
+        <translation>Nyitott könyvtár</translation>
+    </message>
+    <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>SRTM Downloader</source>
         <translation>SRTM letöltő</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>Load Image to QGIS</source>
+        <translation>Kép betöltése a QGIS-be</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>Download</source>
+        <translation>Letöltés</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>Output-Path:</source>
+        <translation>Kimeneti útvonal:</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>[empty for temporary files]</source>
+        <translation>[üres az ideiglenes fájlok számára]</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>About</source>
+        <translation>A  oldalról</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>DEM-Type:</source>
+        <translation>DEM-típus:</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -135,101 +140,13 @@ Ha az SRTM nem tölti le a rasztereket, kérjük, ellenőrizze fiókját a föld
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>About</source>
-        <translation>A  oldalról</translation>
+        <source>Request API-Key from OpenTopography Data</source>
+        <translation>API-kulcs kérése az OpenTopography adatokból</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Load Images to QGIS</source>
-        <translation>Képek betöltése a QGIS-be</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Download</source>
-        <translation>Letöltés</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Output-Path:</source>
-        <translation>Kimeneti útvonal:</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>[empty for temporary files]</source>
-        <translation>[üres az ideiglenes fájlok számára]</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="138" />
-        <location filename="../srtm_downloader_dialog_base.py" line="130" />
-        <source>Box out of covered area</source>
-        <translation>Doboz a fedett területen kívül</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="131" />
-        <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
-        <translation>Az Ön által meghatározott terület teljesen kívül esik az SRTM-csempék által lefedett területen.</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="139" />
-        <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
-        <translation>Az Ön által meghatározott terület részben kívül esik az SRTM-csempék által lefedett területen. Szeretné folytatni?</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="183" />
-        <source>Hint</source>
-        <translation>Hint</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="184" />
-        <source>To calculate a contiguous VRT please activate the Processing Plugin.</source>
-        <translation>Egybefüggő távolsági regisztrált távolsági mérőszám kiszámításához aktiválja a Processing Plugin-t.</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="237" />
-        <source>Error</source>
-        <translation>Hiba</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="237" />
-        <source>Wrong definition of coordinates</source>
-        <translation>A koordináták helytelen meghatározása</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="250" />
-        <source>Abort</source>
-        <translation>Megszakítás</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="250" />
-        <source>Download terminated</source>
-        <translation>Letöltés megszüntetve</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="253" />
-        <source>Result</source>
-        <translation>Eredmény</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="253" />
-        <source>Download completed</source>
-        <translation>Letöltés befejezve</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="284" />
-        <source>Open Directory</source>
-        <translation>Nyílt könyvtár</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="322" />
-        <location filename="../srtm_downloader_dialog_base.py" line="319" />
-        <location filename="../srtm_downloader_dialog_base.py" line="301" />
-        <source>Download-Progress: %s of %s images</source>
-        <translation>Download-Progress: %s of %s images</translation>
+        <source>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a&gt;</source>
+        <translation>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-kulcs&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
