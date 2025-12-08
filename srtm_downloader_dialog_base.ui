@@ -37,7 +37,7 @@
    <item row="6" column="2">
     <widget class="QCheckBox" name="chk_load_image">
      <property name="text">
-      <string>Load Image to QGIS</string>
+      <string>Load DEM to QGIS</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -273,7 +273,7 @@
       <string>Request API-Key from OpenTopography Data</string>
      </property>
      <property name="text">
-      <string>&lt;a href=&quot;https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets&quot;&gt;API-Key&lt;/a&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;API-Key:&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::AutoText</enum>
