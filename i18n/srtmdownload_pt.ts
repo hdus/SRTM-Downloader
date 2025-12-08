@@ -10,12 +10,12 @@
     <message>
         <location filename="../about/do_about.py" line="39" />
         <source>Contact</source>
-        <translation>Contact</translation>
+        <translation>Contacto</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="40" />
         <source>Change Log</source>
-        <translation>Registro de cambios</translation>
+        <translation>Registo de alterações</translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="45" />
@@ -26,14 +26,14 @@
         <location filename="../about/do_about.py" line="52" />
         <source>Contact:
 </source>
-        <translation>Contact:
+        <translation>Contacto:
 </translation>
     </message>
     <message>
         <location filename="../about/do_about.py" line="55" />
         <source>Plugin Resources:
 </source>
-        <translation>Recursos de Plugin:
+        <translation>Recursos do plugin:
 </translation>
     </message>
 </context>
@@ -42,12 +42,12 @@
     <message>
         <location filename="../srtm_downloader.py" line="69" />
         <source>&amp;SRTM Downloader</source>
-        <translation>Descargador &amp;SRTM</translation>
+        <translation>Descarregador &amp;SRTM</translation>
     </message>
     <message>
         <location filename="../srtm_downloader.py" line="167" />
         <source>SRTM Downloader</source>
-        <translation>Descargador SRTM</translation>
+        <translation>Descarregador SRTM</translation>
     </message>
 </context>
 <context>
@@ -55,27 +55,27 @@
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>SRTM Downloader</source>
-        <translation>Descargador SRTM</translation>
+        <translation>Descarregador SRTM</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Load DEM to QGIS</source>
-        <translation>Cargar MDE en QGIS</translation>
+        <translation>Carregar DEM para o QGIS</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Download</source>
-        <translation>Descargar</translation>
+        <translation>Descarregar</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Output-Path:</source>
-        <translation>Ruta de salida:</translation>
+        <translation>Caminho de saída:</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>[empty for temporary files]</source>
-        <translation>[vacío para archivos temporales]</translation>
+        <translation>[vazio para ficheiros temporários].</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -85,7 +85,7 @@
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>About</source>
-        <translation>Acerca de</translation>
+        <translation>Sobre</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -95,17 +95,17 @@
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>South</source>
-        <translation>Sur</translation>
+        <translation>Sul</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Set to map extent</source>
-        <translation>Ajustar a la extensión del mapa</translation>
+        <translation>Definir a extensão do mapa</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>East</source>
-        <translation>Este</translation>
+        <translation>Leste</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -120,7 +120,7 @@
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>Request API-Key from OpenTopography Data</source>
-        <translation>Solicitar API-Key de OpenTopography Data</translation>
+        <translation>Pedir a chave API dos dados OpenTopography</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -131,22 +131,22 @@
         <location filename="../srtm_downloader_dialog_base.py" line="158" />
         <location filename="../srtm_downloader_dialog_base.py" line="150" />
         <source>Box out of covered area</source>
-        <translation>Caja fuera de la zona cubierta</translation>
+        <translation>Caixa fora da área coberta</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="151" />
         <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
-        <translation>El área que ha definido está completamente fuera del área cubierta por las baldosas SRTM.</translation>
+        <translation>A área que definiu está completamente fora da área coberta pelos mosaicos SRTM.</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="159" />
         <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
-        <translation>El área que ha definido está parcialmente fuera del área cubierta por las baldosas SRTM. ¿Desea continuar?</translation>
+        <translation>A área que definiu está parcialmente fora da área coberta pelos mosaicos SRTM. Deseja continuar?</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.py" line="217" />
         <source>Open Directory</source>
-        <translation>Directorio abierto</translation>
+        <translation>Diretório aberto</translation>
     </message>
 </context>
 <context>
@@ -154,32 +154,32 @@
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>About</source>
-        <translation>Acerca de</translation>
+        <translation>Sobre</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Version:</source>
-        <translation>Versión:</translation>
+        <translation>Versão:</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>About </source>
-        <translation>Acerca de</translation>
+        <translation>Sobre</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Contributors</source>
-        <translation>Colaboradores</translation>
+        <translation>Contribuintes</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Contact</source>
-        <translation>Contact</translation>
+        <translation>Contacto</translation>
     </message>
     <message>
         <location filename="../about/ui_about.ui" line="0" />
         <source>Change Log</source>
-        <translation>Registro de cambios</translation>
+        <translation>Registo de alterações</translation>
     </message>
 </context>
 </TS>

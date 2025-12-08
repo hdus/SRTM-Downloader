@@ -26,7 +26,7 @@
         <location filename="../about/do_about.py" line="52" />
         <source>Contact:
 </source>
-        <translation>За контакти:
+        <translation>За контакт:
 </translation>
     </message>
     <message>
@@ -40,12 +40,12 @@
 <context>
     <name>SrtmDownloader</name>
     <message>
-        <location filename="../srtm_downloader.py" line="67" />
+        <location filename="../srtm_downloader.py" line="69" />
         <source>&amp;SRTM Downloader</source>
         <translation>&amp;SRTM Downloader</translation>
     </message>
     <message>
-        <location filename="../srtm_downloader.py" line="165" />
+        <location filename="../srtm_downloader.py" line="167" />
         <source>SRTM Downloader</source>
         <translation>SRTM Downloader</translation>
     </message>
@@ -53,35 +53,14 @@
 <context>
     <name>SrtmDownloaderDialogBase</name>
     <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="158" />
-        <location filename="../srtm_downloader_dialog_base.py" line="150" />
-        <source>Box out of covered area</source>
-        <translation>Кутия извън покритата зона</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="151" />
-        <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
-        <translation>Определената от вас зона е изцяло извън зоната, покрита от плочките SRTM.</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="159" />
-        <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
-        <translation>Определената от вас зона е частично извън зоната, покрита от плочките SRTM. Искате ли да продължите?</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="217" />
-        <source>Open Directory</source>
-        <translation>Отворена директория</translation>
-    </message>
-    <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>SRTM Downloader</source>
         <translation>SRTM Downloader</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Load Image to QGIS</source>
-        <translation>Зареждане на изображение в QGIS</translation>
+        <source>Load DEM to QGIS</source>
+        <translation>Зареждане на ЦМР в QGIS</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -120,7 +99,7 @@
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set map extent</source>
+        <source>Set to map extent</source>
         <translation>Задаване на обхвата на картата</translation>
     </message>
     <message>
@@ -145,8 +124,29 @@
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a&gt;</source>
-        <translation>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;API-Key:&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;API-Key:&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="158" />
+        <location filename="../srtm_downloader_dialog_base.py" line="150" />
+        <source>Box out of covered area</source>
+        <translation>Кутия извън покритата зона</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="151" />
+        <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
+        <translation>Определената от вас зона е изцяло извън зоната, покрита от плочките SRTM.</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="159" />
+        <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
+        <translation>Определената от вас зона е частично извън зоната, покрита от плочките SRTM. Искате ли да продължите?</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="217" />
+        <source>Open Directory</source>
+        <translation>Отворена директория</translation>
     </message>
 </context>
 <context>

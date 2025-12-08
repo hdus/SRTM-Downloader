@@ -40,12 +40,12 @@
 <context>
     <name>SrtmDownloader</name>
     <message>
-        <location filename="../srtm_downloader.py" line="67" />
+        <location filename="../srtm_downloader.py" line="69" />
         <source>&amp;SRTM Downloader</source>
         <translation>&amp;SRTM Downloader</translation>
     </message>
     <message>
-        <location filename="../srtm_downloader.py" line="165" />
+        <location filename="../srtm_downloader.py" line="167" />
         <source>SRTM Downloader</source>
         <translation>أداة تنزيل SRTM</translation>
     </message>
@@ -53,35 +53,14 @@
 <context>
     <name>SrtmDownloaderDialogBase</name>
     <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="158" />
-        <location filename="../srtm_downloader_dialog_base.py" line="150" />
-        <source>Box out of covered area</source>
-        <translation>صندوق خارج المنطقة المغطاة</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="151" />
-        <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
-        <translation>تقع المنطقة التي حددتها خارج المنطقة التي يغطيها بلاط SRTM تماماً.</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="159" />
-        <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
-        <translation>المنطقة التي حددتها تقع جزئياً خارج المنطقة التي يغطيها بلاط SRTM. هل ترغب في المتابعة؟</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="217" />
-        <source>Open Directory</source>
-        <translation>الدليل المفتوح</translation>
-    </message>
-    <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
         <source>SRTM Downloader</source>
         <translation>أداة تنزيل SRTM</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Load Image to QGIS</source>
-        <translation>تحميل صورة إلى QGIS</translation>
+        <source>Load DEM to QGIS</source>
+        <translation>تحميل DEM إلى QGIS</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -120,8 +99,8 @@
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set map extent</source>
-        <translation>تعيين مدى الخريطة</translation>
+        <source>Set to map extent</source>
+        <translation>تعيين على مدى الخريطة</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -145,8 +124,29 @@
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a&gt;</source>
-        <translation>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a/a&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;API-Key:&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;/&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;API-Key:&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/&gt;&lt;/html</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="158" />
+        <location filename="../srtm_downloader_dialog_base.py" line="150" />
+        <source>Box out of covered area</source>
+        <translation>صندوق خارج المنطقة المغطاة</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="151" />
+        <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
+        <translation>تقع المنطقة التي حددتها خارج المنطقة التي يغطيها بلاط SRTM تماماً.</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="159" />
+        <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
+        <translation>المنطقة التي حددتها تقع جزئياً خارج المنطقة التي يغطيها بلاط SRTM. هل ترغب في المتابعة؟</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="217" />
+        <source>Open Directory</source>
+        <translation>الدليل المفتوح</translation>
     </message>
 </context>
 <context>
