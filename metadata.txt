@@ -7,14 +7,15 @@
 
 [general]
 name=SRTM-Downloader
-qgisMinimumVersion=3.00
-qgisMaximumVersion=3.99
-description=Plugin for download of SRTM Tiles from OpenTopography Data, Before you can use the plugin, you must create an API key at https://opentopography.org Here is a description of how to do this.https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets.
-version=3.3.1
+qgisMinimumVersion=3.0
+qgisMaximumVersion=4.99
+supportsQt6=True
+description=Downloads SRTM Tiles from NASA Server
+version=4.0.0
 author=Dr. Horst Duester
 email=horst.duester@kappasys.ch
 
-about=Plugin for download of SRTM Tiles from OpenTopography Data
+about=Plugin for download of SRTM Tiles from NASA
 
 tracker=https://github.com/hdus/SRTM-Downloader/issues
 repository=https://github.com/hdus/SRTM-Downloader
@@ -24,10 +25,8 @@ repository=https://github.com/hdus/SRTM-Downloader
 
 # Uncomment the following line and add your changelog:
 changelog=
-  3.3.1 
-  - A lot of translations added
-  3.3.0
-  - Plugin refactored to use OpenTopography data
+  4.0.0 
+  - Initial release for QGIS 4
   3.2.3
   - Password Hint added to Login Dialog
   3.2.2 

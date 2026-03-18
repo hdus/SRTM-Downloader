@@ -17,7 +17,7 @@ class Downloader:
     
     @contextmanager
     def wait_cursor(self):
-        QApplication.setOverrideCursor(Qt.WaitCursor)
+        QApplication.setOverrideCursor(Qt.CursorShape.WaitCursor)
         try:
             yield
         finally:

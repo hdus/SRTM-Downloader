@@ -79,8 +79,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.min_tile = ''
         self.max_tile = ''
         self.n_tiles = 0
-        self.button_box.button(QDialogButtonBox.Close).setEnabled(True)
-        self.button_box.button(QDialogButtonBox.Abort).setEnabled(False)
+        self.button_box.button(QDialogButtonBox.StandardButton.Close).setEnabled(True)
+        self.button_box.button(QDialogButtonBox.StandardButton.Abort).setEnabled(False)
         self.settings = QSettings()
         self.init_gui()
         
@@ -180,7 +180,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                             out_path)
         
         self.load_image_to_canvas(image)
-        self.button_box.button(QDialogButtonBox.Close).setEnabled(True)
+        self.button_box.button(QDialogButtonBox.StandardButton.Close).setEnabled(True)
 
         
         return True
