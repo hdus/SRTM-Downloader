@@ -7,7 +7,7 @@
 
 [general]
 name=SRTM-Downloader
-qgisMinimumVersion=3.0
+qgisMinimumVersion=4.0
 qgisMaximumVersion=4.99
 supportsQt6=True
 description=Downloads SRTM Tiles from NASA Server
