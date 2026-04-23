@@ -11,7 +11,7 @@ qgisMinimumVersion=4.0
 qgisMaximumVersion=4.99
 supportsQt6=True
 description=Downloads SRTM Tiles from NASA Server
-version=4.0.0
+version=4.0.1
 author=Dr. Horst Duester
 email=horst.duester@kappasys.ch
 
@@ -25,6 +25,8 @@ repository=https://github.com/hdus/SRTM-Downloader
 
 # Uncomment the following line and add your changelog:
 changelog=
+  4.0.1
+  - security issues fixed
   4.0.0 
   - Initial release for QGIS 4
     
