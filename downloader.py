@@ -47,10 +47,10 @@ class Downloader:
         return out_path
 
     def download_stream(self, url, out_path, progress_callback=None, cancel_callback=None):
-        r = requests.get(url, stream=True)
+        r = requests.get(url, stream=True,  timeout=(30, 60))
         
         if r.status_code != 200:
-            import xml.etree.ElementTree as ET
+            from defusedxml import ElementTree as ET
             root = ET.fromstring(r.text)
             error = root.text.split(':')
             
