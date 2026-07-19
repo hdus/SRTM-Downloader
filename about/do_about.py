@@ -25,42 +25,41 @@ import os
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'ui_about.ui'))
-    
-class About( QDialog, FORM_CLASS):
-    def __init__( self):
-        QDialog.__init__( self)
-        self.setupUi( self )
+
+
+class About(QDialog, FORM_CLASS):
+    def __init__(self):
+        QDialog.__init__(self)
+        self.setupUi(self)
         self.plugin_dir = os.path.dirname(__file__)
         self.metadata = Metadata()
         self.setWindowTitle(self.tr(u"About {0} {1}".format(self.metadata.name(), self.metadata.version())))
-        self.lblVersion.setText( self.tr( u"Version: {0}".format(self.metadata.version() ))) 
-        self.tabWidget.setTabText(0,  self.metadata.name())
-        self.tabWidget.setTabText(1,  self.tr("Author"))
-        self.tabWidget.setTabText(2,  self.tr("Contact"))
-        self.tabWidget.setTabText(3,  self.tr("Change Log"))
-    
+        self.lblVersion.setText(self.tr(u"Version: {0}".format(self.metadata.version())))
+        self.tabWidget.setTabText(0, self.metadata.name())
+        self.tabWidget.setTabText(1, self.tr("Author"))
+        self.tabWidget.setTabText(2, self.tr("Contact"))
+        self.tabWidget.setTabText(3, self.tr("Change Log"))
+
         # setup texts
-        aboutString = self.metadata.description() 
-    
-        contribString = self.tr(u"<p><center><b>Author(s):</b></center></p>") 
+        aboutString = self.metadata.description()
+
+        contribString = self.tr(u"<p><center><b>Author(s):</b></center></p>")
         contribString += self.tr(u"<p>{0}<br>".format(self.metadata.author()))
-        
+
         licenseString = self.tr(u"")
         licenseString += self.tr(u"")
-        
+
         licenseString += "\n"
         licenseString += self.tr(u"Contact:\n")
-        licenseString += self.metadata.author()+"\n"
-        licenseString += self.metadata.email()+"\n\n"
+        licenseString += self.metadata.author() + "\n"
+        licenseString += self.metadata.email() + "\n\n"
         licenseString += self.tr(u"Plugin Resources:\n")
-        licenseString += self.metadata.homepage()+"\n"
-        licenseString += self.metadata.tracker()+"\n"
-        licenseString += self.metadata.repository()+"\n"
-        
-        
+        licenseString += self.metadata.homepage() + "\n"
+        licenseString += self.metadata.tracker() + "\n"
+        licenseString += self.metadata.repository() + "\n"
+
         # write texts
-        self.memAbout.setText( aboutString )
-        self.memContrib.setText(contribString )
-        self.memAcknowl.setText( licenseString )
-        self.memChangeLog.setText( self.metadata.changelog() )
-                
+        self.memAbout.setText(aboutString)
+        self.memContrib.setText(contribString)
+        self.memAcknowl.setText(licenseString)
+        self.memChangeLog.setText(self.metadata.changelog())

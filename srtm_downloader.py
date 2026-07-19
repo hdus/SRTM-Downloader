@@ -20,11 +20,11 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.PyQt.QtCore import QSettings, QTranslator, qVersion, QCoreApplication,  QFileInfo
+from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, QFileInfo
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
-# Initialize Qt resources from file resources.py
-from .resources_rc import *
+# Initialize Qt resources from file resources.py (registers icons as a side effect)
+from .resources_rc import *  # noqa: F401,F403
 # Import the code for the dialog
 from .srtm_downloader_dialog_base import SrtmDownloaderDialogBase
 import os.path
@@ -43,26 +43,26 @@ class SrtmDownloader:
             application at run time.
         :type iface: QgsInterface
         """
-            
+
         # Save reference to the QGIS interface
         self.iface = iface
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
-        
+
 #        # initialize locale
         locale_short = QSettings().value("locale/userLocale", type=str)[0:2]
         locale_long = QSettings().value("locale/userLocale", type=str)
-    
-        self.translator = QTranslator()        
-        if QFileInfo(self.plugin_dir).exists():            
+
+        self.translator = QTranslator()
+        if QFileInfo(self.plugin_dir).exists():
             if QFileInfo(self.plugin_dir + "/i18n/srtmdownload_" + locale_short + ".qm").exists():
                 translation = self.plugin_dir + "/i18n/srtmdownload_" + locale_short + ".qm"
-                self.translator.load( translation )            
+                self.translator.load(translation)
             elif QFileInfo(self.plugin_dir + "/i18n/srtmdownload_" + locale_long + ".qm").exists():
                 translation = self.plugin_dir + "/i18n/srtmdownload_" + locale_long + ".qm"
-                self.translator.load( translation )            
-        
-        QCoreApplication.installTranslator(self.translator)        
+                self.translator.load(translation)
+
+        QCoreApplication.installTranslator(self.translator)
 
         # Declare instance attributes
         self.actions = []
@@ -70,7 +70,7 @@ class SrtmDownloader:
         # TODO: We are going to let the user set this up in a future iteration
         self.toolbar = self.iface.addToolBar(u'SrtmDownloader')
         self.toolbar.setObjectName(u'SrtmDownloader')
-        
+
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
         """Get the translation for a string using Qt translation API.
@@ -86,18 +86,17 @@ class SrtmDownloader:
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate('SrtmDownloader', message)
 
-
     def add_action(
-        self,
-        icon_path,
-        text,
-        callback,
-        enabled_flag=True,
-        add_to_menu=True,
-        add_to_toolbar=True,
-        status_tip=None,
-        whats_this=None,
-        parent=None):
+            self,
+            icon_path,
+            text,
+            callback,
+            enabled_flag=True,
+            add_to_menu=True,
+            add_to_toolbar=True,
+            status_tip=None,
+            whats_this=None,
+            parent=None):
         """Add a toolbar icon to the toolbar.
 
         :param icon_path: Path to the icon for this action. Can be a resource
@@ -168,12 +167,10 @@ class SrtmDownloader:
             callback=self.run,
             parent=self.iface.mainWindow())
 
-
     def unload(self):
         for action in self.actions:
             self.iface.removePluginMenu(u'SRTM Downloader', action)
             self.iface.removeToolBarIcon(action)
-
 
     def run(self):
         """Run method that performs all the real work"""

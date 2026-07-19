@@ -40,12 +40,12 @@
 <context>
     <name>SrtmDownloader</name>
     <message>
-        <location filename="../srtm_downloader.py" line="69" />
+        <location filename="../srtm_downloader.py" line="67" />
         <source>&amp;SRTM Downloader</source>
         <translation>&amp;SRTM Downloader</translation>
     </message>
     <message>
-        <location filename="../srtm_downloader.py" line="167" />
+        <location filename="../srtm_downloader.py" line="165" />
         <source>SRTM Downloader</source>
         <translation>SRTM Downloader</translation>
     </message>
@@ -53,14 +53,35 @@
 <context>
     <name>SrtmDownloaderDialogBase</name>
     <message>
-        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>SRTM Downloader</source>
-        <translation>SRTM Downloader</translation>
+        <location filename="../srtm_downloader_dialog_base.py" line="158" />
+        <location filename="../srtm_downloader_dialog_base.py" line="150" />
+        <source>Box out of covered area</source>
+        <translation>Box uit overdekte ruimte</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="151" />
+        <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
+        <translation>Het gebied dat u hebt gedefinieerd, ligt volledig buiten het gebied dat wordt gedekt door de SRTM-tegels.</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="159" />
+        <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
+        <translation>Het gebied dat u hebt gedefinieerd, valt gedeeltelijk buiten het gebied dat door de SRTM-tegels wordt gedekt. Wilt u doorgaan?</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.py" line="217" />
+        <source>Open Directory</source>
+        <translation>Open Directory</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Load DEM to QGIS</source>
-        <translation>DEM laden naar QGIS</translation>
+        <source>SRTM Downloader</source>
+        <translation>SRTM downloader</translation>
+    </message>
+    <message>
+        <location filename="../srtm_downloader_dialog_base.ui" line="0" />
+        <source>Load Image to QGIS</source>
+        <translation>Afbeelding laden naar QGIS</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -99,8 +120,8 @@
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>Set to map extent</source>
-        <translation>Instellen op kaartgrootte</translation>
+        <source>Set canvas extent</source>
+        <translation>canvasomvang instellen</translation>
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
@@ -124,29 +145,8 @@
     </message>
     <message>
         <location filename="../srtm_downloader_dialog_base.ui" line="0" />
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;API-Key:&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;API-Key:&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="158" />
-        <location filename="../srtm_downloader_dialog_base.py" line="150" />
-        <source>Box out of covered area</source>
-        <translation>Box uit overdekte ruimte</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="151" />
-        <source>The area you have defined is completely outside the area covered by the SRTM tiles. </source>
-        <translation>Het gebied dat u hebt gedefinieerd, ligt volledig buiten het gebied dat wordt gedekt door de SRTM-tegels.</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="159" />
-        <source>The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?</source>
-        <translation>Het gebied dat u hebt gedefinieerd, valt gedeeltelijk buiten het gebied dat wordt gedekt door de SRTM-tegels. Wilt u doorgaan?</translation>
-    </message>
-    <message>
-        <location filename="../srtm_downloader_dialog_base.py" line="217" />
-        <source>Open Directory</source>
-        <translation>Open Directory</translation>
+        <source>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a&gt;</source>
+        <translation>&lt;a href="https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets"&gt;API-Key&lt;/a&gt;</translation>
     </message>
 </context>
 <context>

@@ -150,7 +150,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                 self.tr("Box out of covered area"),
                 self.tr("""The area you have defined is completely outside the area covered by the SRTM tiles. """),
                 QMessageBox.StandardButtons(
-                    QMessageBox.StandardButton.Cancel))
+                    QMessageBox.Cancel))
             self.btn_download.setEnabled(False)
         elif self.spb_north.value() > 59 or self.spb_south.value() < -56 and self.spb_north.value() != 0:
             res = QMessageBox.warning(
@@ -158,9 +158,9 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
                 self.tr("Box out of covered area"),
                 self.tr("""The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?"""),
                 QMessageBox.StandardButtons(
-                    QMessageBox.StandardButton.No |
-                    QMessageBox.StandardButton.Yes))            
-            if res == QMessageBox.StandardButton.Yes:
+                    QMessageBox.No |
+                    QMessageBox.Yes))            
+            if res == QMessageBox.Yes:
                 self.btn_download.setEnabled(True)
             else:
                 self.btn_download.setEnabled(False)
@@ -203,8 +203,8 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.min_tile = ''
         self.max_tile = ''
         self.button_box.setEnabled(True)
-        self.button_box.button(QDialogButtonBox.StandardButton.Close).setEnabled(False)
-        self.button_box.button(QDialogButtonBox.StandardButton.Abort).setEnabled(True)
+        self.button_box.button(QDialogButtonBox.Close).setEnabled(False)
+        self.button_box.button(QDialogButtonBox.Abort).setEnabled(True)
         self.get_tiles()
 
     @pyqtSlot()
@@ -216,7 +216,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         home = expanduser("~")
         self.dir = QFileDialog.getExistingDirectory(None, self.tr("Open Directory"),
                                                  home,
-                                                 QFileDialog.Option.ShowDirsOnly | QFileDialog.Option.DontResolveSymlinks)
+                                                 QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks)
 
         self.lne_SRTM_path.setText(self.dir)   
     
@@ -226,7 +226,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         Slot documentation goes here.
         """
         self.about = About()
-        self.about.exec()
+        self.about.exec_()
         
     @pyqtSlot(str)
     def on_lne_api_key_textChanged(self, p0):
@@ -237,3 +237,4 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         @type str
         """
         self.settings.setValue('/SRTM-Downloader/api_key', p0)
+        
