@@ -1,5 +1,4 @@
 #!/usr/bin/python
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
@@ -13,44 +12,50 @@
         email                : horst.duester@kappasys.ch
  ***************************************************************************/
 
-/*************************************************************************
 /***************************************************************************
  *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   This program is free software; you can redistribute it and/or modify *
+ *   it under the terms of the GNU General Public License as published by *
+ *   the Free Software Foundation; either version 2 of the License, or    *
+ *   (at your option) any later version.                                  *
  *                                                                         *
  ***************************************************************************/
 """
+import math
+import os
+import tempfile
+from os.path import expanduser
+
 from qgis.PyQt import uic
-from qgis.core import *
-                                      
-from qgis.PyQt.QtCore import (pyqtSlot,  
-                                                     QSettings)
-                                      
-from qgis.PyQt.QtWidgets import (QDialog,  
-                                                            QMessageBox,  
-                                                            QFileDialog, 
-                                                            QDialogButtonBox)                                      
+from qgis.PyQt.QtCore import pyqtSlot, QSettings
+from qgis.PyQt.QtWidgets import (
+    QDialog,
+    QMessageBox,
+    QFileDialog,
+    QDialogButtonBox,
+)
+from qgis.core import (
+    QgsCoordinateReferenceSystem,
+    QgsCoordinateTransform,
+    QgsLayerTreeLayer,
+    QgsProject,
+    QgsRasterLayer,
+)
 
 from .about.do_about import About
 from .about.metadata import Metadata
 from .downloader import Downloader
-import math
-import os
-import tempfile
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'srtm_downloader_dialog_base.ui'))
 
-        
+
 class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
     """
     Class documentation goes here.
     """
-    
-    def __init__(self, iface,  parent=None):
+
+    def __init__(self, iface, parent=None):
         """
         Constructor
 
@@ -68,12 +73,12 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.btn_download.setEnabled(False)
         self.request_is_aborted = False
         self.is_error = None
-        
+
         self.spb_east.valueChanged.connect(self.coordinates_valid)
         self.spb_west.valueChanged.connect(self.coordinates_valid)
         self.spb_north.valueChanged.connect(self.coordinates_valid)
         self.spb_south.valueChanged.connect(self.coordinates_valid)
-        
+
         self.setWindowTitle("SRTM-Downloader %s" % (Metadata().version()))
         self.lne_SRTM_path.setText(tempfile.gettempdir())
         self.min_tile = ''
@@ -83,9 +88,9 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         self.button_box.button(QDialogButtonBox.StandardButton.Abort).setEnabled(False)
         self.settings = QSettings()
         self.init_gui()
-        
+
         self.downloader = Downloader(self)
-        
+
     def init_gui(self):
         dem_dict = {
             "SRTMGL3": "SRTM GL3 90m",
@@ -102,25 +107,25 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             "GEBCOIceTopo": "Global Bathymetry 500m",
             "GEBCOSubIceTopo": "Global Bathymetry 500m",
             "CA_MRDEM_DSM": "DSM 30m",
-            "CA_MRDEM_DTM": "DTM 30m"
+            "CA_MRDEM_DTM": "DTM 30m",
         }
-        self.cmb_demtype.clear() 
-        
-        for key, desc in dem_dict.items(): 
-            self.cmb_demtype.addItem(f"{key} ({desc})", key)        
-            
+        self.cmb_demtype.clear()
+
+        for key, desc in dem_dict.items():
+            self.cmb_demtype.addItem(f"{key} ({desc})", key)
+
         index = self.cmb_demtype.findData(self.settings.value('/SRTM-Downloader/dem'))
         if index >= 0:
-            self.cmb_demtype.setCurrentIndex(index)            
-            
+            self.cmb_demtype.setCurrentIndex(index)
+
         self.lne_api_key.setText(self.settings.value('/SRTM-Downloader/api_key'))
-                
+
     @pyqtSlot()
     def on_button_box_rejected(self):
         """
         Slot documentation goes here.
         """
-        selected_dem = self.cmb_demtype.currentData() 
+        selected_dem = self.cmb_demtype.currentData()
         self.settings.setValue('/SRTM-Downloader/dem', selected_dem)
         self.settings.setValue('/SRTM-Downloader/api_key', self.lne_api_key.text())
         self.reject()
@@ -130,25 +135,25 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
-        crsDest = QgsCoordinateReferenceSystem(4326)  # WGS84
-        crsSrc =self.iface.mapCanvas().mapSettings().destinationCrs()
+        crs_dest = QgsCoordinateReferenceSystem(4326)  # WGS84
+        crs_src = self.iface.mapCanvas().mapSettings().destinationCrs()
         xform = QgsCoordinateTransform()
-        xform.setSourceCrs(crsSrc)
-        xform.setDestinationCrs(crsDest)
-            
-        extent = xform.transform(self.iface.mapCanvas().extent())        
+        xform.setSourceCrs(crs_src)
+        xform.setDestinationCrs(crs_dest)
+
+        extent = xform.transform(self.iface.mapCanvas().extent())
 
         self.spb_west.setValue(math.floor(extent.xMinimum()))
         self.spb_east.setValue(math.ceil(extent.xMaximum()))
         self.spb_south.setValue(math.floor(extent.yMinimum()))
         self.spb_north.setValue(math.ceil(extent.yMaximum()))
 
-    def coordinates_valid(self,  text):
-        if self.spb_north.value() < -56 and self.spb_south.value() < -56: 
-            res = QMessageBox.warning(
+    def coordinates_valid(self, text):
+        if self.spb_north.value() < -56 and self.spb_south.value() < -56:
+            QMessageBox.warning(
                 None,
                 self.tr("Box out of covered area"),
-                self.tr("""The area you have defined is completely outside the area covered by the SRTM tiles. """),
+                self.tr("The area you have defined is completely outside the area covered by the SRTM tiles."),
                 QMessageBox.StandardButtons(
                     QMessageBox.StandardButton.Cancel))
             self.btn_download.setEnabled(False)
@@ -156,45 +161,48 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
             res = QMessageBox.warning(
                 None,
                 self.tr("Box out of covered area"),
-                self.tr("""The area you have defined is partly outside the area covered by the SRTM tiles. Do you like to continue?"""),
+                self.tr(
+                    "The area you have defined is partly outside the area covered by the SRTM tiles. "
+                    "Do you like to continue?"
+                ),
                 QMessageBox.StandardButtons(
                     QMessageBox.StandardButton.No |
-                    QMessageBox.StandardButton.Yes))            
+                    QMessageBox.StandardButton.Yes))
             if res == QMessageBox.StandardButton.Yes:
                 self.btn_download.setEnabled(True)
             else:
                 self.btn_download.setEnabled(False)
         else:
             self.btn_download.setEnabled(True)
-        
 
     def get_tiles(self):
         product = self.cmb_demtype.currentData()
-        out_path = '{}/{}.tiff'.format(self.lne_SRTM_path.text(),  product)
-        
-        image = self.downloader.download_opentopo_globaldem(product, 
-                            self.spb_south.value(), 
-                            self.spb_north.value(), 
-                            self.spb_west.value(), 
-                            self.spb_east.value(), 
-                            out_path)
-        
+        out_path = '{}/{}.tiff'.format(self.lne_SRTM_path.text(), product)
+
+        image = self.downloader.download_opentopo_globaldem(
+            product,
+            self.spb_south.value(),
+            self.spb_north.value(),
+            self.spb_west.value(),
+            self.spb_east.value(),
+            out_path,
+        )
+
         self.load_image_to_canvas(image)
         self.button_box.button(QDialogButtonBox.StandardButton.Close).setEnabled(True)
 
-        
         return True
 
-    def load_image_to_canvas(self,  image_path=None):
+    def load_image_to_canvas(self, image_path=None):
         rlayer = QgsRasterLayer(image_path, "DEM")
 
         QgsProject.instance().addMapLayer(rlayer, False)
-        layerTree = self.iface.layerTreeCanvasBridge().rootGroup()
-        layerTree.insertChildNode(0, QgsLayerTreeLayer(rlayer))        
+        layer_tree = self.iface.layerTreeCanvasBridge().rootGroup()
+        layer_tree.insertChildNode(0, QgsLayerTreeLayer(rlayer))
 
         if not rlayer.isValid():
             print("Layer failed to load!")
-        
+
     @pyqtSlot()
     def on_btn_download_clicked(self):
         """
@@ -212,14 +220,14 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         Slot documentation goes here.
         """
-        from os.path import expanduser
         home = expanduser("~")
-        self.dir = QFileDialog.getExistingDirectory(None, self.tr("Open Directory"),
-                                                 home,
-                                                 QFileDialog.Option.ShowDirsOnly | QFileDialog.Option.DontResolveSymlinks)
+        self.dir = QFileDialog.getExistingDirectory(
+            None, self.tr("Open Directory"),
+            home,
+            QFileDialog.Option.ShowDirsOnly | QFileDialog.Option.DontResolveSymlinks)
 
-        self.lne_SRTM_path.setText(self.dir)   
-    
+        self.lne_SRTM_path.setText(self.dir)
+
     @pyqtSlot()
     def on_btn_about_clicked(self):
         """
@@ -227,7 +235,7 @@ class SrtmDownloaderDialogBase(QDialog, FORM_CLASS):
         """
         self.about = About()
         self.about.exec()
-        
+
     @pyqtSlot(str)
     def on_lne_api_key_textChanged(self, p0):
         """
