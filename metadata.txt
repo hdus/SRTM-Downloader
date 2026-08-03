@@ -11,7 +11,7 @@ qgisMinimumVersion=4.0
 qgisMaximumVersion=4.99
 supportsQt6=True
 description=Downloads SRTM Tiles from NASA Server
-version=4.0.2
+version=4.0.4
 author=Dr. Horst Duester
 email=horst.duester@kappasys.ch
 
@@ -19,12 +19,22 @@ about=Plugin for download of SRTM Tiles from NASA
 
 tracker=https://github.com/hdus/SRTM-Downloader/issues
 repository=https://github.com/hdus/SRTM-Downloader
+
+# Installs QPIP (https://github.com/opengisch/qpip), das wiederum requirements.txt
+# (defusedxml) automatisch installiert. Ohne QPIP funktioniert das Plugin dank
+# Fallback in downloader.py trotzdem, nutzt dann aber xml.etree statt defusedxml.
+plugin_dependencies=qpip
+
 # End of mandatory metadata
 
 # Recommended items:
 
 # Uncomment the following line and add your changelog:
 changelog=
+  4.0.4
+  - add QPIP-based pip_dependencies (requirements.txt: defusedxml)
+  4.0.3
+  - fix: fallback to xml.etree if defusedxml is not installed (fixes classFactory() crash)
   4.0.2
   - fix Flake8 violations
   4.0.1

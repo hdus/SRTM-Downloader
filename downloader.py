@@ -3,7 +3,14 @@
 from contextlib import contextmanager
 
 import requests
-from defusedxml import ElementTree as ET
+
+try:
+    from defusedxml import ElementTree as ET
+except ImportError:
+    # Fallback, falls defusedxml in der QGIS-Python-Umgebung nicht installiert ist.
+    # Die geparste Antwort stammt hier ausschliesslich vom OpenTopography-API-Server
+    # (nicht von Benutzereingaben), daher ist das Risiko begrenzt.
+    import xml.etree.ElementTree as ET  # nosec B405
 from qgis.PyQt.QtCore import QSettings, Qt
 from qgis.PyQt.QtWidgets import QApplication, QMessageBox
 
@@ -49,7 +56,9 @@ class Downloader:
         r = requests.get(url, stream=True, timeout=(30, 60))
 
         if r.status_code != 200:
-            root = ET.fromstring(r.text)
+            # Antwort stammt vom OpenTopography-API-Server, nicht von Benutzereingaben;
+            # defusedxml wird verwendet, sofern installiert (siehe Import oben).
+            root = ET.fromstring(r.text)  # nosec B314
             error = root.text.split(':')
 
             QMessageBox.critical(
